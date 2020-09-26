@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
-import logo from './logo.svg';
+import ServicesConatiner from './containers/ServicesConatiner'
 import './App.css';
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
 
     <div >
       <Header />
+      <ServicesConatiner />
     </div>
 
 

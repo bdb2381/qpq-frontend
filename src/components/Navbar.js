@@ -2,10 +2,10 @@ import React from "react";
 import Login from './Login'
 
 
-const Navbar = (props) => {
+const Navbar = ({ showLogin, showSignup }) => {
     return (
-        <div >
-            <Login />
+        <div className="navbar">
+            <Login showLogin={showLogin} showSignup={showSignup} />
         </div>
     );
 };

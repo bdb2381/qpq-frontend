@@ -4,13 +4,25 @@ import Navbar from './Navbar';
 
 class Header extends Component {
 
+  state = {
+    showLogin: false,
+    showSignup: false,
+  }
+
   render() {
     return (
-      <header className="App-header">
-        <img src="https://pbs.twimg.com/media/EF-36wfWwAEtTNY?format=jpg&name=small"
-          width="15%" />
+      <header className="header">
+
+        <Navbar
+          showSig={this.state.showSignup}
+          showLogin={this.state.showLogin}
+        />
+
+        <div className="header-image-cropper">
+          <img src="https://i.ytimg.com/vi/RCSTnK1gfzs/maxresdefault.jpg"
+            className="header-pic" />
+        </div>
         <h1 className="text-center">QPQ</h1>
-        <Navbar />
       </header>
     );
   }
