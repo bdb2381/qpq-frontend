@@ -9,6 +9,10 @@ class Header extends Component {
     showSignup: false,
   }
 
+  handleLoginClick = () => {
+    this.setState((prevState) => ({ showLogin: !prevState.showLogin }))
+  }
+
   render() {
     return (
       <header className="header">
@@ -16,6 +20,8 @@ class Header extends Component {
         <Navbar
           showSig={this.state.showSignup}
           showLogin={this.state.showLogin}
+          handleLoginClick={this.handleLoginClick}
+
         />
 
         <div className="header-image-cropper">
