@@ -5,7 +5,7 @@ const Login = ({ showSignup, showLogin }) => {
     return (
         <div className="navbar-list">
 
-            <span > Login </span>
+            <span > Register </span>
             {showLogin ?
                 <form>
                     <label> email</label>
