@@ -7,7 +7,7 @@
   /* justify-content: center; */
   color: #EDB668;
   font-size: 25px;
- position: relative;
+
 }
 
 .header-image-cropper {
@@ -25,6 +25,17 @@ height: 100%;
 width: auto;
 }
 
+header .new-service {
+  background: #EDB668;
+  color: #2B857D;
+  text-size-adjust: auto;
+  font-size: 25px;
+  border-radius: 10px;
+  border: none;
+
+
+
+}
 .navbar {
   position: relative;
   width: 100%;
@@ -35,6 +46,7 @@ width: auto;
   overflow: hidden;
   margin: 20px 20px ;
   background-color: #333;
+  height: 50px;
 }
 
 .navbar-list a{
@@ -59,7 +71,6 @@ width: auto;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     float: right;
-    outline: none;
     padding: 6px;
     border: none;
     margin-top: 8px;
@@ -81,10 +92,9 @@ width: auto;
 
   .login-form , .login-form input[type=text],  .login-form input[type=password] {
       float: left;
-    outline: none;
     padding: 6px;
     border: none;
-    margin-top: 8px;
+    margin-top: 1px ;
     font-size: 17px;
     text-align: center;
     align-content: center;
@@ -92,7 +102,7 @@ width: auto;
   .login-form button {
     float: right;
     padding: 6px 10px;
-    margin-top: 8px;
+    margin-top: 1px;
     margin-right: 16px;
     background: #ddd;
     font-size: 17px;
@@ -101,6 +111,48 @@ width: auto;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
   }
+
+   
+#service-collection {
+  margin: 2rem;
+}
+
+.card {
+  text-align: center;
+  border-radius: 10px;
+  border: #2B857D solid 4px;
+  padding: 1rem;
+  width: 20rem;
+  height: max-content;
+  display: inline-grid;
+  margin: 1rem 2rem;
+}
+
+.service_img {
+  justify-self: center;
+  height: 12rem;
+  width: auto;
+}
+.service-content {
+  /* background:#EDB668; */
+  word-wrap: break-word;
+} 
+.service-content .name {
+  font-size: 20px;
+  background:#2B857D;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  height: auto;
+  text-align: center;
+}
+.service-content .description {
+    position: relative;
+  font-size: 20px;
+  background:#DDED6D;
+  display: block;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
 
 
   @media screen and (max-width: 600px) {
@@ -131,4 +183,5 @@ width: auto;
 *{
   font-family: 'Poppins';
   text-align: center;
+  outline: none;
 }

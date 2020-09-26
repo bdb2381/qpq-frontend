@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import services from '../data'
+import ServiceCard from '../components/ServiceCard'
 
 
 class ServicesConatiner extends Component {
@@ -17,12 +18,12 @@ class ServicesConatiner extends Component {
 
     render() {
 
-        console.log(this.state.services)
         return (
-            <div>
-                {this.state.services.map(service => <p>{service.name}</p>)}
-
-            </div>
+            <div id="service-collection">
+                {this.state.services.map(service =>
+                    <ServiceCard key={service.id} service={service} />
+                )}
+            </ div>
         );
     }
 }
