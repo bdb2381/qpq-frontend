@@ -3,7 +3,7 @@ import services from '../data'
 import ServiceCard from '../components/ServiceCard'
 
 
-class ServicesConatiner extends Component {
+class ServicesContainer extends Component {
 
     state = {
         services: []
@@ -28,4 +28,4 @@ class ServicesConatiner extends Component {
     }
 }
 
-export default ServicesConatiner;
+export default ServicesContainer;
