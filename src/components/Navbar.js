@@ -2,10 +2,19 @@ import React from "react";
 import Login from './Login'
 
 
-const Navbar = ({ showLogin, showSignup }) => {
+const Navbar = ({ handleSignUpClick, handleLoginClick, showLogin, showSignup, handleOnChange }) => {
     return (
         <div className="navbar">
-            <Login showLogin={showLogin} showSignup={showSignup} />
+            <Login
+                handleLoginClick={handleLoginClick}
+                showLogin={showLogin}
+                showSignup={showSignup}
+                handleSignUpClick={handleSignUpClick}
+                handleOnChange={handleOnChange}
+            />
+
+
+
         </div>
     );
 };
