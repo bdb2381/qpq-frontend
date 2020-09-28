@@ -1,28 +1,31 @@
-import React from 'react';
-import Header from './components/Header';
-import MapContainer from './containers/MapContainer';
-import ServicesContainer from './containers/ServicesContainer'
-import UserContainer from './containers/UserContainer'
-import ProfileForm from './components/ProfileForm'
-import './App.css';
+
+import React from "react";
+import Header from "./components/Header";
+import MapContainer from "./containers/MapContainer";
+import ServicesContainer from "./containers/ServicesContainer";
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from "./actions";
+import { decrement } from "./actions";
 
 // console.log(process.env.REACT_APP_GOOGLE_API_KEY)
 
 function App() {
-
-
+  const counter = useSelector((state) => state.counter);
+  const isLogged = useSelector((state) => state.isLogged);
+  const dispatch = useDispatch();
 
   return (
-
-    <div >
+    <div>
       <Header />
-      {/* <ServicesContainer /> */}
-      <ProfileForm />
-      {/* <UserContainer /> */}
-      {/* <MapContainer /> */}
+      <h1> Counter: {counter}</h1>
+      <button onClick={() => dispatch(increment())}> + </button>
+      <button onClick={() => dispatch(decrement())}> - </button>
+      {isLogged ? <h3>You are logged in</h3> : <h3>You are not logged in</h3>}
+      <ServicesContainer />
+      <MapContainer />
+
     </div>
-
-
   );
 }
 

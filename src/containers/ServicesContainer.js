@@ -1,31 +1,25 @@
 import React, { Component } from "react";
-import services from '../data'
-import ServiceCard from '../components/ServiceCard'
-
+import services from "../data";
 
 class ServicesContainer extends Component {
+  state = {
+    services: [],
+  };
 
-    state = {
-        services: []
-    }
+  componentDidMount = () => {
+    this.setState({ services: services });
+  };
 
-
-    componentDidMount = () => {
-        this.setState({ services: services })
-    }
-
-
-
-    render() {
-
-        return (
-            <div id="service-collection">
-                {this.state.services.map(service =>
-                    <ServiceCard key={service.id} service={service} />
-                )}
-            </ div>
-        );
-    }
+  render() {
+    console.log(this.state.services);
+    return (
+      <div>
+        {this.state.services.map((service) => (
+          <p>{service.name}</p>
+        ))}
+      </div>
+    );
+  }
 }
 
 export default ServicesContainer;
