@@ -1,3 +1,4 @@
+
 import React from "react";
 import Header from "./components/Header";
 import MapContainer from "./containers/MapContainer";
@@ -13,6 +14,7 @@ function App() {
   const counter = useSelector((state) => state.counter);
   const isLogged = useSelector((state) => state.isLogged);
   const dispatch = useDispatch();
+
   return (
     <div>
       <Header />
@@ -22,6 +24,7 @@ function App() {
       {isLogged ? <h3>You are logged in</h3> : <h3>You are not logged in</h3>}
       <ServicesContainer />
       <MapContainer />
+
     </div>
   );
 }
