@@ -15,6 +15,7 @@ function App() {
     <div>
       <Router>
         <Header />
+        <
         <Route
               exact 
               path="/"
