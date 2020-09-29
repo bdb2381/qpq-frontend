@@ -57,7 +57,7 @@ export default class Welcome extends React.Component {
             <label for="password">Password</label>
             <input
               onChange={(e) => this.handleLoginChange(e)}
-              type="text"
+              type="password"
               value={this.state.password}
               name="password"
               placeholder="Password"
