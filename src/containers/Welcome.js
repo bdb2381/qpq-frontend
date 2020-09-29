@@ -19,12 +19,22 @@ export default class Welcome extends React.Component {
 
     console.log(email, password);
 
-    api.auth.login(email, password);
-
-    // login = email, password) => {};
-
-    // debugger;
+    api.auth.login(email, password)
+    .then((response) => {
+      if (response.error) {this.setState({ error: true },
+       console.log("hello helo") );}
+      else {
+        this.handleLogin(response);
+        this.props.history.push('/signup');}
+    });  
   };
+
+  handleLogin = (user) => {
+    const currentUser = { currentUser: user };
+    localStorage.setItem("token", user.token);
+    this.setState({ auth: currentUser });
+  };
+
 
   render() {
     return (

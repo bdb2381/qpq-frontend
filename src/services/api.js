@@ -20,10 +20,11 @@ const login = (email, password) => {
     headers: headers,
     body: JSON.stringify({ email, password }),
   })
-    .then((res) => res.json())
-    .then((data) => {
-      localStorage.setItem("token", data.jwt);
-    });
+    .then((res) => res.json() )
+    // .then(data => console.log(data, "in api.js"))
+    // .then((data) => {
+    //   localStorage.setItem("token", data.jwt);
+    // });
 };
 
 const getCurrentUser = () => {

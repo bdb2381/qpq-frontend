@@ -15,7 +15,15 @@ function App() {
     <div>
       <Router>
         <Header />
-        <Route exact={true} path="/" component={Welcome} />
+        <Route
+              exact 
+              path="/"
+              render={(routerProps) => {
+                return (
+                  <Welcome {...routerProps} />
+                );
+              }}
+            />
         <Route exact path="/signup" component={Signup} />
 
       </Router>
