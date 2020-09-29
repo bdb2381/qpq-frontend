@@ -18,6 +18,7 @@ export default class Welcome extends React.Component {
     const password = this.state.password;
 
     api.auth.login(email, password)
+
       .then((response) => {
         if (response.error) {
           this.setState({ error: true },
@@ -28,6 +29,7 @@ export default class Welcome extends React.Component {
           this.props.history.push('/');
         }
       });
+
   };
 
 
