@@ -21,8 +21,6 @@ class Signup extends React.Component {
     }
 
     handleOnChange = (e) => {
-        // debugger
-        // console.log(e.target)
         this.setState({
             newUser: { [e.target.name]: e.target.value }
         })
@@ -57,22 +55,22 @@ class Signup extends React.Component {
                     <div className="register-form">
                         <div className="profile-form-row">
 
-                            <label for="first_name">First Name</label>
+                            {/* <label for="first_name">First Name</label> */}
                             <input type="text" name="first_name" placeholder="First Name" value={this.state.first_name} />
-                            <label for="last_name">Last Name</label>
+                            {/* <label for="last_name">Last Name</label> */}
                             <input type="text" name="last_name" placeholder="Last Name" value={this.state.last_name} />
-                            <label for="street">Street</label>
+                            {/* <label for="street">Street</label> */}
                             <input type="text" name="street" placeholder="Street" value={this.state.street} />
-                            <label for="city"> City</label>
+                            {/* <label for="city"> City</label> */}
                             <input type="text" name="city" placeholder="City" value={this.state.city} />
-                            <label for="zipcode">Zip Code</label>
+                            {/* <label for="zipcode">Zip Code</label> */}
                             <input type="text" name="zipcode" placeholder="Zip Code" value={this.state.zipcode} />
-                            <label for="state">State</label>
+                            {/* <label for="state">State</label> */}
                             <input type="text" name="state" placeholder="State" value={this.state.state} />
-                            <label for="img_url">Image</label>
+                            {/* <label for="img_url">Image</label> */}
                             <input type="text" name="img_url" placeholder="Image URL" value={this.state.img_url} />
-                            <label for="birth_year">Birth Year</label>
-                            <input type="number" name="birth_year" placeholder="Birth Year" value={this.state.birth_year} />
+                            {/* <label for="birth_year">Birth Year</label> */}
+                            <input type="number" name="birth_year" placeholder="Birth Year" defaultValue="1999" value={this.state.birth_year} />
                         </div>
 
                         <div className="profile-form-row">

@@ -27,11 +27,15 @@ class ServicesContainer extends Component {
   };
 
   componentDidMount = () => {
+    // const token = localStorage.getItem('token');
+    // if (token) {
 
     fetch("http://localhost:3000/api/v1/services")
       .then((res) => res.json())
       .then((services) => this.setState({ services: services }));
-
+    // } else {
+    //   this.props.history.push('/login');
+    // }
   };
 
   render() {
@@ -43,14 +47,14 @@ class ServicesContainer extends Component {
             service={this.state.service}
           />
         ) : (
-          this.state.services.map((service) => (
-            <ServiceCard
-              service={service}
-              key={service.id}
-              cardClick={this.cardClick}
-            />
-          ))
-        )}
+            this.state.services.map((service) => (
+              <ServiceCard
+                service={service}
+                key={service.id}
+                cardClick={this.cardClick}
+              />
+            ))
+          )}
       </div>
     );
   }

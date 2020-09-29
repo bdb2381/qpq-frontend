@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import api from "./services/api";
-import ServicesContainer from "./containers/ServicesContainer";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
@@ -53,5 +52,6 @@ class App extends React.Component {
       </div>
     );
   }
+}
 
 export default App;
