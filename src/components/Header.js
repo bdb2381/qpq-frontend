@@ -10,6 +10,10 @@ class Header extends Component {
     search: ''
   }
 
+  handleLoginSubmit  = () => {
+    
+  }
+
   handleLoginClick = () => {
     this.setState((prevState) => ({ showLogin: !prevState.showLogin }))
   }

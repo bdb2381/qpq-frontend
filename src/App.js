@@ -7,6 +7,7 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { increment } from "./actions";
 import { decrement } from "./actions";
+import Login from "./components/Login";
 
 // console.log(process.env.REACT_APP_GOOGLE_API_KEY)
 
