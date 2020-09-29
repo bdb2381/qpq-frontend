@@ -3,6 +3,7 @@ import services from "../data";
 import ServiceCard from "../components/ServiceCard";
 import ServiceSpecs from "../components/ServiceSpecs";
 
+
 class ServicesContainer extends Component {
   state = {
     services: [],
@@ -26,9 +27,11 @@ class ServicesContainer extends Component {
   };
 
   componentDidMount = () => {
+
     fetch("http://localhost:3000/api/v1/services")
       .then((res) => res.json())
       .then((services) => this.setState({ services: services }));
+
   };
 
   render() {

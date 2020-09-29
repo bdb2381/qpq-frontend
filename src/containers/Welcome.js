@@ -17,23 +17,21 @@ export default class Welcome extends React.Component {
     const email = this.state.email;
     const password = this.state.password;
 
-    console.log(email, password);
-
     api.auth.login(email, password)
-    .then((response) => {
-      if (response.error) {this.setState({ error: true },
-       console.log("hello helo") );}
-      else {
-        this.handleLogin(response);
-        this.props.history.push('/signup');} //this needs redirected to another page
-    });  
+
+      .then((response) => {
+        if (response.error) {
+          this.setState({ error: true },
+            console.log("hello helo"));
+        }
+        else {
+          this.props.handleLogin(response);
+          this.props.history.push('/');
+        }
+      });
+
   };
 
-  handleLogin = (user) => {
-    const currentUser = { currentUser: user };
-    localStorage.setItem("token", user.token);
-    this.setState({ auth: currentUser });
-  };
 
 
   render() {
@@ -63,15 +61,7 @@ export default class Welcome extends React.Component {
               placeholder="Password"
             ></input>
           </div>
-          <div className="remember-me-checkbox">
-            <input
-              className="remember-me-input"
-              name="remember_me"
-              value={null}
-              type="checkbox"
-            ></input>
-            <label for="remember_me">Remember me</label>
-          </div>
+
 
           <br></br>
           <button>Submit</button>
