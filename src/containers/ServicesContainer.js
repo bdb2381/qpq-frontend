@@ -1,25 +1,53 @@
 import React, { Component } from "react";
 import services from "../data";
 import ServiceCard from "../components/ServiceCard";
+import ServiceSpecs from "../components/ServiceSpecs";
 
 class ServicesContainer extends Component {
   state = {
     services: [],
+    service: {},
+    cardClicked: false,
+  };
+
+  cardClick = (event, serviceDetails) => {
+    console.log(serviceDetails);
+    this.setState({
+      service: serviceDetails,
+      cardClicked: !this.state.cardClicked,
+    });
+  };
+
+  specClick = () => {
+    this.setState({
+      service: {},
+      cardClicked: !this.state.cardClicked,
+    });
   };
 
   componentDidMount = () => {
     fetch("http://localhost:3000/api/v1/services")
-      .then(res => res.json())
-      .then(services => this.setState({ services: services }))
+      .then((res) => res.json())
+      .then((services) => this.setState({ services: services }));
   };
 
   render() {
-    console.log(this.state.services);
     return (
       <div>
-        {this.state.services.map((service) => (
-          <ServiceCard service={service} key={service.id} />
-        ))}
+        {this.state.cardClicked ? (
+          <ServiceSpecs
+            specClick={this.specClick}
+            service={this.state.service}
+          />
+        ) : (
+          this.state.services.map((service) => (
+            <ServiceCard
+              service={service}
+              key={service.id}
+              cardClick={this.cardClick}
+            />
+          ))
+        )}
       </div>
     );
   }

@@ -25,7 +25,7 @@ export default class Welcome extends React.Component {
        console.log("hello helo") );}
       else {
         this.handleLogin(response);
-        this.props.history.push('/signup');}
+        this.props.history.push('/signup');} //this needs redirected to another page
     });  
   };
 
