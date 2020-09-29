@@ -8,8 +8,14 @@ const headers = {
   Authorization: token,
 };
 
-const getPaintings = () => {
-  return fetch(`${API_ROOT}/paintings/`, { headers: headers }).then((res) =>
+const getServices = () => {
+  return fetch(`${API_ROOT}/services/`, { headers: headers }).then((res) =>
+    res.json()
+  );
+};
+
+const getRequests = () => {
+  return fetch(`${API_ROOT}/requests/`, { headers: headers }).then((res) =>
     res.json()
   );
 };
@@ -37,7 +43,10 @@ export default {
     login: login,
     getCurrentUser: getCurrentUser,
   },
-  paintings: {
-    getPaintings,
+  services: {
+    getServices,
   },
+  requests: {
+    getRequests,
+  }
 };
