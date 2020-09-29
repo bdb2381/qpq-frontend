@@ -1,29 +1,37 @@
 import React from "react";
 
+const ServiceCard = (props) => {
+  const {
+    name,
+    offeringDescription,
+    exchangeDescription,
+    img_url,
+    value,
+  } = props.service;
 
-const ServiceCard = ({ service }) => {
+  const serviceDetails = props.service;
+
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={(event) => props.cardClick(event, serviceDetails)}
+    >
       <div className="image">
-        <img className="service_img" src={service.img_url} />
+        <img className="service_img" src={img_url} />
       </div>
       <div className="service-content">
-        <div className="name">{service.name}</div>
-        <div className="description"> <div> Description: </div>
-          {service.offeringDescription}
+        <div className="name">{name}</div>
+        <div className="description">
+          {" "}
+          i<div> Description: </div>
+          {offeringDescription}
         </div>
       </div>
-      <span>
-        Value: {service.value}
-      </span>
-
+      <span>Value: {value}</span>
       <div className="extra content">
-        <span className="right floated">
-          {service.exchangeDescription}
-        </span>
+        <span className="right floated">{exchangeDescription}</span>
       </div>
     </div>
-
   );
 };
 
