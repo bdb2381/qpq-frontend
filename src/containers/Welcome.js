@@ -1,7 +1,12 @@
 import React from "react";
+import { Link } from 'react-router-dom'
+
 
 
 export default class Welcome extends React.Component {
+    state = {
+        loggedIn: false
+    }
 
     render() {
         return (
@@ -28,9 +33,15 @@ export default class Welcome extends React.Component {
                     </br>
                     <button>Submit</button>
                 </form>
-                <p>New here? <a className="link" href={null}>Click here to create an account!</a></p>
-                <p><b>Created with <img src="https://pbs.twimg.com/media/EF-36wfWwAEtTNY.jpg" width="5%" /> by Noa, Nathan, Akiko & Brad</b></p>
+                <div>
+                    <br></br>
+                    <Link to="/signup" className="signup-link">New here? Click here to create an account!</Link>
+                </div>
+                <div>
+                    <p><b>Created with <img src="https://pbs.twimg.com/media/EF-36wfWwAEtTNY.jpg" width="5%" /> by Noa, Nathan, Akiko & Brad</b></p>
+                </div>
             </div>
         )
     }
 }
+
