@@ -26,12 +26,21 @@ const login = (email, password) => {
     headers: headers,
     body: JSON.stringify({ email, password }),
   })
-    .then((res) => res.json() )
-    // .then(data => console.log(data, "in api.js"))
-    // .then((data) => {
-    //   localStorage.setItem("token", data.jwt);
-    // });
+    .then((res) => res.json())
+  // .then(data => console.log(data, "in api.js"))
+  // .then((data) => {
+  //   localStorage.setItem("token", data.jwt);
+  // });
 };
+
+const signup = (newUser) => {
+  return fetch(`${API_ROOT}/users`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(newUser),
+  })
+    .then((res) => res.json())
+}
 
 const getCurrentUser = () => {
   return fetch(`${API_ROOT}/current_user`, {
@@ -43,6 +52,7 @@ export default {
   auth: {
     login: login,
     getCurrentUser: getCurrentUser,
+    signup: signup
   },
   services: {
     getServices,
@@ -50,4 +60,5 @@ export default {
   requests: {
     getRequests,
   }
+
 };

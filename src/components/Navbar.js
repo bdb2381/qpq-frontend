@@ -1,17 +1,19 @@
-import React from "react";
+import React from "react"; import { Link } from "react-router-dom";
 
-
-const Navbar = ({ handleSignUpClick, handleLoginClick, showLogin, showSignup, handleOnChange }) => {
+const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navbar-list">
-                <a> Hello User</a>
-                <a> Home</a>
-                <a> Add new QPQ</a>
-                <a> Add new QPQ</a>
+
+                {/* <Link to="/login" className="navbar-list">
+                    Log In/</Link> */}
+                <Link to="/" className="navbar-list">
+                    Home </Link>
+                {/* <Link to="/signup" className="navbar-list"> Signup </Link> */}
+                <Link to="/services" className="navbar-list">
+                    Services </Link>
                 <div className="search-container">
-                    {/* <button type="submit"><i className="fa fa-search"></i></button> */}
-                    <input type="text" onChange={handleOnChange} placeholder="Search" />
+                    <input type="text" onChange={null} placeholder="Search" />
                 </div>
             </div>
         </div>

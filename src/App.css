@@ -32,7 +32,6 @@ width: auto;
   border-radius: 10px;
   overflow: hidden;
   margin: 20px 20px ;
-  /* height: 50px; */
 }
 
 .navbar-list a{
@@ -209,25 +208,6 @@ color: white;
 }
 
 
-.remember-me-checkbox {
-  margin: 0 auto;
-  color: white;
-  display: block;
-  float: center;
-  position: relative;
-  width: 50%;
-  padding: 16px;
-  background: #1A436B;
-}
-.remember-me-checkbox label {
-  display: inline;
-}
-
-.remember-me-input:checked {
-  color: #595959;
-  
-}
-
 .profile-form-row-center input[type=text],
 .profile-form-row-center input[type="password"],
 .profile-form-row-center input[type=number]{
@@ -268,10 +248,14 @@ label {
   padding: 12px;
   cursor: pointer;
 }
-
+/* 
 .btn:hover {
   background-color: white;
 }
+.submit-button .btn:hover {
+  background: #1A436B;
+  color: white;
+} */
 
 .signup-link:link, .signup-link:visited{
 text-decoration: none;

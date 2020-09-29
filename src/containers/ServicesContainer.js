@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import services from "../data";
 import ServiceCard from "../components/ServiceCard";
+import api from "../services/api";
 
 class ServicesContainer extends Component {
   state = {
@@ -8,9 +9,15 @@ class ServicesContainer extends Component {
   };
 
   componentDidMount = () => {
-    fetch("http://localhost:3000/api/v1/services")
-      .then(res => res.json())
-      .then(services => this.setState({ services: services }))
+    const token = localStorage.getItem('token');
+    // debugger
+    if (token) {
+      api.services.getServices().then((services) => {
+        this.setState({ services: services });
+      });
+    } else {
+      this.props.history.push('/login');
+    }
   };
 
   render() {
