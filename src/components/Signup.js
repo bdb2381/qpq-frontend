@@ -1,8 +1,6 @@
 import React from "react";
 
-
-
-const ProfileForm = (props) => {
+const Signup = (props) => {
 
     return (
         <div className="form-container">
@@ -10,6 +8,7 @@ const ProfileForm = (props) => {
                 <div className="register-form">
                     <div className="two-column-grid">
                         <div className="profile-form-row">
+
                             <label for="first_name">First Name</label>
                             <input type="text" name="first_name" placeholder="First Name" value={null} />
                             <label for="street">Street</label>
@@ -46,8 +45,8 @@ const ProfileForm = (props) => {
                         <input type="submit" value="Submit" className="btn" />
                     </div>
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
 
 
 
@@ -56,5 +55,5 @@ const ProfileForm = (props) => {
 
 
 
-export default ProfileForm
+export default Signup
 

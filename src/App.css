@@ -52,33 +52,25 @@ width: auto;
   .navbar-list .search-container  {
   float: right;
   }
-  
-  .navbar-list input[type=text] {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 7px;
-    font-size: 17px;
-    }
 
-  .navbar-list .search-container button {
-    float: right;
-    padding: 14px 16px;
-    padding: 6px;
-    margin-top: 7px;
-    margin-right: 16px;
-    background: #ddd;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+.search-container input[type=text]{
+background-color: white;
+background-image: url(./images/search-icon.png);
+background-position:  10px;
+background-repeat: no-repeat;
+padding-left: 40px;
+color: grey;
+margin-right: 20px;;
+float: right;
+padding: 6px;
+border: none;
+margin-top: 7px;
+font-size: 17px;
+border-radius: 10px;
   }
-
+  
   .navbar-list-items {
-      float: left;
+    float: left;
     padding: 6px;
     border: none;
     margin-top: 1px ;
@@ -272,9 +264,15 @@ label {
   background-color: white;
 }
 
-.link:hover{
-  color: #EDB668;
+.signup-link:link, .signup-link:visited{
+text-decoration: none;
+color: black;
 }
+.signup-link:hover {
+
+color: #DAA520;
+}
+
 
   @media screen and (max-width: 600px) {
     .navbar, .navbar-list a, .navbar-list input[type=text] .navbar-list .search-container button{

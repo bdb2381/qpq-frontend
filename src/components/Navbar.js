@@ -10,8 +10,8 @@ const Navbar = ({ handleSignUpClick, handleLoginClick, showLogin, showSignup, ha
                 <a> Add new QPQ</a>
                 <a> Add new QPQ</a>
                 <div className="search-container">
-                    <button type="submit"><i className="fa fa-search"></i></button>
-                    <input type="text" onChange={handleOnChange} />
+                    {/* <button type="submit"><i className="fa fa-search"></i></button> */}
+                    <input type="text" onChange={handleOnChange} placeholder="Search" />
                 </div>
             </div>
         </div>
@@ -19,3 +19,4 @@ const Navbar = ({ handleSignUpClick, handleLoginClick, showLogin, showSignup, ha
 };
 
 export default Navbar
+
