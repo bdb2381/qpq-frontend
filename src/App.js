@@ -20,8 +20,8 @@ function App() {
   return (
     <div>
 
-      <ProfileForm />
-      {/* <Header /> */}
+      {/* <ProfileForm /> */}
+      <Header />
       {/* <h1> Counter: {counter}</h1>
       <button onClick={() => dispatch(increment())}> + </button>
       <button onClick={() => dispatch(decrement())}> - </button>

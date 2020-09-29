@@ -1,20 +1,19 @@
 import React from "react";
-import Login from './Login'
 
 
 const Navbar = ({ handleSignUpClick, handleLoginClick, showLogin, showSignup, handleOnChange }) => {
     return (
         <div className="navbar">
-            <Login
-                handleLoginClick={handleLoginClick}
-                showLogin={showLogin}
-                showSignup={showSignup}
-                handleSignUpClick={handleSignUpClick}
-                handleOnChange={handleOnChange}
-            />
-
-
-
+            <div className="navbar-list">
+                <a> Hello User</a>
+                <a> Home</a>
+                <a> Add new QPQ</a>
+                <a> Add new QPQ</a>
+                <div className="search-container">
+                    <button type="submit"><i className="fa fa-search"></i></button>
+                    <input type="text" onChange={handleOnChange} />
+                </div>
+            </div>
         </div>
     );
 };
