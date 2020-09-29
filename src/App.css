@@ -155,12 +155,27 @@ header .new-service {
 
 .two-column-grid {
   display: flex;
+  width: 75%;
+  margin: 0 auto;
+  background: #1A436B;
+  padding: 10px;
+}
+.register-form {
+  background: #1A436B;
+  width: 75%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.form-container {
+  padding: 50px;
 }
 
 .row {
 flex: 50%;
 
 }
+
+
 
 .row .edit-profile-button{
   padding: 6px 10px;
@@ -183,6 +198,58 @@ float: right;
 padding-top: 16px;
 flex: 100%;
 width: auto;
+color: white;
+}
+
+
+.profile-form-row-center{
+margin: 0 auto;
+background: #1A436B;
+width: 50%;
+padding: 16px;
+display: block;
+position: relative;
+color: white;
+}
+
+.one-column-grid button{
+ background: #1A436B;
+ color: white;
+ border-radius: 5px;
+ font-size: 20px;
+ border: none;
+ padding: 12px;
+ cursor: pointer;
+}
+
+
+.remember-me-checkbox {
+  margin: 0 auto;
+  color: white;
+  display: block;
+  float: center;
+  position: relative;
+  width: 50%;
+  padding: 16px;
+  background: #1A436B;
+}
+.remember-me-checkbox label {
+  display: inline;
+}
+
+.remember-me-input:checked {
+  color: #595959;
+  
+}
+
+.profile-form-row-center input[type=text],
+.profile-form-row-center input[type="password"],
+.profile-form-row-center input[type=number]{
+  width: 90%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #1A436B;
+  border-radius: 3px;
 }
 
 
@@ -201,21 +268,27 @@ label {
   display: block;
 }
 
+.submit-button{
+  background: white;
+  padding: 15px;
 
+}
 .btn {
-  background-color: #2B857D;
-  color: #222222;
-  padding: 12px;
-  margin: 10px 0;
+  background: #1A436B;
+  color: white;
+  border-radius: 5px;
+  font-size: 20px;
   border: none;
-  width: 50%;
-  border-radius: 3px;
+  padding: 12px;
   cursor: pointer;
-  font-size: 17px;
 }
 
 .btn:hover {
-  background-color: #EDB668;
+  background-color: white;
+}
+
+.link:hover{
+  color: #EDB668;
 }
 
   @media screen and (max-width: 600px) {
