@@ -83,39 +83,18 @@ class ServicesContainer extends Component {
 
   filterServicesBySearch = () => {
     let search = this.props.search.toLowerCase()
-    console.log(search)
     if (search.length > 0) {
       let filteredServices = this.sortServicesBy().filter((service) =>
         service.name.toLowerCase().includes(search) ||
         service.exchangeDescription.toLowerCase().includes(search) ||
         service.offeringDescription.toLowerCase().includes(search)
-        // || this.checkCategories(service, search)
+
       )
       return filteredServices
     }
 
     return this.sortServicesBy()
   }
-
-  // checkCategories = (service, search) => {
-  //   let newArray = []
-  //   for (let i = 0; i < service.categories.length; i++) {
-  //     if (service.categories[i].name.includes(search)) {
-  //       newArray.push(service)
-  //     }
-  //   }
-  //   console.log(newArray)
-  //   return newArray.length > 0 ? newArray : false
-
-  // let newArray = false
-  // for (let i = 0; i < service.categories.length; i++) {
-  //   if (service.categories[i].name.includes(search)) {
-  //     newArray = true
-  //   }
-  // }
-  // return newArray
-
-  // }
 
 
   render() {
