@@ -22,7 +22,7 @@ class UserContainer extends Component {
         return (
             <div>
             {users.map(user =>{
-                return <ProfilePage key={id} user={user}/>
+                return <ProfilePage key={id} user={user} handleEditButton={this.props.handleEditButton}/>
             })}
             </div>
         );

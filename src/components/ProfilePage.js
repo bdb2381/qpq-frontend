@@ -20,6 +20,19 @@ class ProfilePage extends React.Component {
     this.setState({
       user: user
     })
+    console.log(user)
+  }
+
+
+
+  handleFormChange = (e) =>{
+    this.setState({
+      user: {
+        ...this.state.user,
+        [e.target.name]: e.target.value
+      }
+    })
+
   }
 
   render() {
@@ -46,6 +59,12 @@ class ProfilePage extends React.Component {
               className="edit-profile-button"
               onClick={() => this.handleEditButton(this.props.user)}
             > Edit My Profile </button>
+            <br/>
+            <br/>
+            <button
+            className="delete-profile-button"
+            // onClick={() => this.handleEditButton(this.props.user)}
+          > Delete My Profile </button>
           </div>
         </div>
         <div>
@@ -53,7 +72,8 @@ class ProfilePage extends React.Component {
         </div>
         <EditUserForm
         user={this.props.user}
-         {...this.handleClick} />
+        handleEditButton={this.handleEditButton}
+        handleFormChange={this.handleFormChange} />
       </div>
     );
   };

@@ -3,12 +3,14 @@ import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import UserContainer from './containers/UserContainer'
+import EditUserForm from "./components/EditUserForm";
 
 import api from "./services/api";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
+import ProfilePage from "./components/ProfilePage";
 
 class App extends React.Component {
 
@@ -27,14 +29,15 @@ class App extends React.Component {
       });
     }
   }
-  handleLogin = (user) => {
-    const currentUser = { currentUser: user };
-    localStorage.setItem("token", user.token);
+  handleLogin = (response) => {
+    console.log(response)
+    console.log(response.user)
+    const currentUser = { currentUser: response.user };
+    localStorage.setItem("token", response.jwt);
     this.setState({ auth: currentUser });
   };
 
   handleLogout = () => {
-
     localStorage.removeItem("token");
     this.setState({ auth: { currentUser: {} } });
   };
@@ -42,12 +45,17 @@ class App extends React.Component {
   handleSearch = (event) => {
     let searchResults = event.target.value
     this.setState({ search: searchResults })
-  }
+  } 
+
+ 
 
 
 
   render() {
+console.log(this.state.auth.currentUser)
 
+
+// debugger
     return (
       <div>
         <Header handleLogout={this.handleLogout}
@@ -66,9 +74,10 @@ class App extends React.Component {
           return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
         }} />
         <Route exact path="/profile" render={(routerProps) => {
-          return (<UserContainer {...routerProps} />)
+          return (<UserContainer {...routerProps} currentUser={this.state.auth.current_user}  />)
         }} />
-
+      { /*<Route exact path='/' render={(routerProps) =>{
+      return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
       </div>
     );
   }
