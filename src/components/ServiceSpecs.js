@@ -1,6 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ServiceSpecs = (props) => {
+
+const handleRequestClick = (serviceDetails) => {
+  console.log(serviceDetails)
+  // need to wire to request component. Will we change state for render or <Link>
+ }
+
+
+ const ServiceSpecs = (props) => {
   const {
     name,
     offeringDescription,
@@ -28,7 +36,13 @@ const ServiceSpecs = (props) => {
       <div className="extra content">
         <span className="right floated">{exchangeDescription}</span>
       </div>
-      {console.log("from the serviceSpecs")}
+      <div>
+        {/* <Link to='/request'> */}
+        <button onClick={handleRequestClick(props.service)} type="button" >Request a QPQ</button> 
+        {/* </Link> */}
+      </div>
+
+
     </div>
   );
 };
