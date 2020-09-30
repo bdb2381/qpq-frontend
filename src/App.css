@@ -101,7 +101,7 @@
   margin: 3rem;
 }
 .service-specs {
-  cursor: pointer;
+  /* cursor: pointer; */
   background: #EEEEEE;
   border-radius: 10px;
 }
