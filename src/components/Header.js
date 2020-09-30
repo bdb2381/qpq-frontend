@@ -13,7 +13,7 @@ class Header extends Component {
         />
         <div className="header-image-cropper">
           <img src="https://i.ytimg.com/vi/RCSTnK1gfzs/maxresdefault.jpg"
-            className="header-pic" />
+            className="header-pic" alt="" />
         </div>
         <span className="text-center">QPQ</span>
       </header>
