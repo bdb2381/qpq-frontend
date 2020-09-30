@@ -3,18 +3,20 @@ import React from "react";
 const SortBar = (props) => {
     return (
         <div>
+
             <label>
-                Sort By:
-            <select onChange={props.botSortBy}>
-                    <option value="health">Health</option>
-                    <option value="damage">Damage</option>
-                    <option value="armor">Armor</option>
+                <input name="name" type="radio" checked={props.sort} onClick={(e) => props.handelSortBy(e)} /> Sort By Name
+                <input name="value" type="radio" checked={!props.sort} onClick={(e) => props.handelSortBy(e)} /> Sort By Value
+      </label>
+            <span></span>  <span></span>
+            <label>
+                Filter by Type:
+            <select onChange={(e) => props.handleFilterByType(e)}>
+                    <option value="all">All</option>
+                    <option value="services">Services Only</option>
+                    <option value="goods">Goods Only</option>
                 </select>
             </label>
-
-            <div>
-                <input type="text" placeholder="search by class" onChange={(e) => props.filterByClass(e)} />
-            </div>
 
         </div>
     )
