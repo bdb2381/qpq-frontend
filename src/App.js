@@ -7,13 +7,12 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
+import RequestsContainer from "./containers/RequestsContainer";
 
 class App extends React.Component {
-
-
   state = {
     auth: { currentUser: {} },
-    search: ""
+    search: "",
   };
 
   componentDidMount() {
@@ -32,39 +31,55 @@ class App extends React.Component {
   };
 
   handleLogout = () => {
-
     localStorage.removeItem("token");
     this.setState({ auth: { currentUser: {} } });
   };
 
   handleSearch = (event) => {
-    let searchResults = event.target.value
-    this.setState({ search: searchResults })
-  }
-
-
+    let searchResults = event.target.value;
+    this.setState({ search: searchResults });
+  };
 
   render() {
-
     return (
       <div>
-        <Header handleLogout={this.handleLogout}
+        <Header
+          handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
         />
 
-        <Route exact={true} path="/" render={(routerProps) => {
-          return (<ServicesContainer {...routerProps} search={this.state.search} />);
-        }} />
-        <Route exact path="/login"
+        <Route
+          exact={true}
+          path="/"
           render={(routerProps) => {
-            return (<Welcome {...routerProps} handleLogin={this.handleLogin} />);
+            return (
+              <RequestsContainer {...routerProps} search={this.state.search} />
+            );
           }}
         />
-        <Route exact path="/signup" render={(routerProps) => {
-          return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
-        }} />
-
-
+        <Route
+          exact={true}
+          path="/"
+          render={(routerProps) => {
+            return (
+              <ServicesContainer {...routerProps} search={this.state.search} />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/login"
+          render={(routerProps) => {
+            return <Welcome {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={(routerProps) => {
+            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
       </div>
     );
   }
