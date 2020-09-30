@@ -9,8 +9,8 @@ const Navbar = (props) => {
                     Log In/</Link> */}
                 <Link to="/" className="navbar-list">
                     Home </Link>
-                <Link to="/requests" className="navbar-list">
-                    Requests </Link>
+                <Link to="/newservice" className="navbar-list">
+                    Create New Offering </Link>
                 <div className="search-container">
                     <input type="text" onChange={props.handleSearch} placeholder="Search" />
                 </div>
