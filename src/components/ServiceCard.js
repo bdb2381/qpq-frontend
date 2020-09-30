@@ -1,12 +1,14 @@
 import React from "react";
 
 const ServiceCard = (props) => {
+
   const {
     name,
     offeringDescription,
     exchangeDescription,
     img_url,
     value,
+    categories,
     isService
   } = props.service;
 
@@ -30,7 +32,10 @@ const ServiceCard = (props) => {
       </div>
       <div className="service-value">{value} credits</div>
       <div className="extra-content">
-        {exchangeDescription}
+        {props.service.categories.length > 0 ?
+          <div >{props.service.categories.map(category =>
+            <li className="extra-content-li">{category.name}</li>)}</div> : "No Category"}
+
       </div>
     </div>
   );
