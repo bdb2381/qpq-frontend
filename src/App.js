@@ -48,7 +48,9 @@ class App extends React.Component {
             return (<Welcome {...routerProps} handleLogin={this.handleLogin} />);
           }}
         />
-        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/signup" render={(routerProps) => {
+          return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
+        }} />
       </div>
     );
   }

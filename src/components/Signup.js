@@ -16,14 +16,16 @@ class Signup extends React.Component {
             img_url: "",
             email: "",
             password: "",
-            password_conformation: ""
+            password_confirmation: ""
         }
     }
 
     handleOnChange = (e) => {
-        this.setState({
-            newUser: { [e.target.name]: e.target.value }
-        })
+        let name = e.target.name
+        let value = e.target.value
+        this.setState(prevState => ({
+            newUser: { ...prevState.newUser, [name]: value }
+        }))
     }
 
     handleSubmit = (e) => {
@@ -33,15 +35,14 @@ class Signup extends React.Component {
         let newUser = this.state.newUser
         api.auth.signup(newUser)
             .then((response) => {
-                // if (response.error) {
-                //     this.setState({ error: true },
-                //         console.log("hello helo"));
-                // }
-                // else {
-                //     // this.props.handleLogin(response);
-                //     this.props.history.push('/');
-                // }
-                console.log(response)
+                if (response.error) {
+                    this.setState({ error: true },
+                        console.log("hello helo"));
+                }
+                else {
+                    this.props.handleLogin(response);
+                    this.props.history.push('/');
+                }
             });
     }
 
@@ -78,8 +79,8 @@ class Signup extends React.Component {
                             <input type="text" name="email" placeholder="Email" value={this.state.email} />
                             <label for="password"> Password</label>
                             <input type="password" name="password" placeholder="Password" value={this.state.password} />
-                            <label for="password_conformation"> Password Conformation</label>
-                            <input type="password" name="password_conformation" placeholder="password Conformation" value={this.state.password_confirmation} />
+                            <label for="password_confirmation"> Password Confirmation</label>
+                            <input type="password" name="password_confirmation" placeholder="password Confirmation" value={this.state.password_confirmation} />
 
 
                         </div>

@@ -37,7 +37,7 @@ const signup = (newUser) => {
   return fetch(`${API_ROOT}/users`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify(newUser),
+    body: JSON.stringify({ user: newUser }),
   })
     .then((res) => res.json())
 }
