@@ -2,6 +2,8 @@ import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
+import UserContainer from './containers/UserContainer'
+
 import api from "./services/api";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +15,7 @@ class App extends React.Component {
 
   state = {
     auth: { currentUser: {} },
-    search: ""
+    search: "",
   };
 
   componentDidMount() {
@@ -63,7 +65,9 @@ class App extends React.Component {
         <Route exact path="/signup" render={(routerProps) => {
           return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
         }} />
-
+        <Route exact path="/profile" render={(routerProps) => {
+          return (<UserContainer {...routerProps} />)
+        }} />
 
       </div>
     );

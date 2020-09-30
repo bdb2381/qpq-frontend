@@ -5,6 +5,7 @@ import MyServices from '../containers/MyServices'
 class ProfilePage extends React.Component {
 
   render() {
+  const {id, first_name, last_name, img_url, street, city, state, zipcode } = this.props.user
     return (
       <div >
         <div className="two-column-grid">
@@ -12,13 +13,13 @@ class ProfilePage extends React.Component {
             <div>
               <img
                 className="profile-page-image"
-                src="https://i.ytimg.com/vi/RCSTnK1gfzs/maxresdefault.jpg"
+                src={img_url} alt={first_name}
               />
             </div>
           </div>
           <div className="row">
-            <h2>Name: name</h2>
-            <p> <strong> Address: : </strong></p>
+            <h2>Name: {first_name} {last_name}</h2>
+            <p> <strong> Address: {street}, {city}, {state}, {zipcode} </strong></p>
             <strong> Other info? : </strong>
             <br />
             <div>
@@ -27,7 +28,7 @@ class ProfilePage extends React.Component {
             <br />
             <button
               className="edit-profile-button"
-              onClick={null}
+              onClick={(e) => this.handleEdit(e)}
             > Edit My Profile </button>
           </div>
         </div>
