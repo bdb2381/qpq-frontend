@@ -8,6 +8,7 @@ class ServicesContainer extends Component {
   state = {
     services: [],
     service: {},
+    categories: [],
     cardClicked: false,
     sortByName: true,
     type: 'all'
@@ -34,6 +35,10 @@ class ServicesContainer extends Component {
     fetch("http://localhost:3000/api/v1/services")
       .then((res) => res.json())
       .then((services) => this.setState({ services: services }));
+
+    fetch("http://localhost:3000/api/v1/categories")
+      .then((res) => res.json())
+      .then((categories) => this.setState({ categories: categories }));
     // } else {
     //   this.props.history.push('/login');
     // }
@@ -45,16 +50,22 @@ class ServicesContainer extends Component {
   }
   handleFilterByType = (e) => {
     this.setState({ type: e.target.value })
-    console.log(this.state.type)
   }
 
   filterServicesByType = () => {
-    if (this.state.type === 'services') {
-      return this.state.services.filter(service => service.isService === true)
-    } else if (this.state.type === 'goods') {
-      return this.state.services.filter(service => service.isService !== true)
+    let services = this.state.services
+    switch (this.state.type) {
+      case 'services':
+        return services.filter(service => service.isService === true)
+        break;
+      case 'goods':
+        return services.filter(service => service.isService !== true)
+        break
+      case 'all':
+        return services
+        break
     }
-    return this.state.services
+    return services
   }
 
   sortServicesBy = () => {
@@ -76,13 +87,15 @@ class ServicesContainer extends Component {
       let filteredServices = this.sortServicesBy().filter((service) =>
         service.name.toLowerCase().includes(search) ||
         service.exchangeDescription.toLowerCase().includes(search) ||
-        service.offeringDescription.toLowerCase().includes(search))
+        service.offeringDescription.toLowerCase().includes(search)
 
+      )
       return filteredServices
     }
 
     return this.sortServicesBy()
   }
+
 
   render() {
     return (
@@ -90,7 +103,9 @@ class ServicesContainer extends Component {
         <SortBar
           handelSortBy={this.handelSortBy}
           sort={this.state.sortByName}
-          handleFilterByType={this.handleFilterByType} />
+          handleFilterByType={this.handleFilterByType}
+          categories={this.state.categories}
+        />
 
 
         {this.state.cardClicked ? (
