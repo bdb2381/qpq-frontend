@@ -10,20 +10,21 @@ const ServiceSpecs = (props) => {
   } = props.service;
 
   return (
-    <div className="card" onClick={props.specClick}>
+    <div className="service-specs" onClick={props.specClick}>
+      <div className="name">{name}</div>
+      <span>Value: {value} credits</span>
       <div className="image">
-        <img className="service_img" src={img_url} />
+        <img className="spec-service_img" src={img_url} />
       </div>
-      :
+
       <div className="service-content">
-        <div className="name">{name}</div>
         <div className="description">
           {" "}
-          i<div> Description: </div>
-          {offeringDescription}
+          Description:
+          <div> {offeringDescription} </div>
+
         </div>
       </div>
-      <span>Value: {value}</span>
       <div className="extra content">
         <span className="right floated">{exchangeDescription}</span>
       </div>

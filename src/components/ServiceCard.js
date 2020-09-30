@@ -16,20 +16,20 @@ const ServiceCard = (props) => {
       className="card"
       onClick={(event) => props.cardClick(event, serviceDetails)}
     >
+      <div className="name">{name}</div>
+
       <div className="image">
         <img className="service_img" src={img_url} />
       </div>
       <div className="service-content">
-        <div className="name">{name}</div>
         <div className="description">
-          {" "}
-          i<div> Description: </div>
+
           {offeringDescription}
         </div>
       </div>
-      <span>Value: {value}</span>
-      <div className="extra content">
-        <span className="right floated">{exchangeDescription}</span>
+      <div className="service-value">{value} credits</div>
+      <div className="extra-content">
+        {exchangeDescription}
       </div>
     </div>
   );
