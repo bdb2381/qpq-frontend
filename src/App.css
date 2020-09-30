@@ -101,7 +101,7 @@
   margin: 3rem;
 }
 .service-specs {
-  cursor: pointer;
+  /* cursor: pointer; */
   background: #EEEEEE;
   border-radius: 10px;
 }
@@ -180,6 +180,10 @@ border-radius: 15px;
   background: #DAA520	;
   border-radius: 10px;
   padding: 10px;
+  text-decoration: none;
+}
+.extra-content-li {
+   list-style-type: none;
 }
 
 .two-column-grid {
