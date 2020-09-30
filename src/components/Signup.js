@@ -30,7 +30,6 @@ class Signup extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
 
         let newUser = this.state.newUser
         api.auth.signup(newUser)
