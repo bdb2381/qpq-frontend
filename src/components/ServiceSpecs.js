@@ -45,7 +45,7 @@ const handleRequestClick = (serviceDetails) => {
       </div>
       <div>
         {/* <Link to='/request'> */}
-        <button onClick={handleRequestClick(props.service)} type="button" >Request a QPQ from {user.first_name}</button> 
+        <button onClick={() => (handleRequestClick(props.service))} type="button" >Request a QPQ from {user.first_name}</button> 
         {/* </Link> */}
       </div>
       <div>
