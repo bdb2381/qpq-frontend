@@ -9,15 +9,16 @@ import api from "./services/api";
 import "./App.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
+
+import RequestsContainer from "./containers/RequestsContainer";
+import AddRequest from "./components/AddRequest";
+
 import ProfilePage from "./components/ProfilePage";
+
 import ServiceNew from "./components/ServiceNew"
 
 
-
-
-class App extends React.Component {
-
-
+tends React.Component {
   state = {
     auth: { currentUser: {} },
     search: "",
@@ -28,10 +29,11 @@ class App extends React.Component {
       exchangeDescription: "",
       img_url: "",  
       isService: false,
-      cagatories: { 
-        // need to add cagatories later
+      categories: { 
+        // need to add categories later
       }
     }
+
   };
 
   componentDidMount() {
@@ -57,6 +59,11 @@ class App extends React.Component {
   };
 
   handleSearch = (event) => {
+
+    let searchResults = event.target.value;
+    this.setState({ search: searchResults });
+  };
+
     let searchResults = event.target.value
     this.setState({ search: searchResults })
   } 
@@ -87,25 +94,52 @@ class App extends React.Component {
   }
 
 
+
   render() {
 console.log(this.state.auth.currentUser)
 
 
 // debugger
+
     return (
       <div>
-        <Header handleLogout={this.handleLogout}
+        <Header
+          handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
         />
-
-        <Route exact={true} path="/" render={(routerProps) => {
-          return (<ServicesContainer {...routerProps} search={this.state.search} />);
-        }} />
-        <Route exact path="/login"
+        <Route
+          exact={true}
+          path="/requests"
           render={(routerProps) => {
-            return (<Welcome {...routerProps} handleLogin={this.handleLogin} />);
+            return (
+              <RequestsContainer {...routerProps} search={this.state.search} />
+            );
           }}
         />
+        <Route
+          exact={true}
+          path="/"
+          render={(routerProps) => {
+            return (
+              <ServicesContainer {...routerProps} search={this.state.search} />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/login"
+          render={(routerProps) => {
+            return <Welcome {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={(routerProps) => {
+            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
+
         <Route exact path="/signup" render={(routerProps) => {
           return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
         }} />
@@ -122,7 +156,6 @@ console.log(this.state.auth.currentUser)
             newService={this.state.newService}  handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
             handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}/>)} 
         }/>
-
       </div>
     );
   }
