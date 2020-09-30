@@ -4,7 +4,7 @@ const SortBar = (props) => {
 
     return (
         <div>
-
+            <br></br>
             <label>
                 <input name="name" type="radio" checked={props.sort} onClick={(e) => props.handelSortBy(e)} /> Sort By Name
                 <input name="value" type="radio" checked={!props.sort} onClick={(e) => props.handelSortBy(e)} /> Sort By Value
