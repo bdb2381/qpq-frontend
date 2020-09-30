@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
+import AddRequest from "./components/AddRequest";
 
 class App extends React.Component {
   state = {
@@ -47,10 +48,9 @@ class App extends React.Component {
           handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
         />
-
         <Route
           exact={true}
-          path="/"
+          path="/requests"
           render={(routerProps) => {
             return (
               <RequestsContainer {...routerProps} search={this.state.search} />
