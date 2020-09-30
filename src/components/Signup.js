@@ -30,14 +30,13 @@ class Signup extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
 
         let newUser = this.state.newUser
         api.auth.signup(newUser)
             .then((response) => {
                 if (response.error) {
-                    this.setState({ error: true },
-                        console.log("hello helo"));
+                    alert(response.error)
+                    this.setState({ error: true })
                 }
                 else {
                     this.props.handleLogin(response);
