@@ -100,12 +100,13 @@ class ServicesContainer extends Component {
   render() {
     return (
       <div>
-        <SortBar
-          handelSortBy={this.handelSortBy}
-          sort={this.state.sortByName}
-          handleFilterByType={this.handleFilterByType}
-          categories={this.state.categories}
-        />
+        {this.state.cardClicked ? null :
+          <SortBar
+            handelSortBy={this.handelSortBy}
+            sort={this.state.sortByName}
+            handleFilterByType={this.handleFilterByType}
+            categories={this.state.categories}
+          />}
 
 
         {this.state.cardClicked ? (
