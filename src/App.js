@@ -12,7 +12,8 @@ class App extends React.Component {
 
 
   state = {
-    auth: { currentUser: {} }
+    auth: { currentUser: {} },
+    search: ""
   };
 
   componentDidMount() {
@@ -36,16 +37,23 @@ class App extends React.Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
+  handleSearch = (event) => {
+    let searchResults = event.target.value
+    this.setState({ search: searchResults })
+  }
+
 
 
   render() {
 
     return (
       <div>
-        <Header handleLogout={this.handleLogout} />
+        <Header handleLogout={this.handleLogout}
+          handleSearch={this.handleSearch}
+        />
 
         <Route exact={true} path="/" render={(routerProps) => {
-          return (<ServicesContainer {...routerProps} />);
+          return (<ServicesContainer {...routerProps} search={this.state.search} />);
         }} />
         <Route exact path="/login"
           render={(routerProps) => {

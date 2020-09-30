@@ -12,7 +12,7 @@ const Navbar = (props) => {
                 <Link to="/requests" className="navbar-list">
                     Requests </Link>
                 <div className="search-container">
-                    <input type="text" onChange={null} placeholder="Search" />
+                    <input type="text" onChange={props.handleSearch} placeholder="Search" />
                 </div>
                 {!localStorage.token ? null : <Link to="/" className="navbar-list" onClick={props.handleLogout}> Logout </Link>}
             </div>

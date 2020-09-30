@@ -7,6 +7,7 @@ const ServiceCard = (props) => {
     exchangeDescription,
     img_url,
     value,
+    isService
   } = props.service;
 
   const serviceDetails = props.service;
