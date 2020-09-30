@@ -93,44 +93,93 @@
 #service-collection {
   margin: 2rem;
 }
+.service-container {
+  margin: 2rem 1rem;
+}
+
+.specs-container {
+  margin: 3rem;
+}
+.service-specs {
+  cursor: pointer;
+  background: #EEEEEE;
+  border-radius: 10px;
+}
+.spec-service_img {
+  margin-top: 1rem;
+  justify-self: center;
+  border-radius:10px;
+}
+
+.service-specs .name {
+  font-size: 35px;
+   text-align: center;
+  padding: 15px;
+  margin-top: 2rem;
+  font-weight: bolder;
+}
+
+.service-content .description {
+  position: relative;
+  font-size: 20px;
+  padding: 6px;
+  display: block;
+}
+.service-content .description div{
+  position: relative;
+  font-size: 24px;
+  padding: 6px;
+  display: block;
+}
+
 
 .card {
   cursor: pointer;
   /* changes pointer for clickable objects */
   text-align: center;
   border-radius: 10px;
-  border: #2b857d solid 4px;
-  padding: 1rem;
-  width: 20rem;
+border-radius: 15px;
+  background: #EEEEEE;
+  padding: 2rem;
+  width: 15rem;
   height: max-content;
   display: inline-grid;
   margin: 1rem 2rem;
+  color:  #1A436B;
 }
 
-.service_img {
+.card .service_img {
   justify-self: center;
   height: 12rem;
   width: auto;
+  border-radius:10px;
 }
-.service-content {
+.card .service-content {
   /* background:#EDB668; */
   word-wrap: break-word;
 }
-.service-content .name {
+.card .name {
   font-size: 20px;
-  background: #2b857d;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
   height: auto;
   text-align: center;
+  padding: 10px;
+  font-weight: bolder;
 }
-.service-content .description {
+.card .service-content .description {
   position: relative;
-  font-size: 20px;
-  background: #dded6d;
+  font-size: 15px;
+  padding: 6px;
   display: block;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+
+}
+.service-value {
+  font-size: 20px;
+  padding: 5px 10px
+}
+.extra-content {
+  background: #DAA520	;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .two-column-grid {

@@ -42,18 +42,21 @@ class ServicesContainer extends Component {
     return (
       <div>
         {this.state.cardClicked ? (
-          <ServiceSpecs
-            specClick={this.specClick}
-            service={this.state.service}
-          />
+          <div className="specs-container">
+            <ServiceSpecs
+              specClick={this.specClick}
+              service={this.state.service}
+            /> </div>
         ) : (
-            this.state.services.map((service) => (
-              <ServiceCard
-                service={service}
-                key={service.id}
-                cardClick={this.cardClick}
-              />
-            ))
+            <div className="service-container">
+              {this.state.services.map((service) => (
+                <ServiceCard
+                  service={service}
+                  key={service.id}
+                  cardClick={this.cardClick}
+                />
+              ))}
+            </div>
           )}
       </div>
     );
