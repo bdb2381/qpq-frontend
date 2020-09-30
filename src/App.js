@@ -56,18 +56,27 @@ class App extends React.Component {
     this.setState({ search: searchResults })
   }
 
-  handleNewService = (event) => {
+  handleSubmitNewServiceForm = (event) => {
     event.preventDefault()
-    console.log(event, " an event for new Service")
+    
+    let newService = this.state.newService
+    let currentUserId = this.state.auth.currentUser.id
+    console.log(newService, currentUserId )
   }
 
-  handleOnChangeNewService = (event) => {
-    console.log(event.target.name, event.target.value)
-    let name = event.target.name
-    let value = event.target.value
-    this.setState(prevState => ({
-      newService: {...prevState.newService, [name]: value}
+  handleOnChangeNewServiceForm = (event) => {
+  console.log(event.target.name, event.target.value)
+    
+    if (event.target.name === 'isService'){
+      this.setState(prevState => ({
+        newService: {...prevState.newService, isService: !prevState.newService.isService}}))
+    } else {
+      let name = event.target.name
+      let value = event.target.value
+      this.setState(prevState => ({
+        newService: {...prevState.newService, [name]: value}
     }))
+  }
   }
 
 
@@ -91,8 +100,10 @@ class App extends React.Component {
           return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
         }} />
         <Route exact path="/newservice" render={(routerProps) => {
-          return( <ServiceNew {...routerProps} newService={this.state.newService}  handleNewService={this.handleNewService}
-            handleOnChangeNewService={this.handleOnChangeNewService}/>)} 
+          return( 
+            <ServiceNew {...routerProps} 
+            newService={this.state.newService}  handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
+            handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}/>)} 
         }/>
 
       </div>
