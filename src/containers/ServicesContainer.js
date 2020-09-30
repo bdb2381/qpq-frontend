@@ -38,6 +38,20 @@ class ServicesContainer extends Component {
     // }
   };
 
+  filterServicesBySearch = () => {
+    let search = this.props.search.toLowerCase()
+    if (search.length > 0) {
+      let filteredServices = this.state.services.filter((service) =>
+        service.name.toLowerCase().includes(search) ||
+        service.exchangeDescription.toLowerCase().includes(search) ||
+        service.offeringDescription.toLowerCase().includes(search))
+
+      return filteredServices
+    }
+
+    return this.state.services
+  }
+
   render() {
     return (
       <div>
@@ -49,7 +63,7 @@ class ServicesContainer extends Component {
             /> </div>
         ) : (
             <div className="service-container">
-              {this.state.services.map((service) => (
+              {this.filterServicesBySearch().map((service) => (
                 <ServiceCard
                   service={service}
                   key={service.id}
