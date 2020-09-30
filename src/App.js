@@ -4,7 +4,6 @@ import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import api from "./services/api";
 import "./App.css";
-import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 
