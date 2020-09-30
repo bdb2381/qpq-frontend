@@ -30,19 +30,23 @@ class App extends React.Component {
     this.setState({ auth: currentUser });
   };
 
+  handleLogout = () => {
+
+    localStorage.removeItem("token");
+    this.setState({ auth: { currentUser: {} } });
+  };
+
 
 
   render() {
-    console.log(this.state.auth.currentUser.empty ? true : false)
+
     return (
       <div>
-        <Header />
-
+        <Header handleLogout={this.handleLogout} />
 
         <Route exact={true} path="/" render={(routerProps) => {
           return (<ServicesContainer {...routerProps} />);
         }} />
-
         <Route exact path="/login"
           render={(routerProps) => {
             return (<Welcome {...routerProps} handleLogin={this.handleLogin} />);
@@ -51,6 +55,8 @@ class App extends React.Component {
         <Route exact path="/signup" render={(routerProps) => {
           return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
         }} />
+
+
       </div>
     );
   }

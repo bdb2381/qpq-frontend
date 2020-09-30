@@ -1,6 +1,6 @@
 import React from "react"; import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <div className="navbar">
             <div className="navbar-list">
@@ -9,12 +9,12 @@ const Navbar = () => {
                     Log In/</Link> */}
                 <Link to="/" className="navbar-list">
                     Home </Link>
-                {/* <Link to="/signup" className="navbar-list"> Signup </Link> */}
-                <Link to="/services" className="navbar-list">
-                    Services </Link>
+                <Link to="/requests" className="navbar-list">
+                    Requests </Link>
                 <div className="search-container">
                     <input type="text" onChange={null} placeholder="Search" />
                 </div>
+                {!localStorage.token ? null : <Link to="/" className="navbar-list" onClick={props.handleLogout}> Logout </Link>}
             </div>
         </div>
     );

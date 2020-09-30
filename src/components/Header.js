@@ -8,7 +8,7 @@ class Header extends Component {
   render() {
     return (
       <header className="header" >
-        <Navbar
+        <Navbar handleLogout={this.props.handleLogout}
 
         />
         <div className="header-image-cropper">
