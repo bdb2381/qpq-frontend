@@ -4,16 +4,32 @@ import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import api from "./services/api";
 import "./App.css";
-import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
+import ServiceNew from "./components/ServiceNew"
+
+
+
 
 class App extends React.Component {
   state = {
     auth: { currentUser: {} },
     search: "",
+    newService: { 
+      name: "",
+      value:"",
+      offeringDescription: "",
+      exchangeDescription: "",
+      img_url: "",  
+      isService: false,
+      categories: { 
+        // need to add categories later
+      }
+    
+    }
+
   };
 
   componentDidMount() {
@@ -37,9 +53,39 @@ class App extends React.Component {
   };
 
   handleSearch = (event) => {
+
     let searchResults = event.target.value;
     this.setState({ search: searchResults });
   };
+
+    let searchResults = event.target.value
+    this.setState({ search: searchResults })
+  }
+
+  handleSubmitNewServiceForm = (event) => {
+    event.preventDefault()
+    
+    let newService = this.state.newService
+    let currentUserId = this.state.auth.currentUser.id
+    console.log(newService, currentUserId )
+  }
+
+  handleOnChangeNewServiceForm = (event) => {
+  console.log(event.target.name, event.target.value)
+    
+    if (event.target.name === 'isService'){
+      this.setState(prevState => ({
+        newService: {...prevState.newService, isService: !prevState.newService.isService}}))
+    } else {
+      let name = event.target.name
+      let value = event.target.value
+      this.setState(prevState => ({
+        newService: {...prevState.newService, [name]: value}
+    }))
+  }
+  }
+
+
 
   render() {
     return (
@@ -80,6 +126,16 @@ class App extends React.Component {
             return <Signup {...routerProps} handleLogin={this.handleLogin} />;
           }}
         />
+
+        <Route exact path="/signup" render={(routerProps) => {
+          return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
+        }} />
+        <Route exact path="/newservice" render={(routerProps) => {
+          return( 
+            <ServiceNew {...routerProps} 
+            newService={this.state.newService}  handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
+            handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}/>)} 
+        }/>
       </div>
     );
   }
