@@ -34,7 +34,7 @@ const ServiceCard = (props) => {
       <div className="extra-content">
         {props.service.categories.length > 0 ?
           <div >{props.service.categories.map(category =>
-            <li className="extra-content-li">{category.name}</li>)}</div> : "No Category"}
+            <li key={category.id} className="extra-content-li">{category.name}</li>)}</div> : "No Category"}
 
       </div>
     </div>

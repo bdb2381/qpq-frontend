@@ -9,29 +9,28 @@ import api from "./services/api";
 import "./App.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
+import RequestsContainer from "./containers/RequestsContainer";
+import AddRequest from "./components/AddRequest";
 import ProfilePage from "./components/ProfilePage";
 import ServiceNew from "./components/ServiceNew"
 
 
-
-
 class App extends React.Component {
-
-
   state = {
     auth: { currentUser: {} },
     search: "",
-    newService: { 
+    newService: {
       name: "",
-      value:"",
+      value: "",
       offeringDescription: "",
       exchangeDescription: "",
-      img_url: "",  
+      img_url: "",
       isService: false,
-      cagatories: { 
-        // need to add cagatories later
+      categories: {
+        // need to add categories later
       }
     }
+
   };
 
   componentDidMount() {
@@ -56,53 +55,78 @@ class App extends React.Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
-  handleSearch = (event) => {
-    let searchResults = event.target.value
-    this.setState({ search: searchResults })
-  } 
+  handleSearch = (e) => {
+    let searchResults = e.target.value;
+    this.setState({ search: searchResults });
+  };
 
-  handleSubmitNewServiceForm = (event) => {
-    event.preventDefault()
+
+
+  handleSubmitNewServiceForm = (e) => {
+    e.preventDefault()
     let newService = this.state.newService
     let currentUserId = this.state.auth.currentUser.id
-    console.log(newService, currentUserId )
+    console.log(newService, currentUserId) // Brad and Noa in Work
   }
 
-  handleOnChangeNewServiceForm = (event) => {
-  console.log(event.target.name, event.target.value)
-    
-    if (event.target.name === 'isService'){
+  handleOnChangeNewServiceForm = (e) => {
+
+    if (e.target.name === 'isService') {
       this.setState(prevState => ({
-        newService: {...prevState.newService, isService: !prevState.newService.isService}}))
+        newService: { ...prevState.newService, isService: !prevState.newService.isService }
+      }))
     } else {
-      let name = event.target.name
-      let value = event.target.value
+      let name = e.target.name
+      let value = e.target.value
       this.setState(prevState => ({
-        newService: {...prevState.newService, [name]: value}
-    }))
-  }
+        newService: { ...prevState.newService, [name]: value }
+      }))
+    }
   }
 
 
   render() {
-    // debugger
 console.log(this.state.auth.currentUser)
 
-// debugger
     return (
       <div>
-        <Header handleLogout={this.handleLogout}
+        <Header
+          handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
         />
-
-        <Route exact={true} path="/" render={(routerProps) => {
-          return (<ServicesContainer {...routerProps} search={this.state.search} />);
-        }} />
-        <Route exact path="/login"
+        <Route
+          exact={true}
+          path="/requests"
           render={(routerProps) => {
-            return (<Welcome {...routerProps} handleLogin={this.handleLogin} />);
+            return (
+              <RequestsContainer {...routerProps} search={this.state.search} />
+            );
           }}
         />
+        <Route
+          exact={true}
+          path="/"
+          render={(routerProps) => {
+            return (
+              <ServicesContainer {...routerProps} search={this.state.search} />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/login"
+          render={(routerProps) => {
+            return <Welcome {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={(routerProps) => {
+            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
+
         <Route exact path="/signup" render={(routerProps) => {
           return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
         }} />
@@ -113,12 +137,12 @@ console.log(this.state.auth.currentUser)
 
 
         <Route exact path="/newservice" render={(routerProps) => {
-          return( 
-            <ServiceNew {...routerProps} 
-            newService={this.state.newService}  handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
-            handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}/>)} 
-        }/>
-
+          return (
+            <ServiceNew {...routerProps}
+              newService={this.state.newService} handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
+              handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm} />)
+        }
+        } />
       </div>
     );
   }
