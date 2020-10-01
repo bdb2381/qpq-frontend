@@ -4,6 +4,7 @@ import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import UserContainer from "./containers/UserContainer";
 import EditUserForm from "./components/EditUserForm";
+import ProfilePage from "./components/ProfilePage";
 
 import api from "./services/api";
 import "./App.css";
@@ -11,7 +12,6 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
-// import ProfilePage from "./components/ProfilePage";
 import ServiceNew from "./components/ServiceNew";
 
 class App extends React.Component {
@@ -67,6 +67,13 @@ class App extends React.Component {
     // Brad and Noa in Work
   };
 
+  handleSubmitNewServiceForm = (e) => {
+    e.preventDefault();
+    let newService = this.state.newService;
+    let currentUserId = this.state.auth.currentUser.id;
+    console.log(newService, currentUserId); // Brad and Noa in Work
+  };
+
   handleOnChangeNewServiceForm = (e) => {
     if (e.target.name === "isService") {
       this.setState((prevState) => ({
@@ -85,6 +92,8 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(this.state.auth.currentUser);
+
     return (
       <div>
         <Header
@@ -141,6 +150,19 @@ class App extends React.Component {
         }} /> */}
         {/*<Route exact path='/' render={(routerProps) =>{
       return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
+
+        <Route
+          exact
+          path="/profile"
+          render={(routerProps) => {
+            return (
+              <ProfilePage
+                {...routerProps}
+                currentUser={this.state.auth.currentUser}
+              />
+            );
+          }}
+        />
 
         <Route
           exact

@@ -41,7 +41,7 @@ export default class Welcome extends React.Component {
           <h1> Welcome to QPQ </h1>
           <h2>Please log in below:</h2>
           <div className="profile-form-row-center">
-            <label for="email"> Email</label>
+            <label for="email">Email</label>
             <input
               onChange={(e) => this.handleLoginChange(e)}
               type="text"
