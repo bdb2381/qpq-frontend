@@ -64,11 +64,11 @@ class App extends React.Component {
   // service component stuff here
 
   handleSubmitNewServiceForm = (e) => {
-    e.preventDefault();
-    let newService = this.state.newService;
 
-    api.posts.postNewServiceOffering(newService).then((data) => {
-      console.log(data, "back in handle Sumbit");
+    e.preventDefault()
+    let newService = this.state.newService
+    api.posts.postNewServiceOffering(newService).then(data => this.history.push("./") )
+
     });
   };
 
