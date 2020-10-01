@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {Link} from "react-router-dom"
 
 const ServiceNew = (props) => {
 
@@ -23,7 +23,9 @@ const ServiceNew = (props) => {
               </selectTag> */}
                     </div>
                     <div className="submit-button">
+                       <Link to="./">
                         <input type="submit" value="Submit" className="btn" />
+                      </Link>
                     </div>
                 </div>
             </form>

@@ -69,8 +69,7 @@ class App extends React.Component {
     e.preventDefault()
     let newService = this.state.newService
 
-    api.posts.postNewServiceOffering(newService).then(data => { console.log(data, "back in handle Sumbit") })
-
+    api.posts.postNewServiceOffering(newService).then(data => this.history.push("./") )
 
   }
 
