@@ -1,8 +1,8 @@
-handleimport React from "react";
+import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
-import UserContainer from './containers/UserContainer'
+// import UserContainer from './containers/UserContainer'
 import EditUserForm from "./components/EditUserForm";
 
 import api from "./services/api";
@@ -44,8 +44,8 @@ class App extends React.Component {
     }
   }
   handleLogin = (response) => {
-    console.log(response)
-    console.log(response.user)
+    // console.log(response)
+    // console.log(response.user)
     const currentUser = { currentUser: response.user };
     localStorage.setItem("token", response.jwt);
     this.setState({ auth: currentUser });
@@ -61,11 +61,8 @@ class App extends React.Component {
     this.setState({ search: searchResults })
   } 
 
- 
-
   handleSubmitNewServiceForm = (event) => {
     event.preventDefault()
-    
     let newService = this.state.newService
     let currentUserId = this.state.auth.currentUser.id
     console.log(newService, currentUserId )
@@ -88,8 +85,8 @@ class App extends React.Component {
 
 
   render() {
+    // debugger
 console.log(this.state.auth.currentUser)
-
 
 // debugger
     return (
@@ -111,10 +108,9 @@ console.log(this.state.auth.currentUser)
         }} />
 
         <Route exact path="/profile" render={(routerProps) => {
-          return (<UserContainer {...routerProps} currentUser={this.state.auth.current_user}  />)
+          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser}  />)
         }} />
-      { /*<Route exact path='/' render={(routerProps) =>{
-      return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
+
 
         <Route exact path="/newservice" render={(routerProps) => {
           return( 

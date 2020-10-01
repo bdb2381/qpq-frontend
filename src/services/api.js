@@ -5,7 +5,7 @@ const token = localStorage.getItem("token");
 const headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
-  Authorization: token,
+  Authorization:`Bearers ${token}`,
 };
 
 const getServices = () => {
