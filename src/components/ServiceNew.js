@@ -13,8 +13,8 @@ import React, { Component } from "react";
               <textarea name="offeringDescription" placeholder="Describe What You Are Offering..." value={props.offeringDescription}/>
               <textarea name="exchangeDescription" placeholder="What Would you Take In Return For Your Service?" value={props.exchangeDescription}/>
               <input type="text" name="img_url" placeholder="What is the URL of an image showcasing your offering?" value={props.img_url}/>
-              <label for="isService">
-               <input type="checkbox" value={"true"} name="isService" checked={props.isService}/> Is This a Service?  </label> 
+              {/* <label for="isService">
+               <input type="checkbox" value={"true"} name="isService" checked={props.isService}/> Is This a Service?  </label>  */}
               {/* <selectTag>  
                 { props.catagories.map(catgory => {
                   <option key={catgory.id} value={catgory.name}>

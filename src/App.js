@@ -26,9 +26,10 @@ class App extends React.Component {
       exchangeDescription: "",
       img_url: "",
       isService: false,
-      categories: {
-        // need to add categories later
-      }
+      user_id: "",
+      // categories: {
+      //   // need to add categories later
+      // }
     }
 
   };
@@ -65,23 +66,24 @@ class App extends React.Component {
     e.preventDefault()
 
     let newService = this.state.newService
-    let currentUserId = this.state.auth.currentUser.id
-    console.log(newService, currentUserId) // Brad and Noa in Work
+
+    api.posts.postNewServiceOffering(newService).then(data => {console.log( "back in handleSumbit")})
+    
+
   }
 
   handleOnChangeNewServiceForm = (e) => {
-
-    if (e.target.name === 'isService') {
-      this.setState(prevState => ({
-        newService: { ...prevState.newService, isService: !prevState.newService.isService }
-      }))
-    } else {
+   
+  
       let name = e.target.name
       let value = e.target.value
+
       this.setState(prevState => ({
-        newService: { ...prevState.newService, [name]: value }
+        newService: { 
+          ...prevState.newService, 
+          [name]: value,
+          user_id: prevState.auth.currentUser.id }
       }))
-    }
   }
 
 
