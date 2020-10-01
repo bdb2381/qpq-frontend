@@ -4,7 +4,7 @@ import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import UserContainer from "./containers/UserContainer";
 
-import EditUserForm from "./components/EditUserForm";
+// import EditUserForm from "./components/EditUserForm";
 import ProfilePage from "./components/ProfilePage";
 
 import api from "./services/api";
@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
-import ProfilePage from "./components/ProfilePage";
+
 import ServiceNew from "./components/ServiceNew";
 
 
@@ -21,6 +21,15 @@ class App extends React.Component {
   state = {
     auth: { currentUser: {} },
     currentUser: {},
+    user: {
+      first_name: "",
+      last_name: "",
+      img_url: "",
+      street: "",
+      city: "",
+      state: "",
+      zipcode: ""
+    },
     search: "",
     newService: {
       name: "",
@@ -33,8 +42,9 @@ class App extends React.Component {
         // need to add categories later
       },
     },
+  }
 
-  };
+
 
   componentDidMount() {
     const token = localStorage.getItem("token");
@@ -88,7 +98,7 @@ class App extends React.Component {
     }
   };
 
-  render() {
+  // render() {
 /////////////////// NEED TO FIX THIS HERE///////
   // service component stuff here 
 
@@ -116,23 +126,31 @@ class App extends React.Component {
   //service stuff ends here
 
   //handle user profile edit here
+  handleEditButton = (user) => {
+    console.log(user);
+    this.setState({
+      user: user,
+    });
+   
+  };
 
-  // handleEditButton = (user) =>{
-  //   this.setState({
-  //     user: user
-  //   })
-  //   console.log(user)
+  handleFormChange = (e) => {
+    // console.log(e.target.value)
+    this.setState({
+      user: {
+        ...this.state.user,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
+
+  // handleUpdate = () =>{
+
+  //   fetch(`http://localhost:3000/api/v1/users/${this.state.user.id}`)
   // }
 
-  // handleFormChange = (e) =>{
-  //   this.setState({
-  //     user: {
-  //       ...this.state.user,
-  //       [e.target.name]: e.target.value
-  //     }
-  //   })
+  // handle editing here
 
-  // }
 
 
   render() {
@@ -194,6 +212,8 @@ class App extends React.Component {
             return (
               <ProfilePage
                 {...routerProps}
+                handleEditButton={this.handleEditButton}
+                handleFormChange={this.handleFormChange}
                 currentUser={this.state.auth.currentUser}
               />
             );

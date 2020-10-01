@@ -4,6 +4,8 @@ import React from "react";
 
 
 const EditUserForm = (props) => {
+
+
   if (props.currentUser) {
     let currentUser = props.currentUser;
     console.log(currentUser.first_name);
@@ -13,13 +15,14 @@ const EditUserForm = (props) => {
     <div className="form-container">
       <form
       // onSubmit={(e) => props.handleFormSubmit(e)}
-      // onChange={(e) => props.handleFormChange(e)}
+      onChange={(e) => props.handleFormChange(e)}
       >
 
         <div className="register-form">
           <div className="profile-form-row">
             <label for="first_name">First Name</label>
             <input
+            onChange={(e) => props.handleFormChange(e)}
               type="text"
               name="first_name"
               placeholder="First Name"
