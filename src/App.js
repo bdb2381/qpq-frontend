@@ -8,7 +8,7 @@ import EditUserForm from "./components/EditUserForm";
 import api from "./services/api";
 import "./App.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import ServicesContainer from "./containers/ServicesContainer";
+// import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
 import ProfilePage from "./components/ProfilePage";
@@ -56,13 +56,12 @@ class App extends React.Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
+  // search bar
   handleSearch = (e) => {
     let searchResults = e.target.value;
     this.setState({ search: searchResults });
   };
-
-
-
+// service component stuff here 
   handleSubmitNewServiceForm = (e) => {
     e.preventDefault()
     let newService = this.state.newService
@@ -73,8 +72,6 @@ class App extends React.Component {
   }
 
   handleOnChangeNewServiceForm = (e) => {
-   
-  
       let name = e.target.name
       let value = e.target.value
 
@@ -84,12 +81,31 @@ class App extends React.Component {
           [name]: value,
           user_id: prevState.auth.currentUser.id }
       }))
-  }
+  } //service stuff ends here
+
+//handle user profile edit here
+
+  // handleEditButton = (user) =>{
+  //   this.setState({
+  //     user: user
+  //   })
+  //   console.log(user)
+  // }
+
+  // handleFormChange = (e) =>{
+  //   this.setState({
+  //     user: {
+  //       ...this.state.user,
+  //       [e.target.name]: e.target.value
+  //     }
+  //   })
+
+  // }
 
 
   render() {
 console.log(this.state.auth.currentUser)
-
+// debugger
     return (
       <div>
         <Header
@@ -105,7 +121,7 @@ console.log(this.state.auth.currentUser)
             );
           }}
         />
-        <Route
+       { /*<Route
           exact={true}
           path="/"
           render={(routerProps) => {
@@ -113,7 +129,7 @@ console.log(this.state.auth.currentUser)
               <ServicesContainer {...routerProps} search={this.state.search} />
             );
           }}
-        />
+        />*/}
         <Route
           exact
           path="/login"
@@ -134,7 +150,10 @@ console.log(this.state.auth.currentUser)
         }} />
 
         <Route exact path="/profile" render={(routerProps) => {
-          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser}  />)
+          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser.user}  
+            // this.handleEditButton
+            // this.handleFormChange 
+             />)
         }} />
 
 
