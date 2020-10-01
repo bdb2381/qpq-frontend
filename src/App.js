@@ -12,8 +12,7 @@ import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
 import ProfilePage from "./components/ProfilePage";
-import ServiceNew from "./components/ServiceNew"
-
+import ServiceNew from "./components/ServiceNew";
 
 class App extends React.Component {
   state = {
@@ -28,9 +27,8 @@ class App extends React.Component {
       isService: false,
       categories: {
         // need to add categories later
-      }
-    }
-
+      },
+    },
   };
 
   componentDidMount() {
@@ -60,34 +58,30 @@ class App extends React.Component {
     this.setState({ search: searchResults });
   };
 
-
-
   handleSubmitNewServiceForm = (e) => {
-    e.preventDefault()
-    let newService = this.state.newService
-    let currentUserId = this.state.auth.currentUser.id
-    console.log(newService, currentUserId) // Brad and Noa in Work
-  }
+    e.preventDefault();
+    let newService = this.state.newService;
+    let currentUserId = this.state.auth.currentUser.id;
+  };
 
   handleOnChangeNewServiceForm = (e) => {
-
-    if (e.target.name === 'isService') {
-      this.setState(prevState => ({
-        newService: { ...prevState.newService, isService: !prevState.newService.isService }
-      }))
+    if (e.target.name === "isService") {
+      this.setState((prevState) => ({
+        newService: {
+          ...prevState.newService,
+          isService: !prevState.newService.isService,
+        },
+      }));
     } else {
-      let name = e.target.name
-      let value = e.target.value
-      this.setState(prevState => ({
-        newService: { ...prevState.newService, [name]: value }
-      }))
+      let name = e.target.name;
+      let value = e.target.value;
+      this.setState((prevState) => ({
+        newService: { ...prevState.newService, [name]: value },
+      }));
     }
-  }
-
+  };
 
   render() {
-console.log(this.state.auth.currentUser)
-
     return (
       <div>
         <Header
@@ -127,22 +121,41 @@ console.log(this.state.auth.currentUser)
           }}
         />
 
-        <Route exact path="/signup" render={(routerProps) => {
-          return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
-        }} />
+        <Route
+          exact
+          path="/signup"
+          render={(routerProps) => {
+            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
 
-        <Route exact path="/profile" render={(routerProps) => {
-          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser}  />)
-        }} />
+        <Route
+          exact
+          path="/profile"
+          render={(routerProps) => {
+            return (
+              <ProfilePage
+                {...routerProps}
+                currentUser={this.state.auth.currentUser}
+              />
+            );
+          }}
+        />
 
-
-        <Route exact path="/newservice" render={(routerProps) => {
-          return (
-            <ServiceNew {...routerProps}
-              newService={this.state.newService} handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
-              handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm} />)
-        }
-        } />
+        <Route
+          exact
+          path="/newservice"
+          render={(routerProps) => {
+            return (
+              <ServiceNew
+                {...routerProps}
+                newService={this.state.newService}
+                handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
+                handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}
+              />
+            );
+          }}
+        />
       </div>
     );
   }
