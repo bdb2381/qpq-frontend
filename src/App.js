@@ -31,7 +31,6 @@ class App extends React.Component {
         // need to add categories later
       },
     },
-
   };
 
   componentDidMount() {
@@ -44,7 +43,6 @@ class App extends React.Component {
     }
   }
   handleLogin = (response) => {
-
     const currentUser = { currentUser: response.user };
     localStorage.setItem("token", response.jwt);
     this.setState({
@@ -63,29 +61,29 @@ class App extends React.Component {
     this.setState({ search: searchResults });
   };
 
-  // service component stuff here 
+  // service component stuff here
 
   handleSubmitNewServiceForm = (e) => {
-    e.preventDefault()
-    let newService = this.state.newService
+    e.preventDefault();
+    let newService = this.state.newService;
 
-    api.posts.postNewServiceOffering(newService).then(data => { console.log(data, "back in handle Sumbit") })
-
-
-  }
+    api.posts.postNewServiceOffering(newService).then((data) => {
+      console.log(data, "back in handle Sumbit");
+    });
+  };
 
   handleOnChangeNewServiceForm = (e) => {
-    let name = e.target.name
-    let value = e.target.value
+    let name = e.target.name;
+    let value = e.target.value;
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       newService: {
         ...prevState.newService,
         [name]: value,
-        user_id: this.state.auth.currentUser.id
-      }
-    }))
-  }
+        user_id: this.state.auth.currentUser.id,
+      },
+    }));
+  };
   //service stuff ends here
 
   //handle user profile edit here
@@ -107,9 +105,8 @@ class App extends React.Component {
 
   // }
 
-
   render() {
-    console.log(this.state.auth.currentUser)
+    console.log(this.state.auth.currentUser);
 
     return (
       <div>
@@ -118,7 +115,8 @@ class App extends React.Component {
           handleSearch={this.handleSearch}
         />
         <Route
-          exact={true} path="/requests"
+          exact={true}
+          path="/requests"
           render={(routerProps) => {
             return (
               <RequestsContainer
@@ -130,7 +128,8 @@ class App extends React.Component {
           }}
         />
         <Route
-          exact={true} path="/"
+          exact={true}
+          path="/"
           render={(routerProps) => {
             return (
               <ServicesContainer {...routerProps} search={this.state.search} />
@@ -152,16 +151,23 @@ class App extends React.Component {
           }}
         />
 
-
         {/*<Route exact path='/' render={(routerProps) =>{
       return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
 
-        <Route exact path="/profile" render={(routerProps) => {
-          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser.user}
-          // this.handleEditButton
-          // this.handleFormChange 
-          />)
-        }} />
+        <Route
+          exact
+          path="/profile"
+          render={(routerProps) => {
+            return (
+              <ProfilePage
+                {...routerProps}
+                currentUser={this.state.auth.currentUser.user}
+                // this.handleEditButton
+                // this.handleFormChange
+              />
+            );
+          }}
+        />
 
         <Route
           exact
