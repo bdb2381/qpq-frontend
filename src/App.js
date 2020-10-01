@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
-import UserContainer from './containers/UserContainer'
+// import UserContainer from './containers/UserContainer'
 import EditUserForm from "./components/EditUserForm";
 
 import api from "./services/api";
@@ -44,8 +44,8 @@ class App extends React.Component {
     }
   }
   handleLogin = (response) => {
-    console.log(response)
-    console.log(response.user)
+    // console.log(response)
+    // console.log(response.user)
     const currentUser = { currentUser: response.user };
     localStorage.setItem("token", response.jwt);
     this.setState({ auth: currentUser });
@@ -62,9 +62,9 @@ class App extends React.Component {
   };
 
 
+
   handleSubmitNewServiceForm = (e) => {
     e.preventDefault()
-
     let newService = this.state.newService
 
     api.posts.postNewServiceOffering(newService).then(data => {console.log( "back in handleSumbit")})
@@ -88,6 +88,7 @@ class App extends React.Component {
 
 
   render() {
+console.log(this.state.auth.currentUser)
 
     return (
       <div>
@@ -133,10 +134,9 @@ class App extends React.Component {
         }} />
 
         <Route exact path="/profile" render={(routerProps) => {
-          return (<ProfilePage {...routerProps} currentUser={this.state.auth.current_user} />)
+          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser}  />)
         }} />
-        { /*<Route exact path='/' render={(routerProps) =>{
-      return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
+
 
         <Route exact path="/newservice" render={(routerProps) => {
           return (
