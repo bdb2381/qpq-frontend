@@ -15,6 +15,7 @@ import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
 import ServiceNew from "./components/ServiceNew";
 
+
 class App extends React.Component {
   state = {
     auth: { currentUser: {} },
@@ -156,14 +157,8 @@ class App extends React.Component {
         {/*<Route exact path='/' render={(routerProps) =>{
       return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
 
-        <Route exact path="/profile" render={(routerProps) => {
-          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser.user}
-          // this.handleEditButton
-          // this.handleFormChange 
-          />)
-        }} />
 
-        <Route
+        {<Route
           exact
           path="/profile"
           render={(routerProps) => {
@@ -174,7 +169,9 @@ class App extends React.Component {
               />
             );
           }}
-        />
+        />}
+
+    
 
         <Route
           exact

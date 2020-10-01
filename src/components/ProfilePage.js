@@ -5,19 +5,10 @@ import EditUserForm from "./EditUserForm";
 
 class ProfilePage extends React.Component {
   
-state = {
-  user: {}
-}
-
-  // componentDidMount(){
-  //   this.setState({
-  //     user: this.props.currentUser
-  //   })
-  // }
 
 
   render() {
-    // const {first_name, last_name, img_url, street, city, state, zipcode} = this.props.currentUser
+    // console.log(this.props.currentUser)
     return (
     <>
       <div>
@@ -40,14 +31,15 @@ state = {
             </div>
             <br />
             <button
-              className="edit-profile-button"
-              onClick={() => this.props.handleEditButton()}
+            onClick={() => this.handleEditButton(this.props.currentUser)}
+            // currentUser={this.props.currentUser}
+            className="edit-profile-button"
             > Edit My Profile </button>
             <br/>
             <br/>
             <button
             className="delete-profile-button"
-            // onClick={() => this.handleEditButton(this.props.user)}
+            // onClick={() => this.handleEditButton(this.props.currentUser)}
           > Delete My Profile </button>
           </div>
         </div>
@@ -57,7 +49,7 @@ state = {
         <EditUserForm
         user={this.props.currentUser}
         handleEditButton={this.props.handleEditButton}
-        handleFormChange={this.props.handleFormChange} />
+        handleFormChange={this.handleFormChange} />
         </Fragment>
         : "User Does not exist" }
       </div>

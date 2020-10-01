@@ -1,20 +1,53 @@
+import { render } from "@testing-library/react";
 import React from "react";
 // import MyServices from '../containers/MyServices'
 
 
-const EditUserForm = (props) => {
+class EditUserForm extends React.Component{
+
+   
+    state ={
+        userProfile : {
+          first_name: this.props.user.first_name,
+          last_name: this.props.user.last_name,
+          street: this.props.user.street,
+          city: this.props.user.city,
+          state: this.props.user.state,
+          zipcode: this.props.user.zipcode,
+          img_url: this.props.user.img_url
+        }
+      }
+
+    //   componentDidMount(){
+    //       this.setState({
+    //          userProfile:{
+    //             first_name: this.props.currentUser.first_name,
+    //             last_name: this.props.currentUser.last_name,
+    //             street: this.props.currentUser.street,
+    //             city: this.props.currentUser.city,
+    //             state: this.props.currentUser.state,
+    //             zipcode: this.props.currentUser.zipcode,
+    //          } 
+    //       })
+    //   }
 
     
 
-    const {first_name, last_name, img_url, street, city, state, zipcode, handleFormChange, handleFormSubmit} = props
-
+    render() {
+        // if(this.props.user){
+        //     console.log(this.props,'hello')
+        // }
+        console.log(this.state.userProfile)
+        const {first_name, last_name, img_url, street, city, state, zipcode} = this.state.userProfile
     
+        
     return (
 
        <div className="form-container" >
        <form 
-       onSubmit={(e) => handleFormSubmit(e)}
-       onChange={(e) => handleFormChange(e)}
+
+       onSubmit={(e) => this.props.handleFormSubmit(e)}
+       onChange={(e) => this.props.handleFormChange(e)}
        >
         <div className="register-form">
         <div className="profile-form-row">
@@ -39,7 +72,9 @@ const EditUserForm = (props) => {
         </div>
         </form>
         </div> 
+    
     )
+    }
 }
 
 export default EditUserForm;
