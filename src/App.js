@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
-import UserContainer from './containers/UserContainer'
+import UserContainer from "./containers/UserContainer";
 import EditUserForm from "./components/EditUserForm";
 
 import api from "./services/api";
@@ -11,13 +11,13 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
-import ProfilePage from "./components/ProfilePage";
-import ServiceNew from "./components/ServiceNew"
-
+// import ProfilePage from "./components/ProfilePage";
+import ServiceNew from "./components/ServiceNew";
 
 class App extends React.Component {
   state = {
     auth: { currentUser: {} },
+    currentUser: {},
     search: "",
     newService: {
       name: "",
@@ -28,9 +28,8 @@ class App extends React.Component {
       isService: false,
       categories: {
         // need to add categories later
-      }
-    }
-
+      },
+    },
   };
 
   componentDidMount() {
@@ -43,11 +42,11 @@ class App extends React.Component {
     }
   }
   handleLogin = (response) => {
-    console.log(response)
-    console.log(response.user)
     const currentUser = { currentUser: response.user };
     localStorage.setItem("token", response.jwt);
-    this.setState({ auth: currentUser });
+    this.setState({
+      auth: currentUser,
+    });
   };
 
   handleLogout = () => {
@@ -60,33 +59,32 @@ class App extends React.Component {
     this.setState({ search: searchResults });
   };
 
-
   handleSubmitNewServiceForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    let newService = this.state.newService
-    let currentUserId = this.state.auth.currentUser.id
-    console.log(newService, currentUserId) // Brad and Noa in Work
-  }
+    let newService = this.state.newService;
+    let currentUserId = this.state.auth.currentUser.id;
+    // Brad and Noa in Work
+  };
 
   handleOnChangeNewServiceForm = (e) => {
-
-    if (e.target.name === 'isService') {
-      this.setState(prevState => ({
-        newService: { ...prevState.newService, isService: !prevState.newService.isService }
-      }))
+    if (e.target.name === "isService") {
+      this.setState((prevState) => ({
+        newService: {
+          ...prevState.newService,
+          isService: !prevState.newService.isService,
+        },
+      }));
     } else {
-      let name = e.target.name
-      let value = e.target.value
-      this.setState(prevState => ({
-        newService: { ...prevState.newService, [name]: value }
-      }))
+      let name = e.target.name;
+      let value = e.target.value;
+      this.setState((prevState) => ({
+        newService: { ...prevState.newService, [name]: value },
+      }));
     }
-  }
-
+  };
 
   render() {
-
     return (
       <div>
         <Header
@@ -98,7 +96,11 @@ class App extends React.Component {
           path="/requests"
           render={(routerProps) => {
             return (
-              <RequestsContainer {...routerProps} search={this.state.search} />
+              <RequestsContainer
+                {...routerProps}
+                currentUser={this.state.auth.currentUser.user}
+                search={this.state.search}
+              />
             );
           }}
         />
@@ -126,23 +128,34 @@ class App extends React.Component {
           }}
         />
 
-        <Route exact path="/signup" render={(routerProps) => {
-          return (<Signup {...routerProps} handleLogin={this.handleLogin} />)
-        }} />
+        <Route
+          exact
+          path="/signup"
+          render={(routerProps) => {
+            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
+          }}
+        />
 
-        <Route exact path="/profile" render={(routerProps) => {
+        {/* <Route exact path="/profile" render={(routerProps) => {
           return (<ProfilePage {...routerProps} currentUser={this.state.auth.current_user} />)
-        }} />
-        { /*<Route exact path='/' render={(routerProps) =>{
+        }} /> */}
+        {/*<Route exact path='/' render={(routerProps) =>{
       return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
 
-        <Route exact path="/newservice" render={(routerProps) => {
-          return (
-            <ServiceNew {...routerProps}
-              newService={this.state.newService} handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
-              handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm} />)
-        }
-        } />
+        <Route
+          exact
+          path="/newservice"
+          render={(routerProps) => {
+            return (
+              <ServiceNew
+                {...routerProps}
+                newService={this.state.newService}
+                handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
+                handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}
+              />
+            );
+          }}
+        />
       </div>
     );
   }

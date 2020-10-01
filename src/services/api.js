@@ -25,8 +25,7 @@ const login = (email, password) => {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => res.json())
+  }).then((res) => res.json());
   // .then(data => console.log(data, "in api.js"))
   // .then((data) => {
   //   localStorage.setItem("token", data.jwt);
@@ -38,9 +37,8 @@ const signup = (newUser) => {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ user: newUser }),
-  })
-    .then((res) => res.json())
-}
+  }).then((res) => res.json());
+};
 
 const getCurrentUser = () => {
   return fetch(`${API_ROOT}/current_user`, {
@@ -52,13 +50,12 @@ export default {
   auth: {
     login: login,
     getCurrentUser: getCurrentUser,
-    signup: signup
+    signup: signup,
   },
   services: {
     getServices,
   },
   requests: {
     getRequests,
-  }
-
+  },
 };

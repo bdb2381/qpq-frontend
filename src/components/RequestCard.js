@@ -3,8 +3,6 @@ import React from "react";
 const RequestCard = (props) => {
   const requestDetails = props.request;
 
-  console.log(requestDetails);
-
   return (
     <div className="card">
       <div className="name">

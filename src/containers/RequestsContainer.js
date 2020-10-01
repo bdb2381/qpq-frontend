@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RequestCard from "../components/RequestCard";
+import api from "../services/api";
 
 class RequestsContainer extends Component {
   state = {
@@ -17,19 +18,18 @@ class RequestsContainer extends Component {
     fetch("http://localhost:3000/api/v1/requests")
       .then((res) => res.json())
       .then((requests) => this.setState({ requests }));
-
-    console.log(this.state.requests);
   }
 
   //need rto filter by response id of user
 
   render() {
-    console.log(this.state.requests);
+    console.log(this.props.currentUser);
     return (
       <div>
         <div>
           {this.state.requests.map((request) => (
             <RequestCard
+              key={request.id}
               request={request}
               handleRequestClick={this.handleRequestClick}
             />
