@@ -29,19 +29,19 @@ class ServicesContainer extends Component {
   };
 
   componentDidMount = () => {
-    // const token = localStorage.getItem('token');
-    // if (token) {
+    const token = localStorage.getItem('token');
+    if (token) {
 
-    fetch("http://localhost:3000/api/v1/services")
-      .then((res) => res.json())
-      .then((services) => this.setState({ services: services }));
+      fetch("http://localhost:3000/api/v1/services")
+        .then((res) => res.json())
+        .then((services) => this.setState({ services: services }));
 
-    fetch("http://localhost:3000/api/v1/categories")
-      .then((res) => res.json())
-      .then((categories) => this.setState({ categories: categories }));
-    // } else {
-    //   this.props.history.push('/login');
-    // }
+      fetch("http://localhost:3000/api/v1/categories")
+        .then((res) => res.json())
+        .then((categories) => this.setState({ categories: categories }));
+    } else {
+      this.props.history.push('/login');
+    }
   };
 
 
@@ -100,7 +100,8 @@ class ServicesContainer extends Component {
   render() {
     return (
       <div>
-        {this.state.cardClicked ? null :
+        {this.state.cardClicked ?
+          null :
           <SortBar
             handelSortBy={this.handelSortBy}
             sort={this.state.sortByName}
@@ -108,14 +109,13 @@ class ServicesContainer extends Component {
             categories={this.state.categories}
           />}
 
-
-        {this.state.cardClicked ? (
+        {this.state.cardClicked ?
           <div className="specs-container">
             <ServiceSpecs
               specClick={this.specClick}
               service={this.state.service}
             /> </div>
-        ) : (
+          : (
             <div className="service-container">
               {this.filterServicesBySearch().map((service) => (
                 <ServiceCard

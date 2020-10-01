@@ -1,5 +1,7 @@
+import { render } from "@testing-library/react";
 import React from "react";
 // import MyServices from '../containers/MyServices'
+
 
 const EditUserForm = (props) => {
   if (props.currentUser) {
@@ -13,6 +15,7 @@ const EditUserForm = (props) => {
       // onSubmit={(e) => props.handleFormSubmit(e)}
       // onChange={(e) => props.handleFormChange(e)}
       >
+
         <div className="register-form">
           <div className="profile-form-row">
             <label for="first_name">First Name</label>
@@ -75,6 +78,7 @@ const EditUserForm = (props) => {
     <div>Pokemon </div>
   );
 };
+
 
 export default EditUserForm;
 

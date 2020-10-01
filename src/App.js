@@ -2,8 +2,10 @@ import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
-// import UserContainer from './containers/UserContainer'
+import UserContainer from "./containers/UserContainer";
+
 import EditUserForm from "./components/EditUserForm";
+import ProfilePage from "./components/ProfilePage";
 
 import api from "./services/api";
 import "./App.css";
@@ -14,9 +16,11 @@ import AddRequest from "./components/AddRequest";
 import ProfilePage from "./components/ProfilePage";
 import ServiceNew from "./components/ServiceNew";
 
+
 class App extends React.Component {
   state = {
     auth: { currentUser: {} },
+    currentUser: {},
     search: "",
     newService: {
       name: "",
@@ -29,6 +33,7 @@ class App extends React.Component {
         // need to add categories later
       },
     },
+
   };
 
   componentDidMount() {
@@ -41,11 +46,12 @@ class App extends React.Component {
     }
   }
   handleLogin = (response) => {
-    // console.log(response)
-    // console.log(response.user)
+
     const currentUser = { currentUser: response.user };
     localStorage.setItem("token", response.jwt);
-    this.setState({ auth: currentUser });
+    this.setState({
+      auth: currentUser,
+    });
   };
 
   handleLogout = () => {
@@ -53,6 +59,7 @@ class App extends React.Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
+  // search bar
   handleSearch = (e) => {
     let searchResults = e.target.value;
     this.setState({ search: searchResults });
@@ -82,6 +89,55 @@ class App extends React.Component {
   };
 
   render() {
+/////////////////// NEED TO FIX THIS HERE///////
+  // service component stuff here 
+
+  handleSubmitNewServiceForm = (e) => {
+    e.preventDefault()
+    let newService = this.state.newService
+
+    api.posts.postNewServiceOffering(newService).then(data => { console.log(data, "back in handle Sumbit") })
+
+
+  }
+
+  handleOnChangeNewServiceForm = (e) => {
+    let name = e.target.name
+    let value = e.target.value
+
+    this.setState(prevState => ({
+      newService: {
+        ...prevState.newService,
+        [name]: value,
+        user_id: this.state.auth.currentUser.id
+      }
+    }))
+  }
+  //service stuff ends here
+
+  //handle user profile edit here
+
+  // handleEditButton = (user) =>{
+  //   this.setState({
+  //     user: user
+  //   })
+  //   console.log(user)
+  // }
+
+  // handleFormChange = (e) =>{
+  //   this.setState({
+  //     user: {
+  //       ...this.state.user,
+  //       [e.target.name]: e.target.value
+  //     }
+  //   })
+
+  // }
+
+
+  render() {
+    console.log(this.state.auth.currentUser)
+
     return (
       <div>
         <Header
@@ -89,17 +145,19 @@ class App extends React.Component {
           handleSearch={this.handleSearch}
         />
         <Route
-          exact={true}
-          path="/requests"
+          exact={true} path="/requests"
           render={(routerProps) => {
             return (
-              <RequestsContainer {...routerProps} search={this.state.search} />
+              <RequestsContainer
+                {...routerProps}
+                currentUser={this.state.auth.currentUser.user}
+                search={this.state.search}
+              />
             );
           }}
         />
         <Route
-          exact={true}
-          path="/"
+          exact={true} path="/"
           render={(routerProps) => {
             return (
               <ServicesContainer {...routerProps} search={this.state.search} />

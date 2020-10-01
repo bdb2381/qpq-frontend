@@ -5,7 +5,8 @@ const token = localStorage.getItem("token");
 const headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
-  Authorization:`Bearers ${token}`,
+  Authorization: `Bearers ${token}`,
+
 };
 
 const getServices = () => {
@@ -25,8 +26,7 @@ const login = (email, password) => {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => res.json())
+  }).then((res) => res.json());
   // .then(data => console.log(data, "in api.js"))
   // .then((data) => {
   //   localStorage.setItem("token", data.jwt);
@@ -38,9 +38,8 @@ const signup = (newUser) => {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ user: newUser }),
-  })
-    .then((res) => res.json())
-}
+  }).then((res) => res.json());
+};
 
 const getCurrentUser = () => {
   return fetch(`${API_ROOT}/current_user`, {
@@ -48,17 +47,43 @@ const getCurrentUser = () => {
   }).then((res) => res.json());
 };
 
+
+const patchRequestStatus = (requestStatus, id) => {
+  console.log(requestStatus);
+  return fetch(`${API_ROOT}/requests/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ status: requestStatus }),
+  }).then((res) => res.json());
+};
+
+const postNewServiceOffering = (newService) => {
+  console.log(newService)
+  return fetch(`${API_ROOT}/services/`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ service: newService }),
+  })
+    .then((res) => res.json())
+}
+
+
 export default {
   auth: {
     login: login,
     getCurrentUser: getCurrentUser,
-    signup: signup
+    signup: signup,
   },
   services: {
     getServices,
   },
   requests: {
     getRequests,
-  }
+    patchRequestStatus,
+  },
+  posts: {
+    postNewServiceOffering,
+  },
+
 
 };
