@@ -132,7 +132,11 @@ class App extends React.Component {
           path="/"
           render={(routerProps) => {
             return (
-              <ServicesContainer {...routerProps} search={this.state.search} />
+              <ServicesContainer
+                {...routerProps}
+                search={this.state.search}
+                currentUser={this.state.auth.currentUser.user}
+              />
             );
           }}
         />
