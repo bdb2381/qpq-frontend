@@ -26,7 +26,6 @@ class App extends React.Component {
       exchangeDescription: "",
       img_url: "",
       isService: false,
-      user_id: "",
       // categories: {
       //   // need to add categories later
       // }
@@ -67,7 +66,7 @@ class App extends React.Component {
     e.preventDefault()
     let newService = this.state.newService
 
-    api.posts.postNewServiceOffering(newService).then(data => {console.log( "back in handleSumbit")})
+    api.posts.postNewServiceOffering(newService).then(data => {console.log(data, "back in handle Sumbit")})
     
 
   }
@@ -82,13 +81,14 @@ class App extends React.Component {
         newService: { 
           ...prevState.newService, 
           [name]: value,
-          user_id: prevState.auth.currentUser.id }
+          user_id: this.state.auth.currentUser.id
+        }
       }))
   }
 
 
   render() {
-console.log(this.state.auth.currentUser)
+// console.log(this.state.auth.currentUser)
 
     return (
       <div>

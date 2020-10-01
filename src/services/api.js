@@ -51,10 +51,11 @@ const getCurrentUser = () => {
 
 const postNewServiceOffering = (newService) => {
   console.log(newService)
+  debugger
   return fetch(`${API_ROOT}/services/`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({ services: newService }),
+    body: JSON.stringify({ service: newService }),
   })
     .then((res) => res.json())
 }
