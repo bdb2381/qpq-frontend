@@ -1,43 +1,72 @@
 import React, { Component } from "react";
 import RequestCard from "../components/RequestCard";
+import PendingRequestCard from "../components/PendingRequestCard";
 import api from "../services/api";
 
 class RequestsContainer extends Component {
   state = {
+    auth: { currentUser: {} },
     requestsToMe: [],
     requestsToOthers: [],
+    archiveRequest: [],
     request: {},
     temp: "",
   };
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      api.auth.getCurrentUser().then((user) => {
+        const currentUser = { currentUser: user };
+        this.setState({ auth: currentUser });
+      });
+    }
+  }
 
   handleRequestClick = (event, requestDetails) => {
-    console.log(event.target.name);
-    console.log(requestDetails);
-
-    api.requests
-      .patchRequestStatus(event.target.name, requestDetails.id)
-      .then((data) =>
-        this.setState({
-          temp: data,
-          // requestsToMe: [...this.state.requestsToMe, (status: data)],
-        })
-      );
+    let value = event.target.name;
+    let updateRequests = this.state.requestsToMe.filter(
+      (r) => r.id !== requestDetails.id
+    );
+    api.requests.patchRequestStatus(value, requestDetails.id).then((data) => {
+      this.setState({ archiveRequest: [...this.state.archiveRequest, data] });
+      this.setState({ requestsToMe: updateRequests });
+    });
+    console.log(this.state.archiveRequest);
   };
 
   filterRequestsByUserId = (requests) => {
     let currentUser = this.props.currentUser;
 
     let requestsToMe = requests.filter(
-      (request) => request.requested_service.user_id === currentUser.id
+      (request) =>
+        request.requested_service.user_id === currentUser.id &&
+        request.status === "pending"
     );
+    let archivedRequestsToMe = requests.filter(
+      (request) =>
+        request.requested_service.user_id === currentUser.id &&
+        request.status !== "pending"
+    );
+
     let requestsToOthers = requests.filter(
-      (request) => request.response_service.user_id === currentUser.id
+      (request) =>
+        request.response_service.user_id === currentUser.id &&
+        request.status === "pending"
     );
+    let archivedRequestsToOthers = requests.filter(
+      (request) =>
+        request.response_service.user_id === currentUser.id &&
+        request.status !== "pending"
+    );
+    let archiveRequest = archivedRequestsToMe.concat(archivedRequestsToOthers);
 
     this.setState({
       requestsToMe: requestsToMe,
-      requestToOthers: requestsToOthers,
+      requestsToOthers: requestsToOthers,
+      archiveRequest: archiveRequest,
     });
+
+    console.log(requestsToOthers);
   };
 
   componentDidMount() {
@@ -48,7 +77,6 @@ class RequestsContainer extends Component {
   }
 
   render() {
-    console.log(this.state.requests);
     return (
       <div>
         <div>
@@ -63,6 +91,15 @@ class RequestsContainer extends Component {
 
           <h1>My Requests To Others</h1>
           {this.state.requestsToOthers.map((request) => (
+            <PendingRequestCard
+              key={request.id}
+              request={request}
+              handleRequestClick={this.handleRequestClick}
+            />
+          ))}
+
+          <h1>Archive</h1>
+          {this.state.archiveRequest.map((request) => (
             <RequestCard
               key={request.id}
               request={request}
