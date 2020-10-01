@@ -59,7 +59,6 @@ const patchRequestStatus = (requestStatus, id) => {
 
 const postNewServiceOffering = (newService) => {
   console.log(newService)
-  debugger
   return fetch(`${API_ROOT}/services/`, {
     method: "POST",
     headers: headers,
@@ -85,8 +84,6 @@ export default {
   posts: {
     postNewServiceOffering,
   },
-
- 
 
 
 };

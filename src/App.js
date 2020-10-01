@@ -10,7 +10,7 @@ import ProfilePage from "./components/ProfilePage";
 import api from "./services/api";
 import "./App.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-// import ServicesContainer from "./containers/ServicesContainer";
+import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
 import ServiceNew from "./components/ServiceNew";
@@ -62,37 +62,33 @@ class App extends React.Component {
     let searchResults = e.target.value;
     this.setState({ search: searchResults });
   };
-<<<<<<< HEAD
-// service component stuff here 
-=======
 
+  // service component stuff here 
 
-
-
->>>>>>> f4416f54cd2f4495eef37d0ef7f476a26b816d48
   handleSubmitNewServiceForm = (e) => {
     e.preventDefault()
     let newService = this.state.newService
 
-    api.posts.postNewServiceOffering(newService).then(data => {console.log(data, "back in handle Sumbit")})
-    
+    api.posts.postNewServiceOffering(newService).then(data => { console.log(data, "back in handle Sumbit") })
+
 
   }
 
   handleOnChangeNewServiceForm = (e) => {
-      let name = e.target.name
-      let value = e.target.value
+    let name = e.target.name
+    let value = e.target.value
 
-      this.setState(prevState => ({
-        newService: { 
-          ...prevState.newService, 
-          [name]: value,
-          user_id: this.state.auth.currentUser.id
-        }
-      }))
-  } //service stuff ends here
+    this.setState(prevState => ({
+      newService: {
+        ...prevState.newService,
+        [name]: value,
+        user_id: this.state.auth.currentUser.id
+      }
+    }))
+  }
+  //service stuff ends here
 
-//handle user profile edit here
+  //handle user profile edit here
 
   // handleEditButton = (user) =>{
   //   this.setState({
@@ -113,13 +109,8 @@ class App extends React.Component {
 
 
   render() {
-<<<<<<< HEAD
-console.log(this.state.auth.currentUser)
-// debugger
-=======
-// console.log(this.state.auth.currentUser)
+    console.log(this.state.auth.currentUser)
 
->>>>>>> f4416f54cd2f4495eef37d0ef7f476a26b816d48
     return (
       <div>
         <Header
@@ -127,8 +118,7 @@ console.log(this.state.auth.currentUser)
           handleSearch={this.handleSearch}
         />
         <Route
-          exact={true}
-          path="/requests"
+          exact={true} path="/requests"
           render={(routerProps) => {
             return (
               <RequestsContainer
@@ -139,15 +129,14 @@ console.log(this.state.auth.currentUser)
             );
           }}
         />
-       { /*<Route
-          exact={true}
-          path="/"
+        <Route
+          exact={true} path="/"
           render={(routerProps) => {
             return (
               <ServicesContainer {...routerProps} search={this.state.search} />
             );
           }}
-        />*/}
+        />
         <Route
           exact
           path="/login"
@@ -163,24 +152,15 @@ console.log(this.state.auth.currentUser)
           }}
         />
 
-        <Route
-          exact
-          path="/signup"
-          render={(routerProps) => {
-            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
-          }}
-        />
-
-
 
         {/*<Route exact path='/' render={(routerProps) =>{
       return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
 
         <Route exact path="/profile" render={(routerProps) => {
-          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser.user}  
-            // this.handleEditButton
-            // this.handleFormChange 
-             />)
+          return (<ProfilePage {...routerProps} currentUser={this.state.auth.currentUser.user}
+          // this.handleEditButton
+          // this.handleFormChange 
+          />)
         }} />
 
         <Route
