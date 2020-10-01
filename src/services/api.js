@@ -6,6 +6,7 @@ const headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
   Authorization: `Bearers ${token}`,
+
 };
 
 const getServices = () => {
@@ -46,14 +47,7 @@ const getCurrentUser = () => {
   }).then((res) => res.json());
 };
 
-const postNewServiceOffering = (newService) => {
-  console.log(newService);
-  return fetch(`${API_ROOT}/services/`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ services: newService }),
-  }).then((res) => res.json());
-};
+
 const patchRequestStatus = (requestStatus, id) => {
   console.log(requestStatus);
   return fetch(`${API_ROOT}/requests/${id}`, {
@@ -62,6 +56,18 @@ const patchRequestStatus = (requestStatus, id) => {
     body: JSON.stringify({ status: requestStatus }),
   }).then((res) => res.json());
 };
+
+const postNewServiceOffering = (newService) => {
+  console.log(newService)
+  debugger
+  return fetch(`${API_ROOT}/services/`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ service: newService }),
+  })
+    .then((res) => res.json())
+}
+
 
 export default {
   auth: {
@@ -79,4 +85,8 @@ export default {
   posts: {
     postNewServiceOffering,
   },
+
+ 
+
+
 };
