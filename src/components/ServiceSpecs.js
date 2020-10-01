@@ -2,11 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import GoogleApiWrapper from "../containers/MapContainer";
 
-const handleRequestClick = (serviceDetails) => {
-  console.log(serviceDetails);
-  // need to wire to request component. Will we change state for render or <Link>
-};
-
 const ServiceSpecs = (props) => {
   console.log(props.currentUser.id);
   const {
@@ -50,7 +45,9 @@ const ServiceSpecs = (props) => {
       {props.currentUser.id === user.id ? null : (
         <button
           className="request-button"
-          onClick={() => handleRequestClick(props.service)}
+          onClick={() =>
+            props.handleRequestClick(props.service, props.currentUser.id)
+          }
           type="button"
         >
           Request a QPQ from {user.first_name}

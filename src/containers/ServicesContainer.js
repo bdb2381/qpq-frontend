@@ -92,6 +92,11 @@ class ServicesContainer extends Component {
 
     return this.sortServicesBy();
   };
+  handleRequestClick = (serviceDetails, user) => {
+    console.log(serviceDetails, user);
+
+    // need to wire to request component. Will we change state for render or <Link>
+  };
 
   render() {
     console.log(this.props.currentUser);
@@ -112,6 +117,7 @@ class ServicesContainer extends Component {
               specClick={this.specClick}
               service={this.state.service}
               currentUser={this.props.currentUser}
+              handleRequestClick={this.handleRequestClick}
             />{" "}
           </div>
         ) : (
