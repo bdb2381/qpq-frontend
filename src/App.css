@@ -90,6 +90,7 @@
   border-bottom-right-radius: 10px;
 }
 
+
 #service-collection {
   margin: 2rem;
 }
@@ -104,6 +105,17 @@
   /* cursor: pointer; */
   background: #EEEEEE;
   border-radius: 10px;
+  padding: 8px
+}
+.service-specs .closing-spec{
+  border-radius: 8px;
+  padding: 8px ;
+float : right;
+  cursor: pointer;
+  color: red;
+  border: none;
+  font-size: 16px;
+
 }
 .spec-service_img {
   margin-top: 1rem;
@@ -117,6 +129,23 @@
   padding: 15px;
   margin-top: 2rem;
   font-weight: bolder;
+}
+.service-specs .request-button {
+  background: #1a436b;
+  color: white;
+  border-radius: 5px;
+  font-size: 20px;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  padding: 8px ;
+  margin: 20px;
+}
+
+.map-container{
+  max-width: 75%;
+ margin: auto;
+ margin-top: 50px;
 }
 
 .service-content .description {
@@ -277,18 +306,22 @@ color: white;
 
 
 .profile-form-row-center input[type=text],
-.profile-form-row-center input[type="password"],
+.profile-form-row-center input[type="password"] ,
 .profile-form-row-center input[type="number"] {
+  margin: 0 auto;
   width: 90%;
   margin-bottom: 20px;
   padding: 12px;
   border: 1px solid #1a436b;
   border-radius: 3px;
+
 }
 
 .profile-form-row input[type="text"],
 .profile-form-row input[type="number"],
-.profile-form-row input[type="password"] {
+.profile-form-row input[type="password"], 
+.new-service-form textarea {
+  margin: 0 auto;
   width: 90%;
   margin-bottom: 20px;
   padding: 12px;

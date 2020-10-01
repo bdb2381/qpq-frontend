@@ -13,16 +13,16 @@ export default class Welcome extends React.Component {
   };
 
   handleLoginSubmit = (event) => {
+
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-
     api.auth.login(email, password)
 
       .then((response) => {
         if (response.error) {
           this.setState({ error: true },
-            console.log("hello helo"));
+            alert(response.error));
         }
         else {
           this.props.handleLogin(response);
@@ -41,7 +41,7 @@ export default class Welcome extends React.Component {
           <h1> Welcome to QPQ </h1>
           <h2>Please log in below:</h2>
           <div className="profile-form-row-center">
-            <label for="email">Email</label>
+            <label name="email">Email</label>
             <input
               onChange={(e) => this.handleLoginChange(e)}
               type="text"
@@ -52,7 +52,7 @@ export default class Welcome extends React.Component {
           </div>
 
           <div className="profile-form-row-center">
-            <label for="password">Password</label>
+            <label name="password">Password</label>
             <input
               onChange={(e) => this.handleLoginChange(e)}
               type="password"
