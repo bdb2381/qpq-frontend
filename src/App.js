@@ -71,7 +71,6 @@ class App extends React.Component {
     api.posts.postNewServiceOffering(newService).then((data) => {
       console.log(data, "back in handle Sumbit");
     });
-
   };
 
   handleOnChangeNewServiceForm = (e) => {
@@ -120,14 +119,9 @@ class App extends React.Component {
   handleUserDelete = (user) =>{
     console.log(user.user.id)
     api.users.handleDeleteButton(user.user.id)
-  }
-
- 
-
 
 
   render() {
-
     return (
       <div>
         <Header
