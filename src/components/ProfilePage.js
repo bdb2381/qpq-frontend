@@ -7,9 +7,12 @@ class ProfilePage extends React.Component {
   render() {
 
     const {first_name, last_name, street, city,img_url, state, zipcode} = this.props.currentUser
+
+    console.log(this.props.user)
     // passed down here is the current user of props
     //just passed down the current user
     return (
+      
       // <div>
       // </div>
       <div>
@@ -30,14 +33,15 @@ class ProfilePage extends React.Component {
           </div>
           <br />
           <button
+
             className="edit-profile-button"
-            onClick={() => this.props.handleEditButton(this.props.user)}
+            onClick={() => this.props.handleEditButton(this.props.currentUser)}
           > Edit My Profile </button>
           <br/>
           <br/>
           <button
           className="delete-profile-button"
-          // onClick={() => this.handleEditButton(this.props.user)}
+          onClick={() => this.props.handleUserDelete(this.props.currentUser)}
         > Delete My Profile </button>
         </div>
       </div>

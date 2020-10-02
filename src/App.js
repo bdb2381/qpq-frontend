@@ -144,6 +144,11 @@ class App extends React.Component {
     });
   };
 
+  handleUserDelete = (user) =>{
+    console.log(user.user.id)
+    api.users.handleDeleteButton(user.user.id)
+  }
+
   // handleUpdate = () =>{
 
   //   fetch(`http://localhost:3000/api/v1/users/${this.state.user.id}`)
@@ -212,6 +217,7 @@ class App extends React.Component {
             return (
               <ProfilePage
                 {...routerProps}
+                handleUserDelete={this.handleUserDelete}
                 handleEditButton={this.handleEditButton}
                 handleFormChange={this.handleFormChange}
                 currentUser={this.state.auth.currentUser}

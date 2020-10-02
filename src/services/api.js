@@ -67,6 +67,14 @@ const postNewServiceOffering = (newService) => {
     .then((res) => res.json())
 }
 
+const handleDeleteButton = (id) =>{
+  // console.log(myUser)
+  fetch(`http://localhost:3000/api/v1/users/${id}`,{
+    method: 'DELETE',
+    headers: headers,
+  })
+}
+
 
 export default {
   auth: {
@@ -84,6 +92,9 @@ export default {
   posts: {
     postNewServiceOffering,
   },
+  users: {
+    handleDeleteButton
+  }
 
 
 };
