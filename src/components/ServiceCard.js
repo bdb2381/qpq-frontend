@@ -1,15 +1,7 @@
 import React from "react";
 
 const ServiceCard = (props) => {
-  const {
-    name,
-    offeringDescription,
-    exchangeDescription,
-    img_url,
-    value,
-    categories,
-    isService,
-  } = props.service;
+  const { name, offeringDescription, img_url, value } = props.service;
 
   const serviceDetails = props.service;
 
@@ -21,7 +13,7 @@ const ServiceCard = (props) => {
       <div className="name">{name}</div>
 
       <div className="image">
-        <img className="service_img" src={img_url} />
+        <img className="service_img" src={img_url} alt="name" />
       </div>
       <div className="service-content">
         <div className="description">{offeringDescription}</div>

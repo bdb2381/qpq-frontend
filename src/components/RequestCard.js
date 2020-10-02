@@ -6,8 +6,15 @@ const RequestCard = (props) => {
   return (
     <div className="card">
       <div className="name">
-        My Service: {requestDetails.requested_service.name}
-        <p>Requester's Service: {requestDetails.response_service.name}</p>
+        Your Service: <br></br>
+        {requestDetails.requested_service.name}
+        <p>
+          You Will Receive in Return:<br></br>{" "}
+          {requestDetails.response_service.name}
+        </p>
+        <p>
+          Message:<br></br> {requestDetails.message}
+        </p>
         {requestDetails.status === "pending" ? (
           <div>
             <button

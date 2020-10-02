@@ -6,15 +6,23 @@ const PendingRequestCard = (props) => {
   return (
     <div className="card">
       <div className="name">
-        <p> My Service: {requestDetails.requested_service.name}</p>
-        <p> user_id: {requestDetails.requested_service.user_id}</p>
-        <p> service_id {requestDetails.requested_service.id}</p>
-        <p>Requester's Service: {requestDetails.response_service.name}</p>
-        <p>setbice id: {requestDetails.response_service.id}</p>
-        <p>Requester's user id: {requestDetails.response_service.user_id}</p>
-        <p>message: {requestDetails.message}</p>
-        <p>id: {requestDetails.id}</p>
-        <h3> Wating to be approved</h3>
+        <p>
+          {" "}
+          Your Service: <br></br>
+          {requestDetails.requested_service.name}
+        </p>
+
+        <p>
+          You Will Receive in Return:<br></br>{" "}
+          {requestDetails.response_service.name}
+        </p>
+
+        <p>
+          Message: <br></br>
+          {requestDetails.message}
+        </p>
+
+        <h3> Waiting to be approved</h3>
       </div>
     </div>
   );

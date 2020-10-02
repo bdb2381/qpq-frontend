@@ -26,10 +26,6 @@ const login = (email, password) => {
     headers: headers,
     body: JSON.stringify({ email, password }),
   }).then((res) => res.json());
-  // .then(data => console.log(data, "in api.js"))
-  // .then((data) => {
-  //   localStorage.setItem("token", data.jwt);
-  // });
 };
 
 const signup = (newUser) => {
@@ -73,7 +69,6 @@ const postNewServiceOffering = (newService) => {
 };
 
 const handleDeleteButton = (id) => {
-  // console.log(myUser)
   fetch(`http://localhost:3000/api/v1/users/${id}`, {
     method: "DELETE",
     headers: headers,

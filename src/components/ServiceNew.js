@@ -1,8 +1,6 @@
 import React from "react";
 
 const ServiceNew = (props) => {
-  console.log(props.id);
-  console.log(props);
   return (
     <div>
       <form
@@ -39,14 +37,6 @@ const ServiceNew = (props) => {
               placeholder="What is the URL of an image showcasing your offering?"
               value={props.img_url}
             />
-            {/* <label for="isService">
-               <input type="checkbox" value={"true"} name="isService" checked={props.isService}/> Is This a Service?  </label>  */}
-            {/* <selectTag>  
-                { props.catagories.map(catgory => {
-                  <option key={catgory.id} value={catgory.name}>
-                  {catgory.name} </option>
-                })}  
-              </selectTag> */}
           </div>
           <div className="submit-button">
             <input type="submit" value="Submit" className="btn" />
