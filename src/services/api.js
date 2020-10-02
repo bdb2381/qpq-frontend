@@ -6,7 +6,6 @@ const headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
   Authorization: `Bearers ${token}`,
-
 };
 
 const getServices = () => {
@@ -47,7 +46,6 @@ const getCurrentUser = () => {
   }).then((res) => res.json());
 };
 
-
 const patchRequestStatus = (requestStatus, id) => {
   console.log(requestStatus);
   return fetch(`${API_ROOT}/requests/${id}`, {
@@ -56,13 +54,22 @@ const patchRequestStatus = (requestStatus, id) => {
     body: JSON.stringify({ status: requestStatus }),
   }).then((res) => res.json());
 };
+const patchUserProfile = (userProfile, id) => {
+  console.log(userProfile);
+  return fetch(`${API_ROOT}/users/${id}`, {
+    method: "PATCH",
+    headers: headers,
+    body: JSON.stringify({ user: userProfile }),
+  }).then((res) => res.json());
+};
 
 const postNewServiceOffering = (newService) => {
-  console.log(newService)
+  console.log(newService);
   return fetch(`${API_ROOT}/services/`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ service: newService }),
+<<<<<<< HEAD
   })
     .then((res) => res.json())
 }
@@ -75,6 +82,10 @@ const handleDeleteButton = (id) =>{
   })
 }
 
+=======
+  }).then((res) => res.json());
+};
+>>>>>>> 45be324583566480cc02e133d657e1c9ed91177a
 
 export default {
   auth: {
@@ -93,8 +104,13 @@ export default {
     postNewServiceOffering,
   },
   users: {
+<<<<<<< HEAD
     handleDeleteButton
   }
 
+=======
+    patchUserProfile,
+  },
+>>>>>>> 45be324583566480cc02e133d657e1c9ed91177a
 
 };
