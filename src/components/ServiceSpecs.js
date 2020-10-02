@@ -15,6 +15,7 @@ const ServiceSpecs = (props) => {
     img_url,
     value,
     user,
+    categories,
   } = props.service;
 
   return (
@@ -40,6 +41,19 @@ const ServiceSpecs = (props) => {
       <div className="extra content">
         Will Exchange For:
         <div>{exchangeDescription}</div>
+        {!categories.length > 0 ? null : (
+          <div>
+            {" "}
+            <br></br>
+            <div>
+              Categories:
+              {categories.map((category) => (
+                <li>{category.name}</li>
+              ))}
+            </div>{" "}
+            <br></br>
+          </div>
+        )}
       </div>
 
       {props.currentUser.id === user.id ? (
