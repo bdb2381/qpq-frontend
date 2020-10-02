@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import GoogleApiWrapper from "../containers/MapContainer";
 
 const handleRequestClick = (serviceDetails) => {
@@ -28,7 +27,7 @@ const ServiceSpecs = (props) => {
       <div className="name">{name}</div>
       <span>Value: {value} credits</span>
       <div className="image">
-        <img className="spec-service_img" src={img_url} />
+        <img className="spec-service_img" src={img_url} alt={name} />
       </div>
 
       <div className="service-content">

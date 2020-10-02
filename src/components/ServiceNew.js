@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
 const ServiceNew = (props) => {
+  console.log(props.id);
+  console.log(props);
   return (
     <div>
       <form

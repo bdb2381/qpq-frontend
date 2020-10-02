@@ -2,7 +2,6 @@ import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
-import UserContainer from "./containers/UserContainer";
 import ProfilePage from "./components/ProfilePage";
 import api from "./services/api";
 import "./App.css";
@@ -17,13 +16,13 @@ class App extends React.Component {
   state = {
     auth: { currentUser: {} },
     user: {
-      first_name: "",
-      last_name: "",
-      img_url: "",
-      street: "",
-      city: "",
-      state: "",
-      zipcode: "",
+      // first_name: "",
+      // last_name: "",
+      // img_url: "",
+      // street: "",
+      // city: "",
+      // state: "",
+      // zipcode: "",
     },
     search: "",
     newService: {
@@ -34,6 +33,7 @@ class App extends React.Component {
       img_url: "",
       isService: false,
     },
+    editDisable: false,
   };
 
   componentDidMount() {
@@ -76,12 +76,12 @@ class App extends React.Component {
   handleOnChangeNewServiceForm = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-
+    debugger;
     this.setState((prevState) => ({
       newService: {
         ...prevState.newService,
         [name]: value,
-        user_id: this.state.auth.currentUser.id,
+        user_id: this.state.auth.currentUser.user.id,
       },
     }));
   };
@@ -92,18 +92,27 @@ class App extends React.Component {
     console.log(user);
     this.setState({
       user: user,
+
+      editDisable: !this.state.editDisable,
     });
 
     //fetch patch request with the body of user
   };
 
   //handle user submit
-  handleEditUserSubmit = (event, userState, id) => {
+  handleEditUserSubmit = (event, user, id) => {
     event.preventDefault();
+    debugger;
 
     //fetch patch request with event.value
-
-    api.users.patchUserProfile(userState, id);
+    console.log(user);
+    api.users.patchUserProfile(user, id).then(
+      this.setState({
+        editDisable: !this.state.editDisable,
+        auth: { currentUser: { ...this.state.currentUser, user } },
+      })
+    );
+    debugger;
   };
 
   handleFormChange = (event) => {
@@ -116,10 +125,13 @@ class App extends React.Component {
     });
   };
 
-  handleUserDelete = (user) =>{
-    console.log(user.user.id)
-    api.users.handleDeleteButton(user.user.id)
-  }
+  handleUserDelete = (user) => {
+    console.log(user.id);
+    api.users.handleDeleteButton(user.id);
+
+    localStorage.removeItem("token");
+    this.setState({ auth: { currentUser: {} } });
+  };
 
   render() {
     return (
@@ -180,6 +192,7 @@ class App extends React.Component {
                 handleFormChange={this.handleFormChange}
                 currentUser={this.state.auth.currentUser}
                 handleEditUserSubmit={this.handleEditUserSubmit}
+                editDisable={this.state.editDisable}
               />
             );
           }}

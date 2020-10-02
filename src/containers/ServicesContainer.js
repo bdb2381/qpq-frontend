@@ -54,15 +54,16 @@ class ServicesContainer extends Component {
     switch (this.state.type) {
       case "services":
         return services.filter((service) => service.isService === true);
-        break;
+
       case "goods":
         return services.filter((service) => service.isService !== true);
-        break;
+
       case "all":
         return services;
-        break;
+
+      default:
+        return services;
     }
-    return services;
   };
 
   sortServicesBy = () => {

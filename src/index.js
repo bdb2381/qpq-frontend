@@ -2,29 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router } from "react-router-dom";
 
-// import { createStore } from "redux";
-// import allReducers from "../src/reducer";
-// import { Provider } from "react-redux";
-// import * as serviceWorker from './serviceWorker';
-// const store = createStore(
-//   allReducers,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
-
-//we store state in the index.js
 ReactDOM.render(
-  //Provider allows store to be accessed everywhere. Very great functionality.
-  // <React.StrictMode>
-  // <Provider store={store}>
   <Router>
     <App />
-  </Router>
-  ,
-  // </Provider>,
-  // </React.StrictMode>,
-
+  </Router>,
   document.getElementById("root")
 );
 

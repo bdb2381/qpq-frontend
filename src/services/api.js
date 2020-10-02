@@ -69,19 +69,16 @@ const postNewServiceOffering = (newService) => {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ service: newService }),
+  }).then((res) => res.json());
+};
 
-  })
-    .then((res) => res.json())
-}
-
-const handleDeleteButton = (id) =>{
+const handleDeleteButton = (id) => {
   // console.log(myUser)
-  fetch(`http://localhost:3000/api/v1/users/${id}`,{
-    method: 'DELETE',
+  fetch(`http://localhost:3000/api/v1/users/${id}`, {
+    method: "DELETE",
     headers: headers,
-  })
-}
-
+  }).then((res) => res.json());
+};
 
 export default {
   auth: {
@@ -102,6 +99,5 @@ export default {
   users: {
     handleDeleteButton,
     patchUserProfile,
-  }
-
+  },
 };

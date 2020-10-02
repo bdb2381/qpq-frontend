@@ -1,23 +1,22 @@
-import { render } from "@testing-library/react";
 import React from "react";
-// import MyServices from '../containers/MyServices'
 
 class EditUserForm extends React.Component {
   state = {
-    first_name: "",
-    last_name: "",
-    street: "",
-    city: "",
-    zipcode: "",
-    state: "",
-    disabled: false,
+    user: {},
   };
 
   handleFormChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    let name = event.target.name;
+    let value = event.target.value;
+
+    this.setState((prevState) => ({
+      user: {
+        ...prevState.user,
+        [name]: value,
+      },
+    }));
   };
+
   render() {
     return this.props.currentUser ? (
       <div className="form-container">
@@ -25,17 +24,16 @@ class EditUserForm extends React.Component {
           onSubmit={(event) =>
             this.props.handleEditUserSubmit(
               event,
-              this.state,
+              this.state.user,
               this.props.currentUser.id
             )
           }
-          // onSubmit={(e) => this.props.handleFormSubmit(e)}
-          onChange={(event) => this.handleFormChange(event)}
         >
           <div className="register-form">
             <div className="profile-form-row">
               <label for="first_name">First Name</label>
               <input
+                onChange={(event) => this.handleFormChange(event)}
                 disabled={this.state.disabled}
                 type="text"
                 name="first_name"
@@ -45,6 +43,7 @@ class EditUserForm extends React.Component {
               <p></p>
               <label for="last_name">Last Name</label>
               <input
+                onChange={(event) => this.handleFormChange(event)}
                 type="text"
                 name="last_name"
                 placeholder={this.props.currentUser.last_name}
@@ -53,6 +52,7 @@ class EditUserForm extends React.Component {
 
               <label for="street">Street</label>
               <input
+                onChange={(event) => this.handleFormChange(event)}
                 type="text"
                 name="street"
                 placeholder={this.props.currentUser.street}
@@ -60,6 +60,7 @@ class EditUserForm extends React.Component {
               />
               <label for="city"> City</label>
               <input
+                onChange={(event) => this.handleFormChange(event)}
                 type="text"
                 name="city"
                 placeholder="City"
@@ -67,6 +68,7 @@ class EditUserForm extends React.Component {
               />
               <label for="zipcode">Zip Code</label>
               <input
+                onChange={(event) => this.handleFormChange(event)}
                 type="text"
                 name="zipcode"
                 placeholder={this.props.currentUser.zipcode}
@@ -74,6 +76,7 @@ class EditUserForm extends React.Component {
               />
               <label for="state">State</label>
               <input
+                onChange={(event) => this.handleFormChange(event)}
                 type="text"
                 name="state"
                 placeholder={this.props.currentUser.state}
@@ -81,6 +84,7 @@ class EditUserForm extends React.Component {
               />
               <label for="img_url">Image</label>
               <input
+                onChange={(event) => this.handleFormChange(event)}
                 type="text"
                 name="img_url"
                 placeholder={this.props.currentUser.img_url}
@@ -94,10 +98,9 @@ class EditUserForm extends React.Component {
         </form>
       </div>
     ) : (
-      <div>Pokemon </div>
+      <div> </div>
     );
   }
 }
 
 export default EditUserForm;
-
