@@ -1,6 +1,6 @@
-## Welcome to QPQ: Frontend
+# Welcome to QPQ: Frontend
 
-# Description:
+## Description:
 QPQ is a service-for-service trading web application, allowing users to create their profile and exchange their services for other services. Think of the meaning of Quid Pro Quo; a favor for a favor!  Users providing a service, i.e.(Photography, cooking lessons, ice skating lessons, etc) can browse through other user services and request for an exchange! This application has taken away the idea of buying goods and services and replaced it with a trading system.
 
 ## Installations
