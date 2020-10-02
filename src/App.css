@@ -216,7 +216,46 @@
 .extra-content-li {
   list-style-type: none;
 }
-
+.request-card {
+}
+.request-card h3 {
+  color: #1a591f;
+}
+.request-card p {
+  font-size: 18px;
+  font-weight: bold;
+}
+.request-message {
+  font-size: 15px;
+}
+.request-value {
+}
+.button-approve-request {
+  background: #1a591f;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  border: none;
+  margin: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+.button-deny-request {
+  background: #8e0f01;
+  color: white;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+.request-approved {
+  color: #1a591f;
+}
+.request-denied {
+  color: #8e0f01;
+}
 .two-column-grid {
   display: flex;
   width: 75%;
