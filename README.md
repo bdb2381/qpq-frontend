@@ -9,7 +9,7 @@ QPQ is a trading web application that allows the user to create their profile wh
 - Install `yarn` with `yarn install` and then run `yarn start`.
 
 ## Features 
-- User can signup/login and update profile information
+- Users must be authorized to access the web application
 - Users can view all the available services / goods, and their locations
 <br><br/>
 ![spec card](https://media.giphy.com/media/zWGM7IQyTecEeCmsfm/giphy.gif)
