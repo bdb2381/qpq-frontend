@@ -91,4 +91,5 @@ export default {
   users: {
     patchUserProfile,
   },
+
 };

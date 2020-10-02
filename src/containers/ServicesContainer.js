@@ -3,7 +3,6 @@ import ServiceCard from "../components/ServiceCard";
 import ServiceSpecs from "../components/ServiceSpecs";
 import SortBar from "../components/SortBar";
 
-
 class ServicesContainer extends Component {
   state = {
     services: [],
@@ -11,7 +10,7 @@ class ServicesContainer extends Component {
     categories: [],
     cardClicked: false,
     sortByName: true,
-    type: 'all'
+    type: "all",
   };
 
   cardClick = (event, serviceDetails) => {
@@ -29,9 +28,8 @@ class ServicesContainer extends Component {
   };
 
   componentDidMount = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
-
       fetch("http://localhost:3000/api/v1/services")
         .then((res) => res.json())
         .then((services) => this.setState({ services: services }));
@@ -40,92 +38,92 @@ class ServicesContainer extends Component {
         .then((res) => res.json())
         .then((categories) => this.setState({ categories: categories }));
     } else {
-      this.props.history.push('/login');
+      this.props.history.push("/login");
     }
   };
 
-
   handelSortBy = (e) => {
     this.setState({ sortByName: !this.state.sortByName });
-  }
+  };
   handleFilterByType = (e) => {
-    this.setState({ type: e.target.value })
-  }
+    this.setState({ type: e.target.value });
+  };
 
   filterServicesByType = () => {
-    let services = this.state.services
+    let services = this.state.services;
     switch (this.state.type) {
-      case 'services':
-        return services.filter(service => service.isService === true)
+      case "services":
+        return services.filter((service) => service.isService === true);
         break;
-      case 'goods':
-        return services.filter(service => service.isService !== true)
-        break
-      case 'all':
-        return services
-        break
+      case "goods":
+        return services.filter((service) => service.isService !== true);
+        break;
+      case "all":
+        return services;
+        break;
     }
-    return services
-  }
+    return services;
+  };
 
   sortServicesBy = () => {
     if (!this.state.sortByName) {
       return this.filterServicesByType().sort(function (a, b) {
         return a.value - b.value;
-      })
+      });
     } else {
       this.filterServicesByType().sort(function (a, b) {
         return a.name === b.name ? 0 : a.name < b.name ? -1 : 1;
-      })
+      });
     }
-    return this.filterServicesByType()
-  }
+    return this.filterServicesByType();
+  };
 
   filterServicesBySearch = () => {
-    let search = this.props.search.toLowerCase()
+    let search = this.props.search.toLowerCase();
     if (search.length > 0) {
-      let filteredServices = this.sortServicesBy().filter((service) =>
-        service.name.toLowerCase().includes(search) ||
-        service.exchangeDescription.toLowerCase().includes(search) ||
-        service.offeringDescription.toLowerCase().includes(search)
-
-      )
-      return filteredServices
+      let filteredServices = this.sortServicesBy().filter(
+        (service) =>
+          service.name.toLowerCase().includes(search) ||
+          service.exchangeDescription.toLowerCase().includes(search) ||
+          service.offeringDescription.toLowerCase().includes(search)
+      );
+      return filteredServices;
     }
 
-    return this.sortServicesBy()
-  }
-
+    return this.sortServicesBy();
+  };
 
   render() {
     return (
       <div>
-        {this.state.cardClicked ?
-          null :
+        {this.state.cardClicked ? null : (
           <SortBar
             handelSortBy={this.handelSortBy}
             sort={this.state.sortByName}
             handleFilterByType={this.handleFilterByType}
             categories={this.state.categories}
-          />}
+          />
+        )}
 
-        {this.state.cardClicked ?
+        {this.state.cardClicked ? (
           <div className="specs-container">
             <ServiceSpecs
               specClick={this.specClick}
               service={this.state.service}
-            /> </div>
-          : (
-            <div className="service-container">
-              {this.filterServicesBySearch().map((service) => (
-                <ServiceCard
-                  service={service}
-                  key={service.id}
-                  cardClick={this.cardClick}
-                />
-              ))}
-            </div>
-          )}
+              currentUser={this.props.currentUser}
+            />{" "}
+          </div>
+        ) : (
+          <div className="service-container">
+            {this.filterServicesBySearch().map((service) => (
+              <ServiceCard
+                service={service}
+                key={service.id}
+                cardClick={this.cardClick}
+              />
+            ))}
+          </div>
+        )}
       </div>
     );
   }

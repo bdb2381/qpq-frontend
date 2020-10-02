@@ -31,7 +31,7 @@
   overflow: hidden;
   border-radius: 10px;
   overflow: hidden;
-  margin: 20px 20px ;
+  margin: 20px 20px;
 }
 
 .navbar-list a {
@@ -90,7 +90,6 @@
   border-bottom-right-radius: 10px;
 }
 
-
 #service-collection {
   margin: 2rem;
 }
@@ -103,29 +102,28 @@
 }
 .service-specs {
   /* cursor: pointer; */
-  background: #EEEEEE;
+  background: #eeeeee;
   border-radius: 10px;
-  padding: 8px
+  padding: 8px;
 }
-.service-specs .closing-spec{
+.service-specs .closing-spec {
   border-radius: 8px;
-  padding: 8px ;
-float : right;
+  padding: 8px;
+  float: right;
   cursor: pointer;
   color: red;
   border: none;
   font-size: 16px;
-
 }
 .spec-service_img {
   margin-top: 1rem;
   justify-self: center;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
 .service-specs .name {
   font-size: 35px;
-   text-align: center;
+  text-align: center;
   padding: 15px;
   margin-top: 2rem;
   font-weight: bolder;
@@ -138,14 +136,20 @@ float : right;
   border: none;
   padding: 12px;
   cursor: pointer;
-  padding: 8px ;
+  padding: 8px;
   margin: 20px;
 }
 
-.map-container{
+.your-service {
+  font-size: 25px;
+  padding-top: 10px;
+  color: red;
+}
+
+.map-container {
   max-width: 75%;
- margin: auto;
- margin-top: 50px;
+  margin: auto;
+  margin-top: 50px;
 }
 
 .service-content .description {
@@ -154,34 +158,33 @@ float : right;
   padding: 6px;
   display: block;
 }
-.service-content .description div{
+.service-content .description div {
   position: relative;
   font-size: 24px;
   padding: 6px;
   display: block;
 }
 
-
 .card {
   cursor: pointer;
   /* changes pointer for clickable objects */
   text-align: center;
   border-radius: 10px;
-border-radius: 15px;
-  background: #EEEEEE;
+  border-radius: 15px;
+  background: #eeeeee;
   padding: 2rem;
   width: 15rem;
   height: max-content;
   display: inline-grid;
   margin: 1rem 2rem;
-  color:  #1A436B;
+  color: #1a436b;
 }
 
 .card .service_img {
   justify-self: center;
   height: 12rem;
   width: auto;
-  border-radius:10px;
+  border-radius: 10px;
 }
 .card .service-content {
   /* background:#EDB668; */
@@ -199,20 +202,19 @@ border-radius: 15px;
   font-size: 15px;
   padding: 6px;
   display: block;
-
 }
 .service-value {
   font-size: 20px;
-  padding: 5px 10px
+  padding: 5px 10px;
 }
 .extra-content {
-  background: #DAA520	;
+  background: #daa520;
   border-radius: 10px;
   padding: 10px;
   text-decoration: none;
 }
 .extra-content-li {
-   list-style-type: none;
+  list-style-type: none;
 }
 
 .two-column-grid {
@@ -262,26 +264,24 @@ border-radius: 15px;
 }
 
 .profile-form-row {
-
   padding-top: 16px;
   flex: 100%;
   width: auto;
   color: white;
 
-flex-flow: row wrap;
-display: flex;
-align-items: center;
-padding-top: 16px;
-width: auto;
-color: white;
-margin: 0 auto;
-background: #1A436B;
-width: 50%;
-padding: 16px;
-/* display: block; */
-position: relative;
-color: white;
-
+  flex-flow: row wrap;
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  width: auto;
+  color: white;
+  margin: 0 auto;
+  background: #1a436b;
+  width: 50%;
+  padding: 16px;
+  /* display: block; */
+  position: relative;
+  color: white;
 }
 
 .profile-form-row-center {
@@ -304,9 +304,8 @@ color: white;
   cursor: pointer;
 }
 
-
-.profile-form-row-center input[type=text],
-.profile-form-row-center input[type="password"] ,
+.profile-form-row-center input[type="text"],
+.profile-form-row-center input[type="password"],
 .profile-form-row-center input[type="number"] {
   margin: 0 auto;
   width: 90%;
@@ -314,12 +313,11 @@ color: white;
   padding: 12px;
   border: 1px solid #1a436b;
   border-radius: 3px;
-
 }
 
 .profile-form-row input[type="text"],
 .profile-form-row input[type="number"],
-.profile-form-row input[type="password"], 
+.profile-form-row input[type="password"],
 .new-service-form textarea {
   margin: 0 auto;
   width: 90%;

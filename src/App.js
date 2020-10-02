@@ -36,9 +36,6 @@ class App extends React.Component {
       exchangeDescription: "",
       img_url: "",
       isService: false,
-      categories: {
-        // need to add categories later
-      },
     },
   };
 
@@ -73,37 +70,11 @@ class App extends React.Component {
   handleSubmitNewServiceForm = (e) => {
     e.preventDefault();
     let newService = this.state.newService;
-    let currentUserId = this.state.auth.currentUser.id;
-  };
-
-  handleOnChangeNewServiceForm = (e) => {
-    if (e.target.name === "isService") {
-      this.setState((prevState) => ({
-        newService: {
-          ...prevState.newService,
-          isService: !prevState.newService.isService,
-        },
-      }));
-    } else {
-      let name = e.target.name;
-      let value = e.target.value;
-      this.setState((prevState) => ({
-        newService: { ...prevState.newService, [name]: value },
-      }));
-    }
-  };
-
-  // render() {
-  /////////////////// NEED TO FIX THIS HERE///////
-  // service component stuff here
-
-  handleSubmitNewServiceForm = (e) => {
-    e.preventDefault();
-    let newService = this.state.newService;
 
     api.posts.postNewServiceOffering(newService).then((data) => {
       console.log(data, "back in handle Sumbit");
     });
+
   };
 
   handleOnChangeNewServiceForm = (e) => {
@@ -154,9 +125,10 @@ class App extends React.Component {
   //   fetch(`http://localhost:3000/api/v1/users/${this.state.user.id}`)
   // }
 
-  // handle editing here
+
 
   render() {
+
     return (
       <div>
         <Header
@@ -181,7 +153,11 @@ class App extends React.Component {
           path="/"
           render={(routerProps) => {
             return (
-              <ServicesContainer {...routerProps} search={this.state.search} />
+              <ServicesContainer
+                {...routerProps}
+                search={this.state.search}
+                currentUser={this.state.auth.currentUser.user}
+              />
             );
           }}
         />
@@ -199,15 +175,6 @@ class App extends React.Component {
             return <Signup {...routerProps} handleLogin={this.handleLogin} />;
           }}
         />
-
-        <Route
-          exact
-          path="/signup"
-          render={(routerProps) => {
-            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
-          }}
-        />
-
         <Route
           exact
           path="/profile"
