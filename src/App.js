@@ -62,6 +62,7 @@ class App extends React.Component {
     api.posts.postNewServiceOffering(newService).then((data) => {
       alert(`${data.service.name} has been created`);
     });
+    e.target.reset();
   };
 
   handleOnChangeNewServiceForm = (e) => {
