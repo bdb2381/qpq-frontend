@@ -1,6 +1,4 @@
-import { render } from "@testing-library/react";
 import React from "react";
-// import MyServices from '../containers/MyServices'
 
 class EditUserForm extends React.Component {
   state = {
@@ -30,8 +28,6 @@ class EditUserForm extends React.Component {
               this.props.currentUser.id
             )
           }
-          // onSubmit={(e) => this.props.handleFormSubmit(e)}
-          // onChange={(event) => this.handleFormChange(event)}
         >
           <div className="register-form">
             <div className="profile-form-row">

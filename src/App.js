@@ -2,7 +2,6 @@ import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
-import UserContainer from "./containers/UserContainer";
 import ProfilePage from "./components/ProfilePage";
 import api from "./services/api";
 import "./App.css";

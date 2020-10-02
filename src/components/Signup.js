@@ -103,21 +103,18 @@ class Signup extends React.Component {
             </div>
 
             <div className="profile-form-row">
-              {/* <label for="email">Email</label> */}
               <input
                 type="text"
                 name="email"
                 placeholder="Email"
                 value={this.state.email}
               />
-              {/* <label for="password"> Password</label> */}
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
                 value={this.state.password}
               />
-              {/* <label for="password_confirmation"> Password Confirmation</label> */}
               <input
                 type="password"
                 name="password_confirmation"
@@ -139,6 +136,7 @@ class Signup extends React.Component {
             <b>
               Created with{" "}
               <img
+                alt="cool-cry-icon"
                 src="https://pbs.twimg.com/media/EF-36wfWwAEtTNY.jpg"
                 width="5%"
               />{" "}
