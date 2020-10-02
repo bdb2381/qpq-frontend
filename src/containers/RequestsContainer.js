@@ -25,7 +25,7 @@ class RequestsContainer extends Component {
   handleRequestClick = (event, requestDetails) => {
     let value = event.target.name;
     let updateRequests = this.state.requestsToMe.filter(
-      (r) => r.id !== requestDetails.id
+      (request) => request.id !== requestDetails.id
     );
     api.requests.patchRequestStatus(value, requestDetails.id).then((data) => {
       this.setState({ archiveRequest: [...this.state.archiveRequest, data] });

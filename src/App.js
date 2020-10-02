@@ -116,7 +116,6 @@ class App extends React.Component {
   };
 
   handleFormChange = (event) => {
-    // console.log(e.target.value)
     this.setState({
       user: {
         ...this.state.user,

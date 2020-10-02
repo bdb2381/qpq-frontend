@@ -74,7 +74,7 @@ const ServiceSpecs = (props) => {
       )}
       <div>
         {" "}
-        <GoogleApiWrapper />
+        <GoogleApiWrapper latitude={user.latitude} longitude={user.longitude} />
       </div>
     </div>
   );
