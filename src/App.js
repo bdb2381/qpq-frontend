@@ -3,10 +3,7 @@ import Header from "./components/Header";
 import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import UserContainer from "./containers/UserContainer";
-
-// import EditUserForm from "./components/EditUserForm";
 import ProfilePage from "./components/ProfilePage";
-
 import api from "./services/api";
 import "./App.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
@@ -120,10 +117,12 @@ class App extends React.Component {
     });
   };
 
-  // handleUpdate = () =>{
+  handleUserDelete = (user) =>{
+    console.log(user.user.id)
+    api.users.handleDeleteButton(user.user.id)
+  }
 
-  //   fetch(`http://localhost:3000/api/v1/users/${this.state.user.id}`)
-  // }
+ 
 
 
 
@@ -182,6 +181,7 @@ class App extends React.Component {
             return (
               <ProfilePage
                 {...routerProps}
+                handleUserDelete={this.handleUserDelete}
                 handleEditButton={this.handleEditButton}
                 handleFormChange={this.handleFormChange}
                 currentUser={this.state.auth.currentUser}
