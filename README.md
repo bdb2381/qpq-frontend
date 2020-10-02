@@ -11,6 +11,7 @@ QPQ is a trading web application that allows the user to create their profile wh
 ## Features 
 - User can signup/login and uptheir profile information
 - Users can view all the available services / goods, and their locations
+<br/>
 ![spec card](https://media.giphy.com/media/zWGM7IQyTecEeCmsfm/giphy.gif)
 - Users can create a card for their own service / goods they want to exchange.
 - Users can search for a specific service ![search feature](https://media.giphy.com/media/ytTCuapPmmmsIlCKDa/giphy.gif)
