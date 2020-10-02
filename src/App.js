@@ -93,6 +93,7 @@ class App extends React.Component {
     console.log(user);
     this.setState({
       user: user,
+
       editDisable: !this.state.editDisable,
     });
 
@@ -100,14 +101,19 @@ class App extends React.Component {
   };
 
   //handle user submit
-  handleEditUserSubmit = (event, userState, id) => {
+  handleEditUserSubmit = (event, user, id) => {
     event.preventDefault();
+    debugger;
 
     //fetch patch request with event.value
-    console.log(userState);
-    api.users
-      .patchUserProfile(userState, id)
-      .then(this.setState({ editDisable: !this.state.editDisable }));
+    console.log(user);
+    api.users.patchUserProfile(user, id).then(
+      this.setState({
+        editDisable: !this.state.editDisable,
+        auth: { currentUser: { ...this.state.currentUser, user } },
+      })
+    );
+    debugger;
   };
 
   handleFormChange = (event) => {
