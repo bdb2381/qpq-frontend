@@ -94,7 +94,6 @@ class ServicesContainer extends Component {
   };
 
   render() {
-    console.log(this.props.currentUser);
     return (
       <div>
         {this.state.cardClicked ? null : (
