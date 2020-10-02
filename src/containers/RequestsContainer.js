@@ -13,6 +13,10 @@ class RequestsContainer extends Component {
     temp: "",
   };
   componentDidMount() {
+    fetch("http://localhost:3000/api/v1/requests")
+      .then((res) => res.json())
+      .then((requests) => this.filterRequestsByUserId(requests));
+
     const token = localStorage.getItem("token");
     if (token) {
       api.auth.getCurrentUser().then((user) => {
@@ -69,18 +73,11 @@ class RequestsContainer extends Component {
     console.log(requestsToOthers);
   };
 
-  componentDidMount() {
-    fetch("http://localhost:3000/api/v1/requests")
-      .then((res) => res.json())
-      // .then((requests) => this.setState({ requests }));
-      .then((requests) => this.filterRequestsByUserId(requests));
-  }
-
   render() {
     return (
       <div>
         <div>
-          <h1>PEOPLE WHO WANT ME</h1>
+          <h1>Perspective Offer</h1>
           {this.state.requestsToMe.map((request) => (
             <RequestCard
               key={request.index}
@@ -89,7 +86,7 @@ class RequestsContainer extends Component {
             />
           ))}
 
-          <h1>My Requests To Others</h1>
+          <h1>My Requests</h1>
           {this.state.requestsToOthers.map((request) => (
             <PendingRequestCard
               key={request.id}

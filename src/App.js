@@ -8,22 +8,13 @@ import "./App.css";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
-import AddRequest from "./components/AddRequest";
 
 import ServiceNew from "./components/ServiceNew";
 
 class App extends React.Component {
   state = {
     auth: { currentUser: {} },
-    user: {
-      // first_name: "",
-      // last_name: "",
-      // img_url: "",
-      // street: "",
-      // city: "",
-      // state: "",
-      // zipcode: "",
-    },
+    user: {},
     search: "",
     newService: {
       name: "",

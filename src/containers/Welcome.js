@@ -13,26 +13,21 @@ export default class Welcome extends React.Component {
   };
 
   handleLoginSubmit = (event) => {
-
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-    api.auth.login(email, password)
+    api.auth
+      .login(email, password)
 
       .then((response) => {
         if (response.error) {
-          this.setState({ error: true },
-            alert(response.error));
-        }
-        else {
+          this.setState({ error: true }, alert(response.error));
+        } else {
           this.props.handleLogin(response);
-          this.props.history.push('/');
+          this.props.history.push("/");
         }
       });
-
   };
-
-
 
   render() {
     return (
@@ -62,7 +57,6 @@ export default class Welcome extends React.Component {
             ></input>
           </div>
 
-
           <br></br>
           <button>Submit</button>
         </form>
@@ -77,6 +71,7 @@ export default class Welcome extends React.Component {
             <b>
               Created with{" "}
               <img
+                alt="cool-cry-icon"
                 src="https://pbs.twimg.com/media/EF-36wfWwAEtTNY.jpg"
                 width="5%"
               />{" "}
