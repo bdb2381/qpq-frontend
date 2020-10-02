@@ -74,7 +74,6 @@ class App extends React.Component {
     api.posts.postNewServiceOffering(newService).then((data) => {
       console.log(data, "back in handle Sumbit");
     });
-
   };
 
   handleOnChangeNewServiceForm = (e) => {
@@ -120,15 +119,7 @@ class App extends React.Component {
     });
   };
 
-  // handleUpdate = () =>{
-
-  //   fetch(`http://localhost:3000/api/v1/users/${this.state.user.id}`)
-  // }
-
-
-
   render() {
-
     return (
       <div>
         <Header
