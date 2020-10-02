@@ -4,7 +4,7 @@ import Signup from "./components/Signup";
 import Welcome from "./containers/Welcome";
 import UserContainer from "./containers/UserContainer";
 
-import EditUserForm from "./components/EditUserForm";
+// import EditUserForm from "./components/EditUserForm";
 import ProfilePage from "./components/ProfilePage";
 
 import api from "./services/api";
@@ -13,12 +13,21 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 import AddRequest from "./components/AddRequest";
+
 import ServiceNew from "./components/ServiceNew";
 
 class App extends React.Component {
   state = {
     auth: { currentUser: {} },
-    currentUser: {},
+    user: {
+      first_name: "",
+      last_name: "",
+      img_url: "",
+      street: "",
+      city: "",
+      state: "",
+      zipcode: "",
+    },
     search: "",
     newService: {
       name: "",
@@ -27,9 +36,6 @@ class App extends React.Component {
       exchangeDescription: "",
       img_url: "",
       isService: false,
-      categories: {
-        // need to add categories later
-      },
     },
   };
 
@@ -61,13 +67,14 @@ class App extends React.Component {
     this.setState({ search: searchResults });
   };
 
-  // service component stuff here
-
   handleSubmitNewServiceForm = (e) => {
     e.preventDefault();
     let newService = this.state.newService;
 
-    api.posts.postNewServiceOffering(newService);
+    api.posts.postNewServiceOffering(newService).then((data) => {
+      console.log(data, "back in handle Sumbit");
+    });
+
   };
 
   handleOnChangeNewServiceForm = (e) => {
@@ -85,26 +92,42 @@ class App extends React.Component {
   //service stuff ends here
 
   //handle user profile edit here
+  handleEditButton = (user) => {
+    console.log(user);
+    this.setState({
+      user: user,
+    });
 
-  // handleEditButton = (user) =>{
-  //   this.setState({
-  //     user: user
-  //   })
-  //   console.log(user)
+    //fetch patch request with the body of user
+  };
+
+  //handle user submit
+  handleEditUserSubmit = (event, userState, id) => {
+    event.preventDefault();
+
+    //fetch patch request with event.value
+
+    api.users.patchUserProfile(userState, id);
+  };
+
+  handleFormChange = (event) => {
+    // console.log(e.target.value)
+    this.setState({
+      user: {
+        ...this.state.user,
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
+
+  // handleUpdate = () =>{
+
+  //   fetch(`http://localhost:3000/api/v1/users/${this.state.user.id}`)
   // }
 
-  // handleFormChange = (e) =>{
-  //   this.setState({
-  //     user: {
-  //       ...this.state.user,
-  //       [e.target.name]: e.target.value
-  //     }
-  //   })
 
-  // }
 
   render() {
-    console.log(this.state.auth.currentUser);
 
     return (
       <div>
@@ -152,10 +175,6 @@ class App extends React.Component {
             return <Signup {...routerProps} handleLogin={this.handleLogin} />;
           }}
         />
-
-        {/*<Route exact path='/' render={(routerProps) =>{
-      return (<EditUserForm {...routerProps}  handleEditButton={this.handleEditButton} handleFormChange={this.handleFormChange} />)}} />*/}
-
         <Route
           exact
           path="/profile"
@@ -163,22 +182,10 @@ class App extends React.Component {
             return (
               <ProfilePage
                 {...routerProps}
-                currentUser={this.state.auth.currentUser.user}
-                // this.handleEditButton
-                // this.handleFormChange
-              />
-            );
-          }}
-        />
-
-        <Route
-          exact
-          path="/profile"
-          render={(routerProps) => {
-            return (
-              <ProfilePage
-                {...routerProps}
+                handleEditButton={this.handleEditButton}
+                handleFormChange={this.handleFormChange}
                 currentUser={this.state.auth.currentUser}
+                handleEditUserSubmit={this.handleEditUserSubmit}
               />
             );
           }}
