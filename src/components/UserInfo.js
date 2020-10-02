@@ -51,7 +51,7 @@ const UserInfo = (props) => {
           </div>
         </div>
       ) : (
-        "Loading..."
+        "Deleted...sad."
       )}
     </div>
   );

@@ -77,7 +77,7 @@ class App extends React.Component {
   handleOnChangeNewServiceForm = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-
+    debugger;
     this.setState((prevState) => ({
       newService: {
         ...prevState.newService,
@@ -127,8 +127,8 @@ class App extends React.Component {
   };
 
   handleUserDelete = (user) => {
-    console.log(user.user.id);
-    api.users.handleDeleteButton(user.user.id);
+    console.log(user.id);
+    api.users.handleDeleteButton(user.id);
 
     localStorage.removeItem("token");
     this.setState({ auth: { currentUser: {} } });

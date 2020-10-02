@@ -102,7 +102,7 @@ class EditUserForm extends React.Component {
         </form>
       </div>
     ) : (
-      <div>Pokemon </div>
+      <div> </div>
     );
   }
 }
