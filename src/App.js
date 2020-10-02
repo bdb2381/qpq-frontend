@@ -17,13 +17,13 @@ class App extends React.Component {
   state = {
     auth: { currentUser: {} },
     user: {
-      first_name: "",
-      last_name: "",
-      img_url: "",
-      street: "",
-      city: "",
-      state: "",
-      zipcode: "",
+      // first_name: "",
+      // last_name: "",
+      // img_url: "",
+      // street: "",
+      // city: "",
+      // state: "",
+      // zipcode: "",
     },
     search: "",
     newService: {
@@ -34,6 +34,7 @@ class App extends React.Component {
       img_url: "",
       isService: false,
     },
+    editDisable: true,
   };
 
   componentDidMount() {
@@ -81,7 +82,7 @@ class App extends React.Component {
       newService: {
         ...prevState.newService,
         [name]: value,
-        user_id: this.state.auth.currentUser.id,
+        user_id: this.state.auth.currentUser.user.id,
       },
     }));
   };
@@ -102,7 +103,7 @@ class App extends React.Component {
     event.preventDefault();
 
     //fetch patch request with event.value
-
+    console.log(userState);
     api.users.patchUserProfile(userState, id);
   };
 
@@ -116,10 +117,13 @@ class App extends React.Component {
     });
   };
 
-  handleUserDelete = (user) =>{
-    console.log(user.user.id)
-    api.users.handleDeleteButton(user.user.id)
-  }
+  handleUserDelete = (user) => {
+    console.log(user.user.id);
+    api.users.handleDeleteButton(user.user.id);
+
+    localStorage.removeItem("token");
+    this.setState({ auth: { currentUser: {} } });
+  };
 
   render() {
     return (
