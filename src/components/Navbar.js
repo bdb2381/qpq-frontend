@@ -1,26 +1,47 @@
-import React from "react"; import { Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
-    return (
-        <div className="navbar">
-            <div className="navbar-list">
-
-                {/* <Link to="/login" className="navbar-list">
-                    Log In/</Link> */}
-                <Link to="/" className="navbar-list">
-                    Home </Link>
-                <Link to="/newservice" className="navbar-list">
-                    Create New Offering </Link>
-                <div className="search-container">
-                    <input type="text" onChange={props.handleSearch} placeholder="Search" />
-                </div>
-                <Link to="/profile" className="navbar-list">
-                Profile </Link>
-                {!localStorage.token ? null : <Link to="/" className="navbar-list" onClick={props.handleLogout}> Logout </Link>}
-            </div>
+  return (
+    <div className="navbar">
+      {!localStorage.token ? (
+        <div className="navbar-list">
+          <Link to="/login" className="navbar-list">
+            Log In
+          </Link>
+          <Link to="/signup" className="navbar-list">
+            Sign Up
+          </Link>{" "}
         </div>
-    );
+      ) : (
+        <div className="navbar-list">
+          <Link to="/" className="navbar-list">
+            Home{" "}
+          </Link>
+          <Link to="/newservice" className="navbar-list">
+            New Service{" "}
+          </Link>
+          <div className="search-container">
+            <input
+              type="text"
+              onChange={props.handleSearch}
+              placeholder="Search"
+            />
+          </div>
+          <Link to="/profile" className="navbar-list">
+            Profile{" "}
+          </Link>
+          <Link to="/requests" className="navbar-list">
+            My Requests{" "}
+          </Link>
+          <Link to="/" className="navbar-list" onClick={props.handleLogout}>
+            {" "}
+            Logout{" "}
+          </Link>
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default Navbar
-
+export default Navbar;
