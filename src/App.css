@@ -323,6 +323,12 @@
   color: white;
 }
 
+.user-profile-information {
+  font-size: 20;
+  color: white;
+  position: left;
+}
+
 .profile-form-row-center {
   margin: 0 auto;
   background: #1a436b;

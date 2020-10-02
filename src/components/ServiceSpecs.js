@@ -46,8 +46,8 @@ const ServiceSpecs = (props) => {
             <br></br>
             <div>
               Categories:
-              {categories.map((category) => (
-                <li>{category.name}</li>
+              {categories.map((category, index) => (
+                <li key={index}> {category.name}</li>
               ))}
             </div>{" "}
             <br></br>
