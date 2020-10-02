@@ -34,7 +34,7 @@ class App extends React.Component {
       img_url: "",
       isService: false,
     },
-    editDisable: true,
+    editDisable: false,
   };
 
   componentDidMount() {
@@ -93,6 +93,7 @@ class App extends React.Component {
     console.log(user);
     this.setState({
       user: user,
+      editDisable: !this.state.editDisable,
     });
 
     //fetch patch request with the body of user
@@ -104,7 +105,9 @@ class App extends React.Component {
 
     //fetch patch request with event.value
     console.log(userState);
-    api.users.patchUserProfile(userState, id);
+    api.users
+      .patchUserProfile(userState, id)
+      .then(this.setState({ editDisable: !this.state.editDisable }));
   };
 
   handleFormChange = (event) => {
@@ -184,6 +187,7 @@ class App extends React.Component {
                 handleFormChange={this.handleFormChange}
                 currentUser={this.state.auth.currentUser}
                 handleEditUserSubmit={this.handleEditUserSubmit}
+                editDisable={this.state.editDisable}
               />
             );
           }}

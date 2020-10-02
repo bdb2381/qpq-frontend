@@ -5,12 +5,6 @@ import React from "react";
 class EditUserForm extends React.Component {
   state = {
     user: {},
-    // first_name: "",
-    // last_name: "",
-    // street: "",
-    // city: "",
-    // zipcode: "",
-    // state: "",
   };
 
   handleFormChange = (event) => {

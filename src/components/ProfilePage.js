@@ -3,7 +3,6 @@ import EditUserForm from "./EditUserForm";
 
 class ProfilePage extends React.Component {
   render() {
-
     const {
       first_name,
       last_name,
@@ -15,7 +14,6 @@ class ProfilePage extends React.Component {
     } = this.props.currentUser;
 
     return (
-      
       // <div>
       // </div>
       <div>
@@ -42,31 +40,42 @@ class ProfilePage extends React.Component {
             <div></div>
             <br />
             <button
-            className="edit-profile-button"
-            onClick={() => this.props.handleEditButton(this.props.currentUser)}
-          > Edit My Profile </button>
-          <br/>
-          <br/>
-          <button
-          className="delete-profile-button"
-          onClick={() => this.props.handleUserDelete(this.props.currentUser)}
-        > Delete My Profile 
-        </button>
+              className="edit-profile-button"
+              onClick={() =>
+                this.props.handleEditButton(this.props.currentUser)
+              }
+            >
+              {" "}
+              Edit My Profile{" "}
+            </button>
+            <br />
+            <br />
+            <button
+              className="delete-profile-button"
+              onClick={() =>
+                this.props.handleUserDelete(this.props.currentUser)
+              }
+            >
+              {" "}
+              Delete My Profile
+            </button>
             <br />
             <br />
           </div>
           <br />
         </div>
-        <div>
-          {
-            <EditUserForm
-              handleEditButton={this.props.handleEditButton}
-              handleFormChange={this.props.handleFormChange}
-              currentUser={this.props.currentUser.user}
-              handleEditUserSubmit={this.props.handleEditUserSubmit}
-            />
-          }
-        </div>
+        {this.props.editDisable ? (
+          <div>
+            {
+              <EditUserForm
+                handleEditButton={this.props.handleEditButton}
+                handleFormChange={this.props.handleFormChange}
+                currentUser={this.props.currentUser.user}
+                handleEditUserSubmit={this.props.handleEditUserSubmit}
+              />
+            }
+          </div>
+        ) : null}
       </div>
     );
   }
