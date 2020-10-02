@@ -69,7 +69,7 @@ const postNewServiceOffering = (newService) => {
     method: "POST",
     headers: headers,
     body: JSON.stringify({ service: newService }),
-<<<<<<< HEAD
+
   })
     .then((res) => res.json())
 }
@@ -82,10 +82,6 @@ const handleDeleteButton = (id) =>{
   })
 }
 
-=======
-  }).then((res) => res.json());
-};
->>>>>>> 45be324583566480cc02e133d657e1c9ed91177a
 
 export default {
   auth: {
@@ -104,13 +100,8 @@ export default {
     postNewServiceOffering,
   },
   users: {
-<<<<<<< HEAD
-    handleDeleteButton
-  }
-
-=======
+    handleDeleteButton,
     patchUserProfile,
-  },
->>>>>>> 45be324583566480cc02e133d657e1c9ed91177a
+  }
 
 };

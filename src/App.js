@@ -122,9 +122,6 @@ class App extends React.Component {
     api.users.handleDeleteButton(user.user.id)
   }
 
- 
-
-
 
   render() {
 

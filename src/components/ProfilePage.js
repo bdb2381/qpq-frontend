@@ -3,12 +3,7 @@ import EditUserForm from "./EditUserForm";
 
 class ProfilePage extends React.Component {
   render() {
-<<<<<<< HEAD
 
-    const {first_name, last_name, street, city,img_url, state, zipcode} = this.props.currentUser
-
-    console.log(this.props.user)
-=======
     const {
       first_name,
       last_name,
@@ -18,9 +13,7 @@ class ProfilePage extends React.Component {
       state,
       zipcode,
     } = this.props.currentUser;
->>>>>>> 45be324583566480cc02e133d657e1c9ed91177a
-    // passed down here is the current user of props
-    //just passed down the current user
+
     return (
       
       // <div>
@@ -41,36 +34,14 @@ class ProfilePage extends React.Component {
               Name: {first_name} {last_name}
             </h2>
             <p>
-              {" "}
               <strong>
-                {" "}
-                Address: {street}, {city}, {state}, {zipcode}{" "}
+                Address: {street}, {city}, {state}, {zipcode}
               </strong>
             </p>
             <br />
             <div></div>
             <br />
             <button
-              className="edit-profile-button"
-              onClick={() => this.props.handleEditButton(this.props.user)}
-            >
-              {" "}
-              Edit My Profile{" "}
-            </button>
-            <br />
-            <br />
-            <button
-              className="delete-profile-button"
-              // onClick={() => this.handleEditButton(this.props.user)}
-            >
-              {" "}
-              Delete My Profile{" "}
-            </button>
-          </div>
-<<<<<<< HEAD
-          <br />
-          <button
-
             className="edit-profile-button"
             onClick={() => this.props.handleEditButton(this.props.currentUser)}
           > Edit My Profile </button>
@@ -79,11 +50,13 @@ class ProfilePage extends React.Component {
           <button
           className="delete-profile-button"
           onClick={() => this.props.handleUserDelete(this.props.currentUser)}
-        > Delete My Profile </button>
-=======
->>>>>>> 45be324583566480cc02e133d657e1c9ed91177a
+        > Delete My Profile 
+        </button>
+            <br />
+            <br />
+          </div>
+          <br />
         </div>
-
         <div>
           {
             <EditUserForm
