@@ -26,10 +26,8 @@ QPQ is a service-for-service trading web application, allowing users to create t
 - Users can delete their profile.
 
 ## Build
-- Javascript
 - React
-- HTML
-- CSS
+- HTML/CSS
 - Ruby on Rails API
 
 ## Credits 
