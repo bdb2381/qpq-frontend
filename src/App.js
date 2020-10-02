@@ -94,7 +94,6 @@ class App extends React.Component {
     event.preventDefault();
 
     //fetch patch request with event.value
-    console.log(user);
     api.users.patchUserProfile(user, id).then(
       this.setState({
         editDisable: !this.state.editDisable,
@@ -113,7 +112,6 @@ class App extends React.Component {
   };
 
   handleUserDelete = (user) => {
-    console.log(user.id);
     api.users.handleDeleteButton(user.id);
 
     localStorage.removeItem("token");

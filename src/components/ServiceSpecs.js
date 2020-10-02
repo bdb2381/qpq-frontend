@@ -2,7 +2,6 @@ import React from "react";
 import GoogleApiWrapper from "../containers/MapContainer";
 
 const handleRequestClick = (serviceDetails) => {
-  console.log(serviceDetails);
   // need to wire to request component. Will we change state for render or <Link>
 };
 

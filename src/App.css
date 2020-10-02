@@ -217,18 +217,23 @@
   list-style-type: none;
 }
 .request-card {
+  text-align: left;
 }
 .request-card h3 {
   color: #1a591f;
 }
-.request-card p {
+.service-name {
   font-size: 18px;
   font-weight: bold;
+  text-align: left;
 }
 .request-message {
   font-size: 15px;
+  text-align: left;
 }
 .request-value {
+  text-align: center;
+  font-size: 25px;
 }
 .button-approve-request {
   background: #1a591f;
@@ -252,9 +257,11 @@
 }
 .request-approved {
   color: #1a591f;
+  font-size: 20px;
 }
 .request-denied {
   color: #8e0f01;
+  font-size: 20px;
 }
 .two-column-grid {
   display: flex;

@@ -1,8 +1,6 @@
 import React from "react";
 
 const UserInfo = (props) => {
-  console.log(props.currentUser);
-
   return (
     <div>
       {" "}

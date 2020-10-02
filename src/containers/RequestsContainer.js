@@ -35,7 +35,6 @@ class RequestsContainer extends Component {
       this.setState({ archiveRequest: [...this.state.archiveRequest, data] });
       this.setState({ requestsToMe: updateRequests });
     });
-    console.log(this.state.archiveRequest);
   };
 
   filterRequestsByUserId = (requests) => {
@@ -69,8 +68,6 @@ class RequestsContainer extends Component {
       requestsToOthers: requestsToOthers,
       archiveRequest: archiveRequest,
     });
-
-    console.log(requestsToOthers);
   };
 
   render() {
