@@ -12,7 +12,7 @@ QPQ is a trading web application that allows the user to create their profile wh
 - User can login, which then creates their profile, where they have the option to update their information.
 - Users can view all the available services / goods, and their locations from an api map. 
 - Users can create a card for their own service / goods they want to exchange.
-- Users can search for a specific service ![search feature](https://www.iconfinder.com/data/icons/robots-avatars-set/354/Robot_chatbot___robot_robo_chatbot_digital_chat_bot-512.png)
+- Users can search for a specific service ![search feature](https://media.giphy.com/media/ytTCuapPmmmsIlCKDa/giphy.gif)
 - Users can request other users services / goods for an exchange.
 - Users can also deny request from other users.
 - Users can permanently delete their profile.
