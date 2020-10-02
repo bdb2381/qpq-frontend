@@ -10,7 +10,7 @@ class EditUserForm extends React.Component {
     city: "",
     zipcode: "",
     state: "",
-    disabled: true,
+    disabled: false,
   };
 
   handleFormChange = (event) => {
