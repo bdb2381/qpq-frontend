@@ -60,14 +60,14 @@ class App extends React.Component {
     let newService = this.state.newService;
 
     api.posts.postNewServiceOffering(newService).then((data) => {
-      console.log(data, "back in handle Sumbit");
+      alert(`${data.service.name} has been created`);
     });
+    e.target.reset();
   };
 
   handleOnChangeNewServiceForm = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    debugger;
     this.setState((prevState) => ({
       newService: {
         ...prevState.newService,
@@ -80,7 +80,6 @@ class App extends React.Component {
 
   //handle user profile edit here
   handleEditButton = (user) => {
-    console.log(user);
     this.setState({
       user: user,
 
@@ -93,17 +92,14 @@ class App extends React.Component {
   //handle user submit
   handleEditUserSubmit = (event, user, id) => {
     event.preventDefault();
-    debugger;
 
     //fetch patch request with event.value
-    console.log(user);
     api.users.patchUserProfile(user, id).then(
       this.setState({
         editDisable: !this.state.editDisable,
         auth: { currentUser: { ...this.state.currentUser, user } },
       })
     );
-    debugger;
   };
 
   handleFormChange = (event) => {
@@ -116,7 +112,6 @@ class App extends React.Component {
   };
 
   handleUserDelete = (user) => {
-    console.log(user.id);
     api.users.handleDeleteButton(user.id);
 
     localStorage.removeItem("token");

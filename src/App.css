@@ -216,7 +216,53 @@
 .extra-content-li {
   list-style-type: none;
 }
-
+.request-card {
+  text-align: left;
+}
+.request-card h3 {
+  color: #1a591f;
+}
+.service-name {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+.request-message {
+  font-size: 15px;
+  text-align: left;
+}
+.request-value {
+  text-align: center;
+  font-size: 25px;
+}
+.button-approve-request {
+  background: #1a591f;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  border: none;
+  margin: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+.button-deny-request {
+  background: #8e0f01;
+  color: white;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+.request-approved {
+  color: #1a591f;
+  font-size: 20px;
+}
+.request-denied {
+  color: #8e0f01;
+  font-size: 20px;
+}
 .two-column-grid {
   display: flex;
   width: 75%;
@@ -282,6 +328,12 @@
   /* display: block; */
   position: relative;
   color: white;
+}
+
+.user-profile-information {
+  font-size: 20;
+  color: white;
+  position: left;
 }
 
 .profile-form-row-center {

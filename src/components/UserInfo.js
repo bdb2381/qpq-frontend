@@ -1,8 +1,6 @@
 import React from "react";
 
 const UserInfo = (props) => {
-  console.log(props.currentUser);
-
   return (
     <div>
       {" "}
@@ -18,11 +16,11 @@ const UserInfo = (props) => {
             </div>
           </div>
           <div className="row">
-            <h2>
+            <h2 className="user-profile-information">
               Name: {props.currentUser.first_name} {props.currentUser.last_name}
             </h2>
             <p>
-              <strong>
+              <strong className="user-profile-information">
                 Address: {props.currentUser.street}, {props.currentUser.city},{" "}
                 {props.currentUser.state}, {props.currentUser.zipcode}
               </strong>

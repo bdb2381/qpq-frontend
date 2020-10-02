@@ -2,7 +2,6 @@ import React from "react";
 import GoogleApiWrapper from "../containers/MapContainer";
 
 const handleRequestClick = (serviceDetails) => {
-  console.log(serviceDetails);
   // need to wire to request component. Will we change state for render or <Link>
 };
 
@@ -46,8 +45,8 @@ const ServiceSpecs = (props) => {
             <br></br>
             <div>
               Categories:
-              {categories.map((category) => (
-                <li>{category.name}</li>
+              {categories.map((category, index) => (
+                <li key={index}> {category.name}</li>
               ))}
             </div>{" "}
             <br></br>
