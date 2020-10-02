@@ -116,10 +116,10 @@ class App extends React.Component {
     });
   };
 
-  handleUserDelete = (user) =>{
-    console.log(user.user.id)
-    api.users.handleDeleteButton(user.user.id)
-
+  handleUserDelete = (user) => {
+    console.log(user.user.id);
+    api.users.handleDeleteButton(user.user.id);
+  };
 
   render() {
     return (
