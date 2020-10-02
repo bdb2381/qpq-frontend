@@ -5,19 +5,21 @@ const RequestCard = (props) => {
 
   return (
     <div className="card">
-      <div className="name">
-        Your Service: <br></br>
-        {requestDetails.requested_service.name}
-        <p>
-          You Will Receive in Return:<br></br>{" "}
-          {requestDetails.response_service.name}
-        </p>
-        <p>
-          Message:<br></br> {requestDetails.message}
+      <div className="request-card">
+        Your Service:
+        <p>{requestDetails.requested_service.name}</p>
+        You Will Receive in Return:{" "}
+        <p> {requestDetails.response_service.name}</p>
+        More Information:
+        <p className="request-message"> {requestDetails.message} </p>
+        <p className="request-value">
+          {" "}
+          Value: {requestDetails.response_service.value}{" "}
         </p>
         {requestDetails.status === "pending" ? (
           <div>
             <button
+              className="button-approve-request"
               name="approved"
               onClick={(event) =>
                 props.handleRequestClick(event, requestDetails)
@@ -26,6 +28,7 @@ const RequestCard = (props) => {
               Approve
             </button>
             <button
+              className="button-deny-request"
               name="denied"
               onClick={(event) =>
                 props.handleRequestClick(event, requestDetails)
@@ -36,7 +39,11 @@ const RequestCard = (props) => {
           </div>
         ) : (
           <div>
-            <h4>{requestDetails.status}</h4>
+            {requestDetails.status === "denied" ? (
+              <p className="request-denied"> {requestDetails.status}</p>
+            ) : (
+              <p className="request-approved"> {requestDetails.status}</p>
+            )}
           </div>
         )}
       </div>
