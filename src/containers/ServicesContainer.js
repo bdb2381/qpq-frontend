@@ -37,8 +37,6 @@ class ServicesContainer extends Component {
       fetch("http://localhost:3000/api/v1/categories")
         .then((res) => res.json())
         .then((categories) => this.setState({ categories: categories }));
-    } else {
-      this.props.history.push("/login");
     }
   };
 
@@ -90,7 +88,6 @@ class ServicesContainer extends Component {
       );
       return filteredServices;
     }
-
     return this.sortServicesBy();
   };
 
@@ -128,6 +125,6 @@ class ServicesContainer extends Component {
       </div>
     );
   }
-}
+} // end pf class
 
 export default ServicesContainer;
