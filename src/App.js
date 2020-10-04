@@ -110,6 +110,7 @@ class App extends React.Component {
 
     api.posts.postNewServiceOffering(newService).then((data) => {
       alert(`${data.service.name} has been created`);
+      this.props.history.push("/services");
     });
     e.target.reset();
   };
@@ -121,7 +122,7 @@ class App extends React.Component {
       newService: {
         ...prevState.newService,
         [name]: value,
-        user_id: this.state.auth.currentUser.user.id,
+        user_id: this.state.user.id,
       },
     }));
   };

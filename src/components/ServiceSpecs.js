@@ -46,8 +46,8 @@ const ServiceSpecs = (props) => {
             <div>
               Categories:
               {categories.map((category, index) => (
-                <li key={index}> {category.name}</li>
-              ))}
+              <li key={index}> {category.name}</li>
+            ))}
             </div>{" "}
             <br></br>
           </div>
@@ -57,20 +57,20 @@ const ServiceSpecs = (props) => {
       {props.currentUser.id === user.id ? (
         <div className="your-service"> Your Service </div>
       ) : (
-        <div>
           <div>
-            Offering From: {user.first_name} in {user.city}, {user.state}
-          </div>
+            <div>
+              Offering From: {user.first_name} in {user.city}, {user.state}
+            </div>
 
-          <button
-            className="request-button"
-            onClick={() => handleRequestClick(props.service)}
-            type="button"
-          >
-            Request a QPQ from {user.first_name}
-          </button>
-        </div>
-      )}
+            <button
+              className="request-button"
+              onClick={() => handleRequestClick(props.service)}
+              type="button"
+            >
+              Request a QPQ from {user.first_name}
+            </button>
+          </div>
+        )}
       <div>
         {" "}
         <GoogleApiWrapper latitude={user.latitude} longitude={user.longitude} />

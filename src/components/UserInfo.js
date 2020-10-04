@@ -1,33 +1,38 @@
 import React from "react";
 
 const UserInfo = (props) => {
-
+  console.log(props)
   return (
     <div>
       {" "}
       {props.user ? (
+
         <div className="two-column-grid">
           <div className="row">
-            <div >
+            <div>
               <img
                 className="profile-page-image"
                 src={props.user.img_url}
                 alt={props.user.first_name}
               />
+
             </div>
           </div>
           <div className="row">
             <h2 className="user-profile-information">
-              Hello {props.user.first_name} {props.user.last_name}
+              Hello {props.user.first_name} {props.user.last_name}!
             </h2>
             <p>
               <strong className="user-profile-information">
                 Address:
-               <br></br>{props.user.street}, {props.user.city},{" "}
+               <br />{props.user.street}, {props.user.city},{" "}
                 {props.user.state}, {props.user.zipcode}
               </strong>
             </p>
-            <br />
+            <strong className="user-profile-information">
+              <p>email:
+            <br /> {props.user.email} </p>
+            </strong>
             <div></div>
             <br />
             <button

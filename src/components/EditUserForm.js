@@ -18,14 +18,14 @@ class EditUserForm extends React.Component {
   };
 
   render() {
-    return this.props.currentUser ? (
+    return this.props.user ? (
       <div className="form-container">
         <form
           onSubmit={(event) =>
             this.props.handleEditUserSubmit(
               event,
               this.state.user,
-              this.props.currentUser.id
+              this.props.user.id
             )
           }
         >
@@ -99,8 +99,8 @@ class EditUserForm extends React.Component {
         </form>
       </div>
     ) : (
-      <div> </div>
-    );
+        <div> </div>
+      );
   }
 }
 

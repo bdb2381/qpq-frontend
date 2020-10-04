@@ -3,6 +3,7 @@ import ServiceCard from "../components/ServiceCard";
 import ServiceSpecs from "../components/ServiceSpecs";
 import SortBar from "../components/SortBar";
 
+
 class ServicesContainer extends Component {
   state = {
     services: [],
@@ -18,6 +19,7 @@ class ServicesContainer extends Component {
       service: serviceDetails,
       cardClicked: !this.state.cardClicked,
     });
+
   };
 
   specClick = () => {
@@ -95,7 +97,6 @@ class ServicesContainer extends Component {
   render() {
     return (
       <div>
-
         {this.state.cardClicked ? (
           <div className="specs-container">
             <ServiceSpecs
@@ -118,14 +119,17 @@ class ServicesContainer extends Component {
                     service={service}
                     key={service.id}
                     cardClick={this.cardClick}
+                    renderOneService={this.props.renderOneService}
                   />
                 ))}
               </div>
             </div>
+
           )}
       </div>
-    );
+    )
   }
+
 } // end pf class
 
 export default ServicesContainer;
