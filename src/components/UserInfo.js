@@ -1,28 +1,30 @@
 import React from "react";
 
 const UserInfo = (props) => {
+
   return (
     <div>
       {" "}
-      {props.currentUser ? (
+      {props.user ? (
         <div className="two-column-grid">
           <div className="row">
-            <div>
+            <div >
               <img
                 className="profile-page-image"
-                src={props.currentUser.img_url}
-                alt={props.currentUser.first_name}
+                src={props.user.img_url}
+                alt={props.user.first_name}
               />
             </div>
           </div>
           <div className="row">
             <h2 className="user-profile-information">
-              Name: {props.currentUser.first_name} {props.currentUser.last_name}
+              Hello {props.user.first_name} {props.user.last_name}
             </h2>
             <p>
               <strong className="user-profile-information">
-                Address: {props.currentUser.street}, {props.currentUser.city},{" "}
-                {props.currentUser.state}, {props.currentUser.zipcode}
+                Address:
+               <br></br>{props.user.street}, {props.user.city},{" "}
+                {props.user.state}, {props.user.zipcode}
               </strong>
             </p>
             <br />
@@ -30,7 +32,7 @@ const UserInfo = (props) => {
             <br />
             <button
               className="edit-profile-button"
-              onClick={() => props.handleEditButton(props.currentUser)}
+              onClick={() => props.handleEditButton(props.user)}
             >
               {" "}
               Edit My Profile{" "}
@@ -39,7 +41,7 @@ const UserInfo = (props) => {
             <br />
             <button
               className="delete-profile-button"
-              onClick={() => props.handleUserDelete(props.currentUser)}
+              onClick={() => props.handleUserDelete(props.user)}
             >
               {" "}
               Delete My Profile
@@ -49,8 +51,8 @@ const UserInfo = (props) => {
           </div>
         </div>
       ) : (
-        "Deleted...sad."
-      )}
+          "Deleted...sad."
+        )}
     </div>
   );
 };

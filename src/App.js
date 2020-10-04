@@ -190,7 +190,7 @@ class App extends React.Component {
       handleUserDelete={this.handleUserDelete}
       handleEditButton={this.handleEditButton}
       handleFormChange={this.handleFormChange}
-      currentUser={this.state.auth.currentUser}
+      user={this.state.user}
       handleEditUserSubmit={this.handleEditUserSubmit}
       editDisable={this.state.editDisable}
     />

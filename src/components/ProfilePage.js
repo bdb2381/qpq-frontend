@@ -3,16 +3,32 @@ import EditUserForm from "./EditUserForm";
 import UserInfo from "./UserInfo";
 
 class ProfilePage extends React.Component {
+
+  state = {
+    user: {},
+    editDisable: false
+  }
+
+  handleEditButton = (user) => {
+    this.setState({
+      user: user,
+      editDisable: !this.state.editDisable,
+    });
+
+    //fetch patch request with the body of user
+  };
+
   render() {
+    console.log(this.props.user)
     return (
       <div>
-        {this.props.currentUser ? (
-          <UserInfo
-            currentUser={this.props.currentUser.user}
-            handleEditButton={this.props.handleEditButton}
-            handleUserDelete={this.props.handleUserDelete}
-          />
-        ) : null}
+        <h1> User</h1>
+        <UserInfo
+          user={this.props.user}
+          handleEditButton={this.handleEditButton}
+          handleUserDelete={this.props.handleUserDelete}
+        />
+
         <div>
           {this.props.editDisable ? (
             <div>
@@ -20,7 +36,7 @@ class ProfilePage extends React.Component {
                 <EditUserForm
                   handleEditButton={this.props.handleEditButton}
                   handleFormChange={this.props.handleFormChange}
-                  currentUser={this.props.currentUser.user}
+                  user={this.props.user}
                   handleEditUserSubmit={this.props.handleEditUserSubmit}
                 />
               }

@@ -40,6 +40,7 @@ class ServicesContainer extends Component {
     }
   };
 
+
   handelSortBy = (e) => {
     this.setState({ sortByName: !this.state.sortByName });
   };
@@ -94,14 +95,6 @@ class ServicesContainer extends Component {
   render() {
     return (
       <div>
-        {this.state.cardClicked ? null : (
-          <SortBar
-            handelSortBy={this.handelSortBy}
-            sort={this.state.sortByName}
-            handleFilterByType={this.handleFilterByType}
-            categories={this.state.categories}
-          />
-        )}
 
         {this.state.cardClicked ? (
           <div className="specs-container">
@@ -112,16 +105,24 @@ class ServicesContainer extends Component {
             />{" "}
           </div>
         ) : (
-          <div className="service-container">
-            {this.filterServicesBySearch().map((service) => (
-              <ServiceCard
-                service={service}
-                key={service.id}
-                cardClick={this.cardClick}
+            <div>
+              <SortBar
+                handelSortBy={this.handelSortBy}
+                sort={this.state.sortByName}
+                handleFilterByType={this.handleFilterByType}
+                categories={this.state.categories}
               />
-            ))}
-          </div>
-        )}
+              <div className="service-container">
+                {this.filterServicesBySearch().map((service) => (
+                  <ServiceCard
+                    service={service}
+                    key={service.id}
+                    cardClick={this.cardClick}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
       </div>
     );
   }
