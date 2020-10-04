@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ServiceCard from "../components/ServiceCard";
 import ServiceSpecs from "../components/ServiceSpecs";
 import SortBar from "../components/SortBar";
+import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
 
 
 class ServicesContainer extends Component {
@@ -39,8 +40,20 @@ class ServicesContainer extends Component {
       fetch("http://localhost:3000/api/v1/categories")
         .then((res) => res.json())
         .then((categories) => this.setState({ categories: categories }));
+
+      this.setState({ token: token });
+      // this.renderSortBar()
     }
   };
+
+  // renderSortBar = () =>
+  //   (<SortBar
+  //     handelSortBy={this.handelSortBy}
+  //     sort={this.state.sortByName}
+  //     handleFilterByType={this.handleFilterByType}
+  //     categories={this.state.categories}
+  //   />)
+
 
 
   handelSortBy = (e) => {
@@ -107,12 +120,13 @@ class ServicesContainer extends Component {
           </div>
         ) : (
             <div>
-              <SortBar
-                handelSortBy={this.handelSortBy}
-                sort={this.state.sortByName}
-                handleFilterByType={this.handleFilterByType}
-                categories={this.state.categories}
-              />
+              {this.state.token ?
+                <SortBar
+                  handelSortBy={this.handelSortBy}
+                  sort={this.state.sortByName}
+                  handleFilterByType={this.handleFilterByType}
+                  categories={this.state.categories}
+                /> : null}
               <div className="service-container">
                 {this.filterServicesBySearch().map((service) => (
                   <ServiceCard
@@ -132,4 +146,4 @@ class ServicesContainer extends Component {
 
 } // end pf class
 
-export default ServicesContainer;
+export default withRouter(ServicesContainer)
