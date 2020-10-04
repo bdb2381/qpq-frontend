@@ -1,7 +1,8 @@
 import React from "react";
 
 const UserInfo = (props) => {
-  console.log(props)
+  const { img_url, first_name, last_name, street, city, zipcode, state, email } = props.user;
+
   return (
     <div>
       {" "}
@@ -12,26 +13,26 @@ const UserInfo = (props) => {
             <div>
               <img
                 className="profile-page-image"
-                src={props.user.img_url}
-                alt={props.user.first_name}
+                src={img_url}
+                alt={first_name}
               />
 
             </div>
           </div>
           <div className="row">
             <h2 className="user-profile-information">
-              Hello {props.user.first_name} {props.user.last_name}!
+              Hello {first_name} {last_name}!
             </h2>
             <p>
               <strong className="user-profile-information">
                 Address:
-               <br />{props.user.street}, {props.user.city},{" "}
-                {props.user.state}, {props.user.zipcode}
+               <br />{street}, {city},{" "}
+                {state}, {zipcode}
               </strong>
             </p>
             <strong className="user-profile-information">
               <p>email:
-            <br /> {props.user.email} </p>
+            <br /> {email} </p>
             </strong>
             <div></div>
             <br />

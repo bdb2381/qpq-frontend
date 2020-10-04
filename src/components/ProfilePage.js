@@ -48,12 +48,13 @@ class ProfilePage extends React.Component {
   render() {
     return (
       <div>
-        <h1> User</h1>
-        <UserInfo
-          user={this.props.user}
-          handleEditButton={this.handleEditButton}
-          handleUserDelete={this.handleUserDelete}
-        />
+        {localStorage.token ? (
+          <div> <h1> User</h1>
+            <UserInfo
+              user={this.props.user}
+              handleEditButton={this.handleEditButton}
+              handleUserDelete={this.handleUserDelete}
+            /></div>) : null}
 
 
 
