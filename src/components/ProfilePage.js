@@ -1,6 +1,9 @@
 import React from "react";
 import EditUserForm from "./EditUserForm";
 import UserInfo from "./UserInfo";
+import { withRouter } from "react-router-dom";
+
+
 
 class ProfilePage extends React.Component {
 
@@ -10,7 +13,6 @@ class ProfilePage extends React.Component {
   }
 
   handleEditButton = (user) => {
-
     this.setState({
       user: user,
       editDisable: !this.state.editDisable,
@@ -28,21 +30,44 @@ class ProfilePage extends React.Component {
   //handle user submit
   handleEditUserSubmit = (event, user, id) => {
     event.preventDefault();
-    console.log(event, user, id);
-    //fetch patch request with event.value
-    // api.users.patchUserProfile(user, id).then(
-    //   this.setState({
-    //     editDisable: !this.state.editDisable,
-    //     auth: { currentUser: { ...this.state.currentUser, user } },
-    //   })
-    // );
+    const token = localStorage.getItem("token");
+    console.log(user, token);
+    fetch(`http://localhost:3000/api/v1/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearers ${token}`,
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+
+        this.setState({
+          editDisable: !this.state.editDisable,
+          user: data
+        })
+      }
+      )
   };
 
   handleUserDelete = (user) => {
-    // api.users.handleDeleteButton(user.id);
+    const token = localStorage.getItem("token");
+    fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearers ${token}`,
+      }
+    })
+      .then((res) => res.json())
+      .then(
+        localStorage.removeItem("token"),
+        this.setState({ user: {} }),
+        this.props.history.push("/"))
 
-    localStorage.removeItem("token");
-    this.setState({ auth: { currentUser: {} } });
   };
 
   render() {
@@ -61,12 +86,13 @@ class ProfilePage extends React.Component {
         <div>
           {this.state.editDisable ? (
             <div>
-              hello
+              <br></br>
+              Edit your Profile:
               {
                 <EditUserForm
                   handleEditButton={this.handleEditButton}
                   handleFormChange={this.handleFormChange}
-                  user={this.props.user}
+                  user={this.state.user}
                   handleEditUserSubmit={this.handleEditUserSubmit}
                 />
               }
@@ -78,4 +104,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default ProfilePage;
+export default withRouter(ProfilePage);
