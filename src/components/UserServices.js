@@ -1,8 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const UseServices = ({services, handelChooseService, handelSubmit, handelMessage}) => {
 
   return (
+    <div>
+    {services.length > 0 ?
     <div>
      <label>
 <select onChange={handelChooseService} className="service-select">
@@ -18,8 +22,11 @@ const UseServices = ({services, handelChooseService, handelSubmit, handelMessage
 <label> Add your message: </label>
 <input className="service-message" type="text" name="message" placeholder="Add your message here" onChange={handelMessage}></input>
 <button className="btn-message" type="Submit" onClick={handelSubmit}> Submit </button>
-
     </div>
+    : <Link to="/newservice"> <h1>You Need to Add Service to Give in Return </h1></Link>
+}
+    </div>
+
   );
 };
 export default UseServices

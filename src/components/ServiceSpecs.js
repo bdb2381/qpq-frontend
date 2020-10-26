@@ -122,7 +122,9 @@ alert(data.error)
               Request a QPQ from {user.first_name}
             </button>}
 
-            {this.state.openRequest? this.renderUserServices() : null}
+            {this.state.openRequest ?
+             this.renderUserServices() : null
+             }
           </div>
         )}
       <div>

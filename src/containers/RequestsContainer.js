@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import RequestCard from "../components/RequestCard";
+import RequestCardToOthers from "../components/RequestCardToOthers";
 import PendingRequestCard from "../components/PendingRequestCard";
 import api from "../services/api";
 
@@ -8,7 +9,8 @@ class RequestsContainer extends Component {
     auth: { currentUser: {} },
     requestsToMe: [],
     requestsToOthers: [],
-    archiveRequest: [],
+    archiveRequestToMe: [],
+    archiveRequestToOthers: [],
     request: {},
     temp: "",
   };
@@ -32,7 +34,7 @@ class RequestsContainer extends Component {
       (request) => request.id !== requestDetails.id
     );
     api.requests.patchRequestStatus(value, requestDetails.id).then((data) => {
-      this.setState({ archiveRequest: [...this.state.archiveRequest, data] });
+      this.setState({ archiveRequestToMe: [...this.state.archiveRequestToMe, data] });
       this.setState({ requestsToMe: updateRequests });
     });
   };
@@ -45,7 +47,7 @@ class RequestsContainer extends Component {
         request.requested_service.user_id === currentUser.id &&
         request.status === "pending"
     );
-    let archivedRequestsToMe = requests.filter(
+    let archiveRequestToMe = requests.filter(
       (request) =>
         request.requested_service.user_id === currentUser.id &&
         request.status !== "pending"
@@ -56,17 +58,18 @@ class RequestsContainer extends Component {
         request.response_service.user_id === currentUser.id &&
         request.status === "pending"
     );
-    let archivedRequestsToOthers = requests.filter(
+    let archiveRequestToOthers = requests.filter(
       (request) =>
         request.response_service.user_id === currentUser.id &&
         request.status !== "pending"
     );
-    let archiveRequest = archivedRequestsToMe.concat(archivedRequestsToOthers);
+    // let archiveRequest = archivedRequestsToMe.concat(archivedRequestsToOthers);
 
     this.setState({
       requestsToMe: requestsToMe,
       requestsToOthers: requestsToOthers,
-      archiveRequest: archiveRequest,
+      archiveRequestToMe: archiveRequestToMe,
+      archiveRequestToOthers: archiveRequestToOthers,
     });
   };
 
@@ -93,8 +96,16 @@ class RequestsContainer extends Component {
           ))}
 
           <h1>Archive</h1>
-          {this.state.archiveRequest.map((request) => (
+          {this.state.archiveRequestToMe.map((request) => (
             <RequestCard
+              key={request.id}
+              request={request}
+              handleRequestClick={this.handleRequestClick}
+            />
+          ))}
+
+          {this.state.archiveRequestToOthers.map((request) => (
+            <RequestCardToOthers
               key={request.id}
               request={request}
               handleRequestClick={this.handleRequestClick}
