@@ -2,6 +2,7 @@ import React from "react";
 import EditUserForm from "./EditUserForm";
 import UserInfo from "./UserInfo";
 import { withRouter } from "react-router-dom";
+import api from "../services/api";
 
 
 
@@ -27,47 +28,31 @@ class ProfilePage extends React.Component {
       },
     });
   };
-  //handle user submit
+
   handleEditUserSubmit = (event, user, id) => {
     event.preventDefault();
-    const token = localStorage.getItem("token");
-    console.log(user, token);
-    fetch(`http://localhost:3000/api/v1/users/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearers ${token}`,
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
+    api.users.patchUserProfile(user, id)
       .then((data) => {
-
+  
         this.setState({
           editDisable: !this.state.editDisable,
           user: data
         })
+        this.props.updateUserDetails(data)
       }
       )
   };
 
   handleUserDelete = (user) => {
-    const token = localStorage.getItem("token");
-    fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearers ${token}`,
-      }
-    })
-      .then((res) => res.json())
-      .then(
-        localStorage.removeItem("token"),
-        this.setState({ user: {} }),
-        this.props.history.push("/"))
-
+      api.users.handleDeleteButton(user.id)
+    
+      .then(data => {
+        console.log(data)
+        if (!data.error) {
+          localStorage.removeItem("token")
+          this.props.history.push("/login")
+        }})
+         
   };
 
   render() {

@@ -8,7 +8,7 @@ import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 
 import api from "./services/api";
-import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import "./App.css";
 
 class App extends React.Component {
@@ -27,33 +27,21 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log(localStorage.token);
     if (localStorage.token) {
-      fetch("http://localhost:3000/api/v1/persist", {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      })
-        .then((res) => res.json())
+      api.auth.persist()
         .then((json) => {
-          // console.log(json);
+
           this.handleAuthResponse(json);
         });
+    }else{
+      this.props.history.push("/login");
     }
   }
 
   handleLoginSubmit = (event, user) => {
     event.preventDefault();
-    fetch("http://localhost:3000/api/v1/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
+    api.auth.login(user)
       .then((json) => {
-        // console.log(json);
         if (!json.error) {
           this.handleAuthResponse(json);
         } else {
@@ -64,15 +52,7 @@ class App extends React.Component {
   };
   handleSignUpSubmit = (event, user) => {
     event.preventDefault();
-    // console.log(user);
-    fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
+    api.auth.signup(user)
       .then((json) => {
         if (!json.error) {
           this.handleAuthResponse(json);
@@ -128,45 +108,22 @@ class App extends React.Component {
   };
   //service stuff ends here
 
-  //handle user profile edit here
-  handleEditButton = (user) => {
+
+  updateUserDetails =(user) => {
     this.setState({
-      user: user,
+   ...this.state, 
+    user: user })
+  }
 
-      editDisable: !this.state.editDisable,
-    });
+  // handleFormChange = (event) => {
+  //   this.setState({
+  //     user: {
+  //       ...this.state.user,
+  //       [event.target.name]: event.target.value,
+  //     },
+  //   });
+  // };
 
-    //fetch patch request with the body of user
-  };
-
-  //handle user submit
-  handleEditUserSubmit = (event, user, id) => {
-    event.preventDefault();
-
-    //fetch patch request with event.value
-    api.users.patchUserProfile(user, id).then(
-      this.setState({
-        editDisable: !this.state.editDisable,
-        auth: { currentUser: { ...this.state.currentUser, user } },
-      })
-    );
-  };
-
-  handleFormChange = (event) => {
-    this.setState({
-      user: {
-        ...this.state.user,
-        [event.target.name]: event.target.value,
-      },
-    });
-  };
-
-  handleUserDelete = (user) => {
-    api.users.handleDeleteButton(user.id);
-
-    localStorage.removeItem("token");
-    this.setState({ auth: { currentUser: {} } });
-  };
 
   renderLogin = () => (
     <Login
@@ -188,12 +145,8 @@ class App extends React.Component {
   );
   renderProfilePage = () => (
     <ProfilePage
-      handleUserDelete={this.handleUserDelete}
-      handleEditButton={this.handleEditButton}
-      handleFormChange={this.handleFormChange}
       user={this.state.user}
-      handleEditUserSubmit={this.handleEditUserSubmit}
-      editDisable={this.state.editDisable}
+      updateUserDetails={this.updateUserDetails}
     />
   );
 
