@@ -36,7 +36,7 @@ class App extends React.Component {
       })
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
+          // console.log(json);
           this.handleAuthResponse(json);
         });
     }
@@ -53,7 +53,7 @@ class App extends React.Component {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
+        // console.log(json);
         if (!json.error) {
           this.handleAuthResponse(json);
         } else {
@@ -64,7 +64,7 @@ class App extends React.Component {
   };
   handleSignUpSubmit = (event, user) => {
     event.preventDefault();
-    console.log(user);
+    // console.log(user);
     fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {

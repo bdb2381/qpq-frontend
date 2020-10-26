@@ -34,7 +34,7 @@ const Navbar = (props) => {
             <Link to="/requests" className="navbar-list">
               My Requests{" "}
             </Link>
-            <Link to="/" className="navbar-list" onClick={props.handleLogout}>
+            <Link to="/login" className="navbar-list" onClick={props.handleLogout}>
               {" "}
             Logout{" "}
             </Link>

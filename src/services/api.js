@@ -69,11 +69,31 @@ const postNewServiceOffering = (newService) => {
 };
 
 const handleDeleteButton = (id) => {
-  fetch(`http://localhost:3000/api/v1/users/${id}`, {
+  return fetch(`${API_ROOT}/users/${id}`, {
     method: "DELETE",
     headers: headers,
   }).then((res) => res.json());
 };
+
+
+const servicesForUser = (id) => {
+  return fetch(`${API_ROOT}/users/${id}`, {
+    headers: headers,
+  }).then((res) => res.json());
+  }
+
+
+const createRequest = (request) => {
+  return fetch(`${API_ROOT}/requests`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ request:request })
+  })
+  .then((res) => res.json())
+}
+
+
+
 
 export default {
   auth: {
@@ -83,10 +103,13 @@ export default {
   },
   services: {
     getServices,
+    servicesForUser
   },
   requests: {
     getRequests,
     patchRequestStatus,
+    createRequest
+
   },
   posts: {
     postNewServiceOffering,
