@@ -1,19 +1,18 @@
 import React from "react";
 import Header from "./components/Header";
 import Signup from "./components/Signup";
-import Welcome from "./containers/Welcome";
+import Login from "./components/Login";
 import ProfilePage from "./components/ProfilePage";
-import api from "./services/api";
-import "./App.css";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import ServiceNew from "./components/ServiceNew";
 import ServicesContainer from "./containers/ServicesContainer";
 import RequestsContainer from "./containers/RequestsContainer";
 
-import ServiceNew from "./components/ServiceNew";
+import api from "./services/api";
+import { Route, Switch, Link, NavLink, withRouter } from "react-router-dom";
+import "./App.css";
 
 class App extends React.Component {
   state = {
-    auth: { currentUser: {} },
     user: {},
     search: "",
     newService: {
@@ -28,20 +27,70 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    const token = localStorage.getItem("token");
-    if (token) {
-      api.auth.getCurrentUser().then((user) => {
-        const currentUser = { currentUser: user };
-        this.setState({ auth: currentUser });
-      });
+    console.log(localStorage.token);
+    if (localStorage.token) {
+      fetch("http://localhost:3000/api/v1/persist", {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          // console.log(json);
+          this.handleAuthResponse(json);
+        });
     }
   }
-  handleLogin = (response) => {
-    const currentUser = { currentUser: response.user };
-    localStorage.setItem("token", response.jwt);
-    this.setState({
-      auth: currentUser,
-    });
+
+  handleLoginSubmit = (event, user) => {
+    event.preventDefault();
+    fetch("http://localhost:3000/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log(json);
+        if (!json.error) {
+          this.handleAuthResponse(json);
+        } else {
+          alert(json.error);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  handleSignUpSubmit = (event, user) => {
+    event.preventDefault();
+    // console.log(user);
+    fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (!json.error) {
+          this.handleAuthResponse(json);
+        } else {
+          alert(json.error);
+        }
+      });
+  };
+
+  handleAuthResponse = (response) => {
+    if (response.user) {
+      localStorage.token = response.jwt;
+      this.setState({ user: response.user }, () => {
+        this.props.history.push("/services");
+      });
+    } else {
+      alert(response.error);
+    }
   };
 
   handleLogout = () => {
@@ -61,6 +110,7 @@ class App extends React.Component {
 
     api.posts.postNewServiceOffering(newService).then((data) => {
       alert(`${data.service.name} has been created`);
+      this.props.history.push("/services");
     });
     e.target.reset();
   };
@@ -72,7 +122,7 @@ class App extends React.Component {
       newService: {
         ...prevState.newService,
         [name]: value,
-        user_id: this.state.auth.currentUser.user.id,
+        user_id: this.state.user.id,
       },
     }));
   };
@@ -118,6 +168,50 @@ class App extends React.Component {
     this.setState({ auth: { currentUser: {} } });
   };
 
+  renderLogin = () => (
+    <Login
+      handleLogin={this.handleLogin}
+      handleLoginSubmit={this.handleLoginSubmit}
+    />
+  );
+  renderSignup = () => (
+    <Signup
+      handleLogin={this.handleLogin}
+      handleSignUpSubmit={this.handleSignUpSubmit}
+    />
+  );
+  renderServicesContainer = () => (
+    <ServicesContainer
+      search={this.state.search}
+      currentUser={this.state.user}
+    />
+  );
+  renderProfilePage = () => (
+    <ProfilePage
+      handleUserDelete={this.handleUserDelete}
+      handleEditButton={this.handleEditButton}
+      handleFormChange={this.handleFormChange}
+      user={this.state.user}
+      handleEditUserSubmit={this.handleEditUserSubmit}
+      editDisable={this.state.editDisable}
+    />
+  );
+
+  renderRequestsContainer = () => (
+    <RequestsContainer
+      currentUser={this.state.user}
+      search={this.state.search}
+    />
+  );
+
+  renderNewService = () => (
+    <ServiceNew
+      newService={this.state.newService}
+      handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
+      handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}
+    />
+  );
+
   render() {
     return (
       <div>
@@ -125,81 +219,25 @@ class App extends React.Component {
           handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
         />
-        <Route
-          exact={true}
-          path="/requests"
-          render={(routerProps) => {
-            return (
-              <RequestsContainer
-                {...routerProps}
-                currentUser={this.state.auth.currentUser.user}
-                search={this.state.search}
-              />
-            );
-          }}
-        />
-        <Route
-          exact={true}
-          path="/"
-          render={(routerProps) => {
-            return (
-              <ServicesContainer
-                {...routerProps}
-                search={this.state.search}
-                currentUser={this.state.auth.currentUser.user}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path="/login"
-          render={(routerProps) => {
-            return <Welcome {...routerProps} handleLogin={this.handleLogin} />;
-          }}
-        />
-        <Route
-          exact
-          path="/signup"
-          render={(routerProps) => {
-            return <Signup {...routerProps} handleLogin={this.handleLogin} />;
-          }}
-        />
-        <Route
-          exact
-          path="/profile"
-          render={(routerProps) => {
-            return (
-              <ProfilePage
-                {...routerProps}
-                handleUserDelete={this.handleUserDelete}
-                handleEditButton={this.handleEditButton}
-                handleFormChange={this.handleFormChange}
-                currentUser={this.state.auth.currentUser}
-                handleEditUserSubmit={this.handleEditUserSubmit}
-                editDisable={this.state.editDisable}
-              />
-            );
-          }}
-        />
-
-        <Route
-          exact
-          path="/newservice"
-          render={(routerProps) => {
-            return (
-              <ServiceNew
-                {...routerProps}
-                newService={this.state.newService}
-                handleSubmitNewServiceForm={this.handleSubmitNewServiceForm}
-                handleOnChangeNewServiceForm={this.handleOnChangeNewServiceForm}
-              />
-            );
-          }}
-        />
+        <Switch>
+          <Route
+            exact
+            path="/requests"
+            component={this.renderRequestsContainer}
+          />
+          <Route
+            exact
+            path="/services"
+            component={this.renderServicesContainer}
+          />
+          <Route path="/login" component={this.renderLogin} />
+          <Route exact path="/signup" component={this.renderSignup} />
+          <Route exact path="/profile" component={this.renderProfilePage} />
+          <Route exact path="/newservice" component={this.renderNewService} />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

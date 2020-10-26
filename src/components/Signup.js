@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import api from "../services/api";
 
 class Signup extends React.Component {
   state = {
-    newUser: {
+    user: {
       first_name: "",
       last_name: "",
       street: "",
@@ -19,35 +18,20 @@ class Signup extends React.Component {
     },
   };
 
-  handleOnChange = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+  handleChange = (event) => {
+    let name = event.target.name;
+    let value = event.target.value;
     this.setState((prevState) => ({
-      newUser: { ...prevState.newUser, [name]: value },
+      user: { ...prevState.user, [name]: value },
     }));
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submit");
-    let newUser = this.state.newUser;
-    api.auth.signup(newUser).then((response) => {
-      if (response.error) {
-        alert(response.error);
-        this.setState({ error: true });
-      } else {
-        this.props.handleLogin(response);
-        this.props.history.push("/");
-      }
-    });
   };
 
   render() {
     return (
       <div className="form-container">
         <form
-          onChange={(e) => this.handleOnChange(e)}
-          onSubmit={(e) => this.handleSubmit(e)}
+          onChange={this.handleChange}
+          onSubmit={(e) => this.props.handleSignUpSubmit(e, this.state.user)}
         >
           <div className="register-form">
             <div className="profile-form-row">

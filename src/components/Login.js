@@ -2,43 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 
-export default class Welcome extends React.Component {
+export default class Login extends React.Component {
   state = {
     email: "",
     password: "",
   };
 
-  handleLoginChange = (event) => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleLoginSubmit = (event) => {
-    event.preventDefault();
-    const email = this.state.email;
-    const password = this.state.password;
-    api.auth
-      .login(email, password)
-
-      .then((response) => {
-        if (response.error) {
-          this.setState({ error: true }, alert(response.error));
-        } else {
-          this.props.handleLogin(response);
-          this.props.history.push("/");
-        }
-      });
   };
 
   render() {
     return (
       <div className="one-column-grid">
-        <form onSubmit={(e) => this.handleLoginSubmit(e)}>
+        <form onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
           <h1> Welcome to QPQ </h1>
           <h2>Please log in below:</h2>
           <div className="profile-form-row-center">
             <label name="email">Email</label>
             <input
-              onChange={(e) => this.handleLoginChange(e)}
+              onChange={this.handleChange}
               type="text"
               value={this.state.email}
               name="email"
@@ -49,7 +32,7 @@ export default class Welcome extends React.Component {
           <div className="profile-form-row-center">
             <label name="password">Password</label>
             <input
-              onChange={(e) => this.handleLoginChange(e)}
+              onChange={this.handleChange}
               type="password"
               value={this.state.password}
               name="password"
