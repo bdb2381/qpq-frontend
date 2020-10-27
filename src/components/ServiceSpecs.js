@@ -1,11 +1,62 @@
 import React from "react";
 import GoogleApiWrapper from "../containers/MapContainer";
+import UserServices from "./UserServices"
+import api from "../services/api";
 
-const handleRequestClick = (serviceDetails) => {
-  // need to wire to request component. Will we change state for render or <Link>
-};
 
-const ServiceSpecs = (props) => {
+class  ServiceSpecs extends React.Component {
+state = {
+  services: [],
+  userId: 0, 
+  response_service_id: 0,
+  requested_service_id: 0, 
+  message: null,
+  openRequest: false, 
+  submitRequest: false
+
+}
+  handleRequestClick = (serviceDetails, user) => {
+   api.services.servicesForUser(user).then(data =>
+        this.setState({...this.state, services: data.services, userId: user, requested_service_id: serviceDetails.id, openRequest: true}))
+      
+      }
+
+
+  renderUserServices = () => (
+  <UserServices services={this.state.services} 
+  handelChooseService={this.handelChooseService}
+  handelMessage={this.handelMessage}
+  handelSubmit={this.handelSubmit}
+
+  />)
+ 
+  handelChooseService =(e) => {
+    this.setState({...this.state, response_service_id:+e.target.value})
+  }
+
+  handelMessage =(e) => {
+    this.setState({...this.state, message:e.target.value})
+  }
+  handelSubmit =() => {
+    const request = {
+      requested_service_id: this.state.requested_service_id, 
+      response_service_id: this.state.response_service_id, 
+      message: this.state.message,
+      status: "pending"
+    }
+api.requests.createRequest(request)
+ 
+     .then(data => {
+        if (!data.error) {
+      this.setState({...this.state,submitRequest:true, openRequest: false})
+        } else {
+alert(data.error)
+        }}
+        )
+    }
+    
+
+  render (){
   const {
     name,
     offeringDescription,
@@ -14,12 +65,12 @@ const ServiceSpecs = (props) => {
     value,
     user,
     categories,
-  } = props.service;
+  } = this.props.service;
 
   return (
     <div className="service-specs">
       <div>
-        <button className="closing-spec" onClick={props.specClick}>
+        <button className="closing-spec" onClick={this.props.specClick}>
           X
         </button>
       </div>
@@ -46,37 +97,43 @@ const ServiceSpecs = (props) => {
             <div>
               Categories:
               {categories.map((category, index) => (
-                <li key={index}> {category.name}</li>
-              ))}
+              <li key={index}> {category.name}</li>
+            ))}
             </div>{" "}
             <br></br>
           </div>
         )}
       </div>
 
-      {props.currentUser.id === user.id ? (
+      {this.props.currentUser.id === user.id ? (
         <div className="your-service"> Your Service </div>
       ) : (
-        <div>
           <div>
-            Offering From: {user.first_name} in {user.city}, {user.state}
-          </div>
+            <div>
+              Offering From: {user.first_name} in {user.city}, {user.state}
+            </div>
 
-          <button
-            className="request-button"
-            onClick={() => handleRequestClick(props.service)}
-            type="button"
-          >
-            Request a QPQ from {user.first_name}
-          </button>
-        </div>
-      )}
+{this.state.submitRequest? <h1> Your request has been sent to {user.first_name} </h1>: 
+            <button
+              className="request-button"
+              onClick={() => this.handleRequestClick(this.props.service, this.props.currentUser.id)}
+              type="button"
+            >
+              Request a QPQ from {user.first_name}
+            </button>}
+
+            {this.state.openRequest ?
+             this.renderUserServices() : null
+             }
+          </div>
+        )}
       <div>
         {" "}
         <GoogleApiWrapper latitude={user.latitude} longitude={user.longitude} />
       </div>
     </div>
   );
-};
+}
+}
 
 export default ServiceSpecs;

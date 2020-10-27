@@ -20,19 +20,19 @@ const getRequests = () => {
   );
 };
 
-const login = (email, password) => {
+const login = (user) => {
   return fetch(`${API_ROOT}/login`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify(user),
   }).then((res) => res.json());
 };
 
-const signup = (newUser) => {
+const signup = (user) => {
   return fetch(`${API_ROOT}/users`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({ user: newUser }),
+    body: JSON.stringify(user),
   }).then((res) => res.json());
 };
 
@@ -51,12 +51,12 @@ const patchRequestStatus = (requestStatus, id) => {
   }).then((res) => res.json());
 };
 const patchUserProfile = (userProfile, id) => {
-  console.log(userProfile);
+  console.log(userProfile, id);
   return fetch(`${API_ROOT}/users/${id}`, {
     method: "PATCH",
     headers: headers,
-    body: JSON.stringify({ user: userProfile }),
-  }).then((res) => res.json());
+    body: JSON.stringify(userProfile),
+  }).then((res) => res.json())
 };
 
 const postNewServiceOffering = (newService) => {
@@ -69,24 +69,57 @@ const postNewServiceOffering = (newService) => {
 };
 
 const handleDeleteButton = (id) => {
-  fetch(`http://localhost:3000/api/v1/users/${id}`, {
+  return fetch(`${API_ROOT}/users/${id}`, {
     method: "DELETE",
     headers: headers,
   }).then((res) => res.json());
 };
+
+
+const servicesForUser = (id) => {
+  return fetch(`${API_ROOT}/users/${id}`, {
+    headers: headers,
+  }).then((res) => res.json());
+  }
+
+
+const createRequest = (request) => {
+  return fetch(`${API_ROOT}/requests`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ request:request })
+  })
+  .then((res) => res.json())
+}
+
+
+const persist =() => {
+  return fetch(`${API_ROOT}/persist`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  })
+    .then((res) => res.json())
+}
+
+
 
 export default {
   auth: {
     login: login,
     getCurrentUser: getCurrentUser,
     signup: signup,
+    persist: persist,
   },
   services: {
     getServices,
+    servicesForUser
   },
   requests: {
     getRequests,
     patchRequestStatus,
+    createRequest
+
   },
   posts: {
     postNewServiceOffering,
