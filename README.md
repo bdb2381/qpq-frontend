@@ -23,7 +23,7 @@ QPQ is a service-for-service trading web application, allowing users to create t
 - Users can request other services / goods from other users
 <br><br/>
 ![request service](https://media.giphy.com/media/cU1c6qvApf10riWyrt/giphy.gif)
-- Users can approve/deny requuests from other users
+- Users can approve/deny requests from other users
 <br><br/>
 ![approve and deny requests](https://media.giphy.com/media/gtIU5MXh5ievo3VzIZ/giphy.gif)
 - Users can delete their profile.
